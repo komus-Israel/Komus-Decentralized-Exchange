@@ -19,7 +19,7 @@ contract("Exchange", ([deployer, feeAccount])=>{
             exchangeAddress.should.not.be.equal('')
         })
 
-        it("it sets the transaction fee account on deployment", ()=>{
+        it("it sets the transaction fee account on deployment", async()=>{
             const transactionFeeAccount = await exchange.transactionFeeAccount()
             transactionFeeAccount.should.be.equal(feeAccount)
         })
