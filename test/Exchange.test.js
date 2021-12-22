@@ -1,6 +1,6 @@
 const Exchange = artifacts.require('./Exchange.sol')
 const Token = artifacts.require('./Token.sol')
-import { tokens, EVM_REVERT } from './helpers';
+import { tokens, EVM_REVERT, ETHER_ADDRESS } from './helpers';
 
 require('chai')
     .use(require('chai-as-promised'))
@@ -12,6 +12,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
     let exchange;
     let feePercent = 10;
     let token;
+   
 
     beforeEach(async()=>{
         exchange = await Exchange.new(feeAccount, feePercent)
@@ -134,6 +135,25 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                 })
 
                 
+            })
+
+            
+
+        })
+
+        describe("ether deposit", ()=>{
+
+            let deloyerEtherBalance
+            let etherAmount = 1;
+            beforeEach(async()=>{
+                await exchange.depositEther({ from: deployer, value: tokens('1') })
+            })
+
+            describe("success", ()=>{
+                it("deposits the ether successfully", ()=>{
+                    const depositedEtherBalance = await exchange.tokens(ETHER_ADDRESS, deployer);
+                    depositedEtherBalance.toString().should.be.equal(etherAmount.toString())
+                })
             })
 
             
