@@ -189,7 +189,14 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                         const balanceAfterWithdrawal = await exchange.tokens(ETHER_ADDRESS, deployer)
                         balanceAfterWithdrawal.toString().should.be.equal(ether('0.8').toString())
                     })
-                    
+
+                 })
+
+                 describe("failed withdrawal", ()=>{
+                     
+                     it("rejects the withdrawal request due to insufficient ether in deposit", async()=>{
+                            await exchange.withdrawEther(ether('2'), { from: deployer}).should.be.rejected
+                     })
                  })
 
                 
