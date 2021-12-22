@@ -89,9 +89,18 @@ contract("Exchange", ([deployer, feeAccount])=>{
                 exchangeBalance.toString().should.be.equal('0')
             })
 
-            describe("the deployer deposited the token", ()=>{
+            it("rejects the deposit because the exchange has not be approved", async()=>{
+                await exchange.depositToken(token.address, tokens('1')).should.be.rejected
+            })
+
+            describe("the deployer deposits the token by approving", ()=>{
                 beforeEach(async()=>{
-                    await exhange.depositTokens(token.address, tokens('1')).should.be.rejected
+                    await token.approve(exchange.address, tokens('1'))
+                })
+
+                it("approved the exchange successfully", async()=>{
+                    const approvedBalance = await token.allowance(deployer, exchange.address)
+                    approvedBalance.toString().should.be.equal(tokens('1').toString())
                 })
             })
 
