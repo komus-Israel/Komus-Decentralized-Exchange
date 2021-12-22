@@ -32,7 +32,7 @@ contract Exchange {
         //  manage deposit
         //  send tokens to this contract
 
-        Token(_token).transferFrom(msg.sender, address(this), _amount);
+        require(Token(_token).transferFrom(msg.sender, address(this), _amount));
         
     }
 

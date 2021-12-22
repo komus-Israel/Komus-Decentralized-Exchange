@@ -105,13 +105,15 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
                     it("deposited tokens after approval", async()=>{
                         const exchangeBalance = await token.balanceOf(exchange.address)
-                        exchangeBalance.toString().should.be.equal(tokens('0.5').toString())
+                        exchangeBalance.toString().should.be.equal(tokens('0.5').toString()) // the exchange balance should then be equal to this
                     })
                 })
 
                 describe("failed", ()=>{
 
-                    it("rejects the deposit because the exchange has not be approved", async()=>{
+
+                    it("rejects the deposit because the depositor does not have enough tokens", async()=>{
+                        await token.approve(exchange.address, tokens('1'), { from: user1 })
                         await exchange.depositToken(token.address, tokens('1'), { from: user1 }).should.be.rejected
                     })
 
