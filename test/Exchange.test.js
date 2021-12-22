@@ -19,6 +19,12 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         token = await Token.new()
     })
 
+    describe("fall back", ()=>{
+        it("reverts when Ether is sent", async()=>{
+            await exchange.sendTransaction({ value:1, from: user1 }).should.be.rejected
+        })
+    })
+
     describe("deployment", ()=>{
         it("deployed exhange contract successfully", ()=>{
             const exchangeAddress = exchange.address

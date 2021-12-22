@@ -64,6 +64,10 @@ contract Exchange {
         emit Deposit(ETHER, msg.sender, msg.value, tokens[ETHER][msg.sender]);
     }
 
+    fallback() external {
+
+    }
+
     
 }
 
