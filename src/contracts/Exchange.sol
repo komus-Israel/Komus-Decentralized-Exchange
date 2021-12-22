@@ -9,7 +9,9 @@ import "./Token.sol";
 
 //  TODO:
 
-//  [x]  set the fee account
+//  [x] set the fee account
+//  [x] deposit token
+//  [x] deposit ether
 
 contract Exchange {
 

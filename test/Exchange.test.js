@@ -1,6 +1,6 @@
 const Exchange = artifacts.require('./Exchange.sol')
 const Token = artifacts.require('./Token.sol')
-import { tokens, EVM_REVERT, ETHER_ADDRESS } from './helpers';
+import { tokens, ether, EVM_REVERT, ETHER_ADDRESS } from './helpers';
 
 require('chai')
     .use(require('chai-as-promised'))
@@ -144,9 +144,10 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         describe("ether deposit", ()=>{
 
             let deloyerEtherBalance
-            let etherAmount = tokens('1');
+            let etherDeposit
+            let etherAmount = ether('1');
             beforeEach(async()=>{
-                await exchange.depositEther({ from: deployer, value: tokens('1') })
+                etherDeposit = await exchange.depositEther({ from: deployer, value: tokens('1') })
             })
 
             describe("success", ()=>{
@@ -154,12 +155,16 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                     const depositedEtherBalance = await exchange.tokens(ETHER_ADDRESS, deployer);
                     depositedEtherBalance.toString().should.be.equal(etherAmount.toString())
                 })
+                
+                it("emits deposit event", async()=>{
+                    etherDeposit.logs[0].event.should.be.equal('Deposit')
+                })
             })
 
 
             describe("failed", ()=>{
                 it("fails when an address tries to deposit ether throught the deposit token function", async()=>{
-                        await exchange.depositToken(ETHER_ADDRESS, etherAmount).should.be.rejected
+                        await exchange.depositToken(ETHER_ADDRESS, etherAmount, { from:deployer }).should.be.rejected
                 })
             })
 
