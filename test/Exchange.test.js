@@ -10,7 +10,7 @@ contract("Exchange", ([address1])=>{
     let exchange;
 
     beforeEach(async()=>{
-        exchange = await Exchange.new()
+        exchange = await Exchange.deployed()
     })
 
     describe("deployment", ()=>{
