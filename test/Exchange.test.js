@@ -45,6 +45,11 @@ contract("Exchange", ([deployer, feeAccount])=>{
             deployerBalance.toString.should.not.be.equal('0')
         })
 
+        it("confirms that the balance of the deployer is equal to the total supply", async()=>{
+            const deployerBalance = await token.balanceOf(deployer)
+            deployerBalance.toString.should.not.be.equal(tokens('1000000'))
+        })
+
     })
 
     describe("deposit tokens", ()=>{
@@ -60,7 +65,20 @@ contract("Exchange", ([deployer, feeAccount])=>{
             exchangeBalance.toString().should.be.equal('0')
         })
 
-        //it("deposits token to the exchange")
+
+        describe("the deployer deposits tokens to the exchange", ()=>{
+
+            // the deployer deposits tokens to the exchange
+            beforeEach(async()=>{
+                await token.transfer(deployer, exchange.address)
+            })
+
+            it("deposits tokens to the exchange from the deployer", ()=>{
+
+            })
+        })
+
+        
     })
 
 })
