@@ -19,7 +19,7 @@ contract Exchange {
     // first address is the address of the token
     // second address is the address of person that has deposited the token
     // unit256 is the amount that has been deposited
-    mapping(address => mapping(address => uint256)) public tokens;
+    mapping(address => mapping(address => uint256)) public tokens; // mapping of tokens on the platform
 
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
 
@@ -39,7 +39,7 @@ contract Exchange {
         //  send tokens to this contract
         require(Token(_token).transferFrom(msg.sender, address(this), _amount));
 
-        //
+        tokens[_token][msg.sender] = _amount;
         
     }
 
