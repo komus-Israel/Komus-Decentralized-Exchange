@@ -5,7 +5,7 @@ require('chai')
     .should()
 
 
-contract("Exchange", ([address1])=>{
+contract("Exchange", ([deployer, feeAccount])=>{
 
     let exchange;
 
