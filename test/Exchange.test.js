@@ -90,9 +90,12 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             })
 
             describe("the deployer deposits the token by approving", ()=>{
+                
+                let depositToken
+                
                 beforeEach(async()=>{
                     const approveToken = await token.approve(exchange.address, tokens('1'))
-                    const depositToken = await exchange.depositToken(token.address, tokens('0.5'))
+                    depositToken = await exchange.depositToken(token.address, tokens('0.5'))
                 })
 
                 describe("success", ()=>{

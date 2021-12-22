@@ -23,7 +23,7 @@ contract Exchange {
 
 
     // emit a deposit event
-    event Deposit(address _token, address _user, unit256 _amount, unit256 _balance);
+    event Deposit(address _token, address _user, uint256 _amount, uint256 _balance);
 
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
 
