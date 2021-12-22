@@ -16,7 +16,7 @@ contract("Exchange", ([address1])=>{
     describe("deployment", ()=>{
         it("deployed successfully", ()=>{
             const exchangeAddress = exchange.address
-            console.log(exchangeAddress)
+            exchangeAddress.should.not.be.equal('')
         })
     })
 
