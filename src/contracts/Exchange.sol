@@ -1,4 +1,5 @@
 pragma solidity 0.8.10;
+import "./Token.sol";
 
 
 //  Deposit and Withdraw Funds
@@ -8,7 +9,7 @@ pragma solidity 0.8.10;
 
 //  TODO:
 
-//  []  set the fee account
+//  [x]  set the fee account
 
 contract Exchange {
 
