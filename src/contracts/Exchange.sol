@@ -15,7 +15,11 @@ contract Exchange {
 
     address public transactionFeeAccount; // account receives the exchange fee
     uint256 public transactionFeePercent;
-    mapping(address => mapping(address=>uint256)) public tokens;
+
+    // first address is the address of the token
+    // second address is the address of person that has deposited the token
+    // unit256 is the amount that has been deposited
+    mapping(address => mapping(address => uint256)) public tokens;
 
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
 
