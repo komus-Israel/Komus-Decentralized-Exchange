@@ -42,12 +42,12 @@ contract("Exchange", ([deployer, feeAccount])=>{
 
         it("confirms that the balance of the deployer is not zero", async()=>{
             const deployerBalance = await token.balanceOf(deployer)
-            deployerBalance.toString.should.not.be.equal('0')
+            deployerBalance.toString().should.not.be.equal('0')
         })
 
         it("confirms that the balance of the deployer is equal to the total supply", async()=>{
             const deployerBalance = await token.balanceOf(deployer)
-            deployerBalance.toString.should.not.be.equal(tokens('1000000'))
+            deployerBalance.toString().should.be.equal(tokens('1000000').toString())
         })
 
     })
@@ -70,10 +70,12 @@ contract("Exchange", ([deployer, feeAccount])=>{
 
             // the deployer deposits tokens to the exchange
             beforeEach(async()=>{
-                await token.transfer(deployer, exchange.address)
+                await token.transfer(exchange.address, tokens('1'), { from: deployer })
             })
 
-            it("deposits tokens to the exchange from the deployer", ()=>{
+            it("deposited tokens to the exchange from the deployer successfully", async()=>{
+                const updatedExchangeTokenBalance = await token.balanceOf(exchange.address)
+                updatedExchangeTokenBalance.toString().should.be.equal(tokens('1').toString(), 'deposit was successful')
 
             })
         })
