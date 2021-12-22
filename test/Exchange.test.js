@@ -41,8 +41,16 @@ contract("Exchange", ([deployer, feeAccount])=>{
     })
 
     describe("deposit tokens", ()=>{
-        it("has the address of the token", async()=>{
-            //const tokenAddress = 
+
+        let exchangeBalance
+
+        //  get the balance of the exchanage before token deposit
+        beforeEach(async()=>{
+            exchangeBalance = await token.balanceOf(exchange.address)
+        })
+
+        it("exhange balance before deposit should be zer", async()=>{
+            exchangeBalance.toString().should.be.equal('0')
         })
     })
 
