@@ -9,7 +9,8 @@ require('chai')
 contract("Exchange", ([deployer, feeAccount])=>{
 
     let exchange;
-    let feePercent = 10
+    let feePercent = 10;
+    let token;
 
     beforeEach(async()=>{
         exchange = await Exchange.new(feeAccount, feePercent)
@@ -33,14 +34,15 @@ contract("Exchange", ([deployer, feeAccount])=>{
         })
 
         it("deployed the token contract successfully", async()=>{
-            
+            const tokenAddress = await token.address 
+            tokenAddress.should.not.be.equal('')
         })
 
     })
 
     describe("deposit tokens", ()=>{
         it("has the address of the token", async()=>{
-            const tokenAddress = 
+            //const tokenAddress = 
         })
     })
 
