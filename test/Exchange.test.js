@@ -1,4 +1,5 @@
 const Exchange = artifacts.require('./Exchange.sol')
+const Token = artifacts.require('./Token.sol')
 
 require('chai')
     .use(require('chai-as-promised'))
@@ -12,10 +13,11 @@ contract("Exchange", ([deployer, feeAccount])=>{
 
     beforeEach(async()=>{
         exchange = await Exchange.new(feeAccount, feePercent)
+        token = await Token.new()
     })
 
     describe("deployment", ()=>{
-        it("deployed successfully", ()=>{
+        it("deployed exhange contract successfully", ()=>{
             const exchangeAddress = exchange.address
             exchangeAddress.should.not.be.equal('')
         })
@@ -28,6 +30,17 @@ contract("Exchange", ([deployer, feeAccount])=>{
         it("sets the feePercent", async()=>{
             const transactionFeePercent = await exchange.transactionFeePercent()
             transactionFeePercent.toString().should.be.equal(feePercent.toString())
+        })
+
+        it("deployed the token contract successfully", async()=>{
+            
+        })
+
+    })
+
+    describe("deposit tokens", ()=>{
+        it("has the address of the token", async()=>{
+            const tokenAddress = 
         })
     })
 
