@@ -159,7 +159,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
             describe("failed", ()=>{
                 it("fails when an address tries to deposit ether throught the deposit token function", async()=>{
-
+                        await exchange.depositToken(ETHER_ADDRESS, etherAmount).should.be.rejected
                 })
             })
 
