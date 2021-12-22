@@ -10,13 +10,18 @@ contract("Exchange", ([deployer, feeAccount])=>{
     let exchange;
 
     beforeEach(async()=>{
-        exchange = await Exchange.deployed()
+        exchange = await Exchange.new(feeAccount)
     })
 
     describe("deployment", ()=>{
         it("deployed successfully", ()=>{
             const exchangeAddress = exchange.address
             exchangeAddress.should.not.be.equal('')
+        })
+
+        it("it sets the transaction fee account on deployment", ()=>{
+            const transactionFeeAccount = await exchange.transactionFeeAccount()
+            transactionFeeAccount.should.be.equal(feeAccount)
         })
     })
 

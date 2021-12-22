@@ -12,6 +12,12 @@ pragma solidity 0.8.10;
 
 contract Exchange {
 
-    
+    address public transactionFeeAccount; // account receives the exchange fee
+
+    constructor (address _transactionFeeAccount) {
+
+        transactionFeeAccount = _transactionFeeAccount;
+
+    }
 }
 

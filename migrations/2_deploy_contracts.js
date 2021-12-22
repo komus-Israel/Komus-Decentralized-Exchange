@@ -5,8 +5,8 @@ module.exports = function (deployer) {
   deployer.deploy(Token);
 };
 
-module.exports = function (deployer) {
-  deployer.deploy(Exchange)
-}
+/*module.exports = function (deployer) {
+  deployer.deploy(Exchange, feeAccount)
+}*/
 
 
