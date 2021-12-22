@@ -7,7 +7,7 @@ require('chai')
     .should()
 
 
-contract("Exchange", ([deployer, feeAccount])=>{
+contract("Exchange", ([deployer, feeAccount, user1])=>{
 
     let exchange;
     let feePercent = 10;
@@ -89,26 +89,36 @@ contract("Exchange", ([deployer, feeAccount])=>{
                 exchangeBalance.toString().should.be.equal('0')
             })
 
-            it("rejects the deposit because the exchange has not be approved", async()=>{
-                await exchange.depositToken(token.address, tokens('1')).should.be.rejected
-            })
-
             describe("the deployer deposits the token by approving", ()=>{
                 beforeEach(async()=>{
                     await token.approve(exchange.address, tokens('1'))
                     await exchange.depositToken(token.address, tokens('0.5'))
                 })
 
-                it("approved the exchange successfully", async()=>{
+                describe("success", ()=>{
+
+                    it("approved the exchange successfully", async()=>{
                     const approvedBalance = await token.allowance(deployer, exchange.address)
                     approvedBalance.toString().should.be.equal(tokens('0.5').toString()) //since we have deposited 0.5 already
                     
+                    })
+
+                    it("deposited tokens after approval", async()=>{
+                        const exchangeBalance = await token.balanceOf(exchange.address)
+                        exchangeBalance.toString().should.be.equal(tokens('0.5').toString())
+                    })
                 })
 
-                it("deposited tokens after approval", async()=>{
-                    const exchangeBalance = await token.balanceOf(exchange.address)
-                    exchangeBalance.toString().should.be.equal(tokens('0.5').toString())
+                describe("failed", ()=>{
+
+                    it("rejects the deposit because the exchange has not be approved", async()=>{
+                        await exchange.depositToken(token.address, tokens('1'), { from: user1 }).should.be.rejected
+                    })
+
+
                 })
+
+                
             })
 
             
