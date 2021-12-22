@@ -183,10 +183,16 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                      withdrawal = await exchange.withdrawEther(ether('0.2'), { from: deployer})
                  })
 
-                it("reduces the amount the ether in the withdrawee exchange account", async()=>{
-                    const balanceAfterWithdrawal = await exchange.tokens(ETHER_ADDRESS, deployer)
-                    balanceAfterWithdrawal.toString().should.be.equal(ether('0.8').toString())
-                })
+                 describe("successful withdrawal", ()=>{
+
+                    it("reduces the amount the ether in the withdrawee exchange account", async()=>{
+                        const balanceAfterWithdrawal = await exchange.tokens(ETHER_ADDRESS, deployer)
+                        balanceAfterWithdrawal.toString().should.be.equal(ether('0.8').toString())
+                    })
+                    
+                 })
+
+                
             })
 
             
