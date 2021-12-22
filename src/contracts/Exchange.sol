@@ -15,6 +15,7 @@ contract Exchange {
 
     address public transactionFeeAccount; // account receives the exchange fee
     uint256 public transactionFeePercent;
+    mapping(address => mapping(address=>uint256)) public tokens;
 
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
 
@@ -30,9 +31,11 @@ contract Exchange {
         //  which token ?
         //  how much ?
         //  manage deposit
+        
         //  send tokens to this contract
-
         require(Token(_token).transferFrom(msg.sender, address(this), _amount));
+
+        //
         
     }
 
