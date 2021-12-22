@@ -66,19 +66,23 @@ contract("Exchange", ([deployer, feeAccount])=>{
         })
 
 
-        describe("the deployer deposits tokens to the exchange", ()=>{
+        describe("the deployer sends tokens to the exchange", ()=>{
 
             // the deployer deposits tokens to the exchange
             beforeEach(async()=>{
                 await token.transfer(exchange.address, tokens('1'), { from: deployer })
             })
 
-            it("deposited tokens to the exchange from the deployer successfully", async()=>{
+            it("deployer sent tokens to the exchange successfully", async()=>{
                 const updatedExchangeTokenBalance = await token.balanceOf(exchange.address)
-                updatedExchangeTokenBalance.toString().should.be.equal(tokens('1').toString(), 'deposit was successful')
+                updatedExchangeTokenBalance.toString().should.be.equal(tokens('1').toString(), 'transfer was successful')
 
             })
         })
+
+
+        //describe
+
 
         
     })
