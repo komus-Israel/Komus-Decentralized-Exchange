@@ -1,5 +1,6 @@
 const Exchange = artifacts.require('./Exchange.sol')
 const Token = artifacts.require('./Token.sol')
+import { tokens, EVM_REVERT } from './helpers';
 
 require('chai')
     .use(require('chai-as-promised'))
@@ -38,6 +39,12 @@ contract("Exchange", ([deployer, feeAccount])=>{
             tokenAddress.should.not.be.equal('')
         })
 
+
+        it("confirms that the balance of the deployer is not zero", async()=>{
+            const deployerBalance = await token.balanceOf(deployer)
+            deployerBalance.toString.should.not.be.equal('0')
+        })
+
     })
 
     describe("deposit tokens", ()=>{
@@ -49,9 +56,11 @@ contract("Exchange", ([deployer, feeAccount])=>{
             exchangeBalance = await token.balanceOf(exchange.address)
         })
 
-        it("exhange balance before deposit should be zer", async()=>{
+        it("exhange balance before deposit should be zero", async()=>{
             exchangeBalance.toString().should.be.equal('0')
         })
+
+        //it("deposits token to the exchange")
     })
 
 })
