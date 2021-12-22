@@ -51,6 +51,11 @@ contract Exchange {
         
     }
 
+
+    function depositEther() public {
+
+    }
+
     
 }
 
