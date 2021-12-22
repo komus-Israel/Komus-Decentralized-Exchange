@@ -70,6 +70,9 @@ contract Exchange {
     }
 
     function withdrawEther(uint _amount) public {
+
+        // the amount to be withdrawn should be less or equal to the deposited amount
+        require(_amount <= tokens[ETHER][msg.sender])
         // reduce the value to be withdrawn from the ether tokens map
         tokens[ETHER][msg.sender] -= _amount;
     }
