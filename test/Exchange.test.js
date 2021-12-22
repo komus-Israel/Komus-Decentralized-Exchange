@@ -103,9 +103,15 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                     
                     })
 
+
                     it("deposited tokens after approval", async()=>{
                         const exchangeBalance = await token.balanceOf(exchange.address)
                         exchangeBalance.toString().should.be.equal(tokens('0.5').toString()) // the exchange balance should then be equal to this
+                    })
+
+                    it("tracks the deposited token in the exchange account", async()=>{
+                        const depositorTokenBalanceOnTheExchange = await exchange.tokens(token.address, deployer)
+                        depositorTokenBalanceOnTheExchange.toString().should.be.equal(tokens('0.5').toString())  // the balance in the exchange should be equal to the amount deposited
                     })
                 })
 
