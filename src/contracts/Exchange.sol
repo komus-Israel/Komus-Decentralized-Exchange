@@ -16,6 +16,8 @@ contract Exchange {
     address public transactionFeeAccount; // account receives the exchange fee
     uint256 public transactionFeePercent;
 
+    address constant ETHER = address(0); // store ether in blank address
+
     // first address is the address of the token
     // second address is the address of person that has deposited the token
     // unit256 is the amount that has been deposited
@@ -53,7 +55,7 @@ contract Exchange {
 
 
     function depositEther() public {
-
+        tokens[ETHER][mag.sender] += amount; 
     }
 
     
