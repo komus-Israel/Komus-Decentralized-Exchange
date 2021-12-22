@@ -54,8 +54,8 @@ contract Exchange {
     }
 
 
-    function depositEther() public {
-        tokens[ETHER][mag.sender] += amount; 
+    function depositEther() payable public {
+        tokens[ETHER][msg.sender] += msg.value; 
     }
 
     
