@@ -81,7 +81,17 @@ contract("Exchange", ([deployer, feeAccount])=>{
         })
 
 
-        //describe
+        describe("the deployer deposit tokens to the exchange via the transferFrom function", ()=>{
+
+           /* beforeEach(async()=>{
+
+            })*/
+
+            it("confirms that the exhange balance is still zero", ()=>{
+                exchangeBalance.toString().should.be.equal('0')
+            })
+
+        })
 
 
         
