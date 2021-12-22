@@ -8,9 +8,10 @@ require('chai')
 contract("Exchange", ([deployer, feeAccount])=>{
 
     let exchange;
+    let feePercent = 10
 
     beforeEach(async()=>{
-        exchange = await Exchange.new(feeAccount, 10)
+        exchange = await Exchange.new(feeAccount, feePercent)
     })
 
     describe("deployment", ()=>{
@@ -26,7 +27,7 @@ contract("Exchange", ([deployer, feeAccount])=>{
         
         it("sets the feePercent", async()=>{
             const transactionFeePercent = await exchange.transactionFeePercent()
-            transactionFeePercent.toString().should.be.equal('10')
+            transactionFeePercent.toString().should.be.equal(feePercent.toString())
         })
     })
 
