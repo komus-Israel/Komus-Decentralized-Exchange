@@ -36,7 +36,8 @@ contract Exchange {
 
     function depositToken(address _token, uint _amount) public {
 
-        
+        // disallow ether deposits through this address
+        require(_token != ETHER);
 
         //  which token ?
         //  how much ?
@@ -58,7 +59,7 @@ contract Exchange {
         tokens[ETHER][msg.sender] += msg.value; 
 
         // emit ether deposit
-        Deposit(ETHER, msg.sender, msg.value, tokens[ETHER][msg.sender])
+        emit Deposit(ETHER, msg.sender, msg.value, tokens[ETHER][msg.sender]);
     }
 
     

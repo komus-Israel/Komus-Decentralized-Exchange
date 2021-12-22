@@ -144,15 +144,22 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         describe("ether deposit", ()=>{
 
             let deloyerEtherBalance
-            let etherAmount = 1;
+            let etherAmount = tokens('1');
             beforeEach(async()=>{
                 await exchange.depositEther({ from: deployer, value: tokens('1') })
             })
 
             describe("success", ()=>{
-                it("deposits the ether successfully", ()=>{
+                it("deposits the ether successfully", async()=>{
                     const depositedEtherBalance = await exchange.tokens(ETHER_ADDRESS, deployer);
                     depositedEtherBalance.toString().should.be.equal(etherAmount.toString())
+                })
+            })
+
+
+            describe("failed", ()=>{
+                it("fails when an address tries to deposit ether throught the deposit token function", async()=>{
+
                 })
             })
 
