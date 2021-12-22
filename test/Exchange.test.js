@@ -118,7 +118,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                     })
 
                     it("emits deposit event", async()=>{
-                        console.log(depositToken)
+                        depositToken.logs[0].event.should.be.equal('Deposit')
                     })
                 })
 
