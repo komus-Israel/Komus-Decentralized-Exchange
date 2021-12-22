@@ -21,6 +21,10 @@ contract Exchange {
     // unit256 is the amount that has been deposited
     mapping(address => mapping(address => uint256)) public tokens; // mapping of tokens on the platform
 
+
+    // emit a deposit event
+    event Deposit(address _token, address _user, unit256 _amount, unit256 _balance);
+
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
 
         transactionFeeAccount = _transactionFeeAccount;
@@ -42,6 +46,8 @@ contract Exchange {
 
         // manage deposit
         tokens[_token][msg.sender] += _amount;
+
+        emit Deposit(_token, msg.sender, _amount, tokens[_token][msg.sender]);
         
     }
 

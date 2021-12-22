@@ -91,8 +91,8 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
             describe("the deployer deposits the token by approving", ()=>{
                 beforeEach(async()=>{
-                    await token.approve(exchange.address, tokens('1'))
-                    await exchange.depositToken(token.address, tokens('0.5'))
+                    const approveToken = await token.approve(exchange.address, tokens('1'))
+                    const depositToken = await exchange.depositToken(token.address, tokens('0.5'))
                 })
 
                 describe("success", ()=>{
@@ -112,6 +112,10 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                     it("tracks the deposited token in the exchange account", async()=>{
                         const depositorTokenBalanceOnTheExchange = await exchange.tokens(token.address, deployer)
                         depositorTokenBalanceOnTheExchange.toString().should.be.equal(tokens('0.5').toString())  // the balance in the exchange should be equal to the amount deposited
+                    })
+
+                    it("emits deposit event", async()=>{
+                        console.log(depositToken)
                     })
                 })
 
