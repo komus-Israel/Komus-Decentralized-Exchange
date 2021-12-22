@@ -2,8 +2,8 @@ pragma solidity 0.8.10;
 // SPDX-License-Identifier: MIT
 
 contract Token{
-    string public name = "Zamar";
-    string public symbol = "Zam";
+    string public name = "Komus";
+    string public symbol = "Kom";
     uint256 public decimals = 18;
     uint256 public totalSupply;
 
