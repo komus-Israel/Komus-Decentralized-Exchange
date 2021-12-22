@@ -71,7 +71,7 @@ contract Exchange {
 
     function withdrawEther(uint _amount) public {
         // reduce the value to be withdrawn from the ether tokens map
-        tokens[ETHER][msg.sender] -= _amount
+        tokens[ETHER][msg.sender] -= _amount;
     }
 
     
