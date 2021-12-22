@@ -12,6 +12,7 @@ import "./Token.sol";
 //  [x] set the fee account
 //  [x] deposit token
 //  [x] deposit ether
+//  []  withdraw ether
 
 contract Exchange {
 
@@ -33,6 +34,10 @@ contract Exchange {
 
         transactionFeeAccount = _transactionFeeAccount;
         transactionFeePercent = _transactionFeePercent;
+
+    }
+
+    fallback() external {
 
     }
 
@@ -64,9 +69,11 @@ contract Exchange {
         emit Deposit(ETHER, msg.sender, msg.value, tokens[ETHER][msg.sender]);
     }
 
-    fallback() external {
+    function withdrawEther(uint _amount) public {
 
     }
+
+    
 
     
 }
