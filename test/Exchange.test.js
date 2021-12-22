@@ -172,10 +172,24 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                 it("fails when an address tries to deposit ether throught the deposit token function", async()=>{
                         await exchange.depositToken(ETHER_ADDRESS, etherAmount, { from:deployer }).should.be.rejected
                 })
+
+            })
+
+             describe("ether withdrawal", ()=>{
+
+                 let withdrawal
+
+                 beforeEach(async()=>{
+                     withdrawal = await exchange.withdrawEther(ether('0.2'), { from: deployer})
+                 })
+
+                it("reduces the amount the ether in the withdrawee exchange account", ()=>{
+                    const balanceAfterWithdrawal = await exchange.tokens(ETHER_ADDRESS, deployer)
+                    balanceAfterWithdrawal.toString().should.be.equal(tokens('0.8'))
+                })
             })
 
             
-
         })
 
 
