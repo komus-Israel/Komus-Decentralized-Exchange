@@ -22,5 +22,20 @@ contract Exchange {
         transactionFeePercent = _transactionFeePercent;
 
     }
+
+    function depositToken(address _token, uint _amount) public {
+
+        
+
+        //  which token ?
+        //  how much ?
+        //  manage deposit
+        //  send tokens to this contract
+
+        Token(_token).transferFrom(msg.sender, address(this), _amount);
+        
+    }
+
+    
 }
 
