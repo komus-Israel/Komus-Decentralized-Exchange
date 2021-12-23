@@ -79,7 +79,10 @@ contract Exchange {
         require(_amount <= tokens[ETHER][msg.sender]);
         // reduce the value to be withdrawn from the ether tokens map
         tokens[ETHER][msg.sender] -= _amount;
-        msg.transfer(_amount)
+        msg.sender.transfer(_amount);
+
+        // emit the withdraw event
+        emit Withdraw(ETHER, msg.sender, _amount, tokens[ETHER][msg.sender]);
         
     }
 
