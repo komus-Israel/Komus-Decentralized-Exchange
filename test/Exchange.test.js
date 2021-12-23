@@ -168,8 +168,8 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                        withdrawToken.logs[0].event.should.be.equal('Withdraw')
                     })
 
-                    it("failed to withdraw token", ()=>{
-
+                    it("failed to withdraw token", async()=>{
+                        await exchange.withdrawTokens(token.address, tokens('1'), { from: deployer }).should.be.rejected
                     })
 
                 })
