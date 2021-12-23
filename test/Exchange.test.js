@@ -141,6 +141,18 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
                 })
 
+                describe("token withdrawal", ()=>{
+
+                    it("withdraws token successfully", ()=>{
+
+                    })
+
+                    it("failed to withdraw token", ()=>{
+                        
+                    })
+
+                })
+
                 
             })
 
@@ -213,12 +225,6 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         
     })
 
-    describe("sending ether from one address to another", ()=>{
-
-        it('sends ether successfully', async ()=>{
-            await exchange.sendEther(user1, { from: deployer, value: ether('10') })
-        })
-
-    })
+    
 
 })

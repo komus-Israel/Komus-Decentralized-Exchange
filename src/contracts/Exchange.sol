@@ -12,7 +12,8 @@ import "./Token.sol";
 //  [x] set the fee account
 //  [x] deposit token
 //  [x] deposit ether
-//  []  withdraw ether
+//  [x]  withdraw ether
+//  []  withdraw token
 
 contract Exchange {
 
@@ -86,6 +87,12 @@ contract Exchange {
         //  emit the withdraw event
         emit Withdraw(ETHER, msg.sender, _amount, tokens[ETHER][msg.sender]);
         
+    }
+
+    function withdrawTokens(address _token, uint _amount) public {
+        // the token to be withdrawn must be less or equal to the token deposited
+        // the address to send the token must not be an empty address
+        // emit the withdraw event
     }
 
 
