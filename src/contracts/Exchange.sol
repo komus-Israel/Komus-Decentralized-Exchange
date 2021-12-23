@@ -32,7 +32,7 @@ contract Exchange {
 
 
     // emit withdraw event
-    event Withdraw(address _ether, address _user, uint256 _amount, uint256 _balance);
+    event Withdraw(address _token, address _user, uint256 _amount, uint256 _balance);
 
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
 
@@ -79,6 +79,7 @@ contract Exchange {
         require(_amount <= tokens[ETHER][msg.sender]);
         // reduce the value to be withdrawn from the ether tokens map
         tokens[ETHER][msg.sender] -= _amount;
+        msg.transfer(_amount)
         
     }
 
