@@ -143,12 +143,17 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
                 describe("token withdrawal", ()=>{
 
-                    it("withdraws token successfully", ()=>{
+                    it("tracks the token balance of the withdrawe before withdrawing", async()=>{
+                        const withdraweeBalanceBeforeWithdraw = await token.balanceOf(deployer)
+                        console.log('balance before withdrawal', withdraweeBalanceBeforeWithdraw.toString())
+                    })
 
+                    it("withdraws successfully", ()=>{
+                        
                     })
 
                     it("failed to withdraw token", ()=>{
-                        
+
                     })
 
                 })
