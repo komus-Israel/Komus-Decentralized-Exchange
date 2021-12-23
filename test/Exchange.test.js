@@ -143,13 +143,23 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
                 describe("token withdrawal", ()=>{
 
-                    it("tracks the token balance of the withdrawe before withdrawing", async()=>{
-                        const withdraweeBalanceBeforeWithdraw = await token.balanceOf(deployer)
-                        console.log('balance before withdrawal', withdraweeBalanceBeforeWithdraw.toString())
+                    let withdraweBalanceBeforeWithdraw
+
+                    beforeEach(async()=>{
+                        
+                        
+                        withdraweBalanceBeforeWithdraw = await token.balanceOf(deployer)
+                        exchange.withdrawTokens(token.address, tokens('0.5'), { from: deployer })
                     })
 
-                    it("withdraws successfully", ()=>{
+                    it("tracks the token balance of the withdrawe before withdrawing", async()=>{
                         
+                        console.log('balance before withdrawal', withdraweBalanceBeforeWithdraw.toString())
+                    })
+
+                    it("withdraws successfully", async()=>{
+                        const tokenBalanceAfterWithDrawing = await token.balanceOf(deployer)
+                        console.log('balance before withdrawal', tokenBalanceAfterWithDrawing.toString())
                     })
 
                     it("failed to withdraw token", ()=>{
