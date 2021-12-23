@@ -1,6 +1,7 @@
 const Exchange = artifacts.require('./Exchange.sol')
 const Token = artifacts.require('./Token.sol')
 import { tokens, ether, EVM_REVERT, ETHER_ADDRESS } from './helpers';
+import Web3 from 'web3';
 
 require('chai')
     .use(require('chai-as-promised'))
@@ -158,7 +159,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
             describe("success", ()=>{
                 it("deposits the ether successfully", async()=>{
-                    const depositedEtherBalance = await exchange.tokens(ETHER_ADDRESS, deployer);
+                    const depositedEtherBalance = await exchange.tokens(ETHER_ADDRESS, user1);
                     depositedEtherBalance.toString().should.be.equal(etherAmount.toString())
                 })
                 
@@ -180,7 +181,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                  let withdrawal
 
                  beforeEach(async()=>{
-                     withdrawal = await exchange.withdrawEther(ether('0.2'), { from: deployer})
+                    withdrawal = await exchange.withdrawEther(ether('0.2'), { from: deployer})
                  })
 
                  describe("successful withdrawal", ()=>{
