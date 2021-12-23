@@ -172,8 +172,8 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                         await exchange.withdrawTokens(token.address, tokens('1'), { from: deployer }).should.be.rejected
                     })
 
-                    it("fails for trying to withdraw to an ether address", ()=>{
-                        await exchange.withdrawTokens(token.address, tokens('1'), { from: deployer }).should.be.rejected
+                    it("fails for trying to withdraw token from an ether address", async()=>{
+                        await exchange.withdrawTokens(ETHER_ADDRESS, tokens('1'), { from: deployer }).should.be.rejected
                     })
 
                 })
