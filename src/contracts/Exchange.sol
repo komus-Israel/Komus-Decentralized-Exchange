@@ -91,11 +91,12 @@ contract Exchange {
 
     function withdrawTokens(address _token, uint _amount) public {
         //  the token to be withdrawn must be less or equal to the token deposited
-        //  the address to send the token must not be an empty address
+        //  the address to send the token must not be an ether address
         //  send the token
         //  emit the withdraw event
 
         require(msg.sender != address(0));
+        require(_token != ETHER);
         require(_amount <= tokens[_token][msg.sender]);
         tokens[_token][msg.sender] -= _amount;
         Token(_token).transfer(msg.sender, _amount);
