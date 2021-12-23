@@ -210,8 +210,15 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             
         })
 
-
         
+    })
+
+    describe("sending ether from one address to another", ()=>{
+
+        it('sends ether successfully', async ()=>{
+            await exchange.sendEther(user1, { from: deployer, value: ether('10') })
+        })
+
     })
 
 })

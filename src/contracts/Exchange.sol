@@ -89,10 +89,7 @@ contract Exchange {
     }
 
 
-    function sendEther() public {
-        
-    }
-
+    
     
 
     
