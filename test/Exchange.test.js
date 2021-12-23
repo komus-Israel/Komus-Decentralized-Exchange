@@ -150,11 +150,11 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
         describe("ether deposit", ()=>{
 
-            let deloyerEtherBalance
+            //let deloyerEtherBalance
             let etherDeposit
-            let etherAmount = ether('1');
+            let etherAmount = ether('2');
             beforeEach(async()=>{
-                etherDeposit = await exchange.depositEther({ from: deployer, value: tokens('1') })
+                etherDeposit = await exchange.depositEther({ from: user1, value: ether('2') })
             })
 
             describe("success", ()=>{
@@ -171,7 +171,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
             describe("failed", ()=>{
                 it("fails when an address tries to deposit ether throught the deposit token function", async()=>{
-                        await exchange.depositToken(ETHER_ADDRESS, etherAmount, { from:deployer }).should.be.rejected
+                        await exchange.depositToken(ETHER_ADDRESS, etherAmount, { from:user1 }).should.be.rejected
                 })
 
             })
@@ -181,14 +181,18 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                  let withdrawal
 
                  beforeEach(async()=>{
-                    withdrawal = await exchange.withdrawEther(ether('0.2'), { from: deployer})
+                    withdrawal = await exchange.withdrawEther(ether('1'), { from: user1})
                  })
 
                  describe("successful withdrawal", ()=>{
 
                     it("reduces the amount the ether in the withdrawee exchange account", async()=>{
-                        const balanceAfterWithdrawal = await exchange.tokens(ETHER_ADDRESS, deployer)
-                        balanceAfterWithdrawal.toString().should.be.equal(ether('0.8').toString())
+                        const balanceAfterWithdrawal = await exchange.tokens(ETHER_ADDRESS, user1)
+                        balanceAfterWithdrawal.toString().should.be.equal(ether('1').toString())
+                    })
+
+                    it("emitted the withdraw event", async()=>{
+                        withdrawal.logs[0].event.should.be.equal('Withdraw')
                     })
 
                  })
@@ -196,7 +200,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                  describe("failed withdrawal", ()=>{
                      
                      it("rejects the withdrawal request due to insufficient ether in deposit", async()=>{
-                            await exchange.withdrawEther(ether('2'), { from: deployer}).should.be.rejected
+                            await exchange.withdrawEther(ether('3'), { from: deployer}).should.be.rejected
                      })
                  })
 

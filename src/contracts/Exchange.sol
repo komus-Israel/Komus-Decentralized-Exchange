@@ -83,8 +83,8 @@ contract Exchange {
         payable(msg.sender).transfer(_amount);
         
 
-        // emit the withdraw event
-        //emit Withdraw(ETHER, msg.sender, _amount, tokens[ETHER][msg.sender]);
+        //  emit the withdraw event
+        emit Withdraw(ETHER, msg.sender, _amount, tokens[ETHER][msg.sender]);
         
     }
 
