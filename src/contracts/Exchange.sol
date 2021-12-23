@@ -103,7 +103,7 @@ contract Exchange {
         emit Withdraw(_token, msg.sender, _amount, tokens[_token][msg.sender]);
     }
 
-    function balance(address _token) public view returns (uint) {
+    function balanceOf(address _token) public view returns (uint) {
         return tokens[_token][msg.sender];
     }
 
