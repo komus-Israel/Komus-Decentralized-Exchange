@@ -292,6 +292,10 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             // check the token expected 
             order1_check._tokenGet.should.be.equal(ETHER_ADDRESS, "token expected by order one creator is correct")
             order2_check._tokenGet.should.be.equal(token.address, "token expected by order two creator is correct")
+
+            // check the token they are giving out in exchange
+            order1_check._tokenGive.should.be.equal(token.address, "token to be given out by order one creator is correct")
+            order2_check._tokenGive.should.be.equal(ETHER_ADDRESS, "token to be given out by order two creator is correct")
             
         })
 
