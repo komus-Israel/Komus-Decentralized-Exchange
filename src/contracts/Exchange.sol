@@ -67,6 +67,9 @@ contract Exchange {
     //  emit the Order event
     event Order(uint256 _id, uint256 _timeCreated, uint256 _amountGive, uint256 _amountGet, address _tokenGive, address _tokenGet, address _creator);
 
+    //  emit event when an order is called
+    event OrderCancelled(uint256 _id, uint256 _creator, uint256 _timeCancelled);
+
 
     // constructor
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
