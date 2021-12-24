@@ -125,10 +125,15 @@ contract Exchange {
     }
 
 
-    function createOrder(uint256 _id, uint256 _amountGive, uint256 _amountGet, address _tokenGive, address _tokenGet) public {
+    function createOrder( uint256 _amountGive, uint256 _amountGet, address _tokenGive, address _tokenGet) public {
 
         orderCount = orderCount + 1;
-        orders[orderCount] = _Order(_id, now, _amountGive, _amountGet, _tokenGive, _tokenGet, msg.sender);
+
+        //  instantiate the order
+        _order = _Order(orderCount, now, _amountGive, _amountGet, _tokenGive, _tokenGet, msg.sender);
+        
+        //  added the order to the orders map
+        orders[orderCount] = _order;
         
     }
 
