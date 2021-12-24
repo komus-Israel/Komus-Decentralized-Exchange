@@ -250,7 +250,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
         describe("deposited tokens balances on the exchange", ()=>{
             it("tracks the ether balance", async()=>{
-                const etherBalance = await exchange.balanceOf(ETHER_ADDRESS, deployer )
+                const etherBalance = await exchange.balanceOf(ETHER_ADDRESS, deployer)
                 console.log('ether balance on the exchange: ', etherBalance.toString())
             })
 
