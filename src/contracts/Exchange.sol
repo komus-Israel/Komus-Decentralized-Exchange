@@ -12,12 +12,14 @@ import "./Token.sol";
 //  [x] set the fee account
 //  [x] deposit token
 //  [x] deposit ether
-//  [x]  withdraw ether
-//  []  withdraw token
+//  [x] withdraw ether
+//  [x] withdraw token
+//  []  create order
 
 contract Exchange {
 
     address public transactionFeeAccount; // account receives the exchange fee
+
     uint256 public transactionFeePercent;
 
     address constant ETHER = address(0); // store ether in blank address
@@ -27,6 +29,14 @@ contract Exchange {
     // unit256 is the amount that has been deposited
     mapping(address => mapping(address => uint256)) public tokens; // mapping of tokens on the platform
 
+    //  create a model to store the order to the storage
+    struct _Order {
+        uint256 _id;
+        uint256 _amountGive;
+        uint256 _amountGet;
+        address _creator;
+    }
+
 
     // emit a deposit event
     event Deposit(address _token, address _user, uint256 _amount, uint256 _balance);
@@ -35,6 +45,7 @@ contract Exchange {
     // emit withdraw event
     event Withdraw(address _token, address _user, uint256 _amount, uint256 _balance);
 
+    // constructor
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
 
         transactionFeeAccount = _transactionFeeAccount;
