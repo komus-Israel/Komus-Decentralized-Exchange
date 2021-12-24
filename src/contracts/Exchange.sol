@@ -155,24 +155,20 @@ contract Exchange {
     }
 
 
-    function cancelOrders(uint256 _id) public view returns (_Order memory){
+    function cancelOrders(uint256 _id) public {
 
         //  the order to be cancelled is a valid order
 
 
         // fetch  the order from the storage which is a map
 
-        _Order storage _order = orders[_id];
+        _Order storage _order = orders[_id]; // solidity won't throw an error for an invalid key. For that, we  will require that the key is valid
 
-        return _order;
+        require(_order._id == _id);
+        cancelOrder[_id] = false;
 
     }
 
-
-
-    
-    
-
-    
+   
 }
 
