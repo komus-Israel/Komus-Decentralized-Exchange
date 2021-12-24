@@ -280,8 +280,10 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         })
 
         it("checks that the order has been saved in the orders storage", async()=>{
-            const orders = await exchange.orders(1) 
-            orders._id.toString().should.be.equal('1')
+            const order1_check = await exchange.orders(1) 
+            const order2_check = await exchange.orders(2) 
+            order1_check._id.toString().should.be.equal('1')
+            order2_check._id.toString().should.be.equal('2')
         })
 
     })
