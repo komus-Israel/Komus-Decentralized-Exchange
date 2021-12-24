@@ -281,7 +281,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
         it("checks that the order has been saved in the orders storage", async()=>{
             const orders = await exchange.orders(1) 
-            console.log(orders)
+            orders._id.toString().should.be.equal('1')
         })
 
     })
