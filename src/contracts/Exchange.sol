@@ -154,7 +154,19 @@ contract Exchange {
 
     }
 
-    
+
+    function cancelOrders(uint256 _id) public view returns (_Order){
+
+        //  the order to be cancelled is a valid order
+
+
+        // fetch  the order from the storage
+
+        _Order storage _order = _Order[_id]
+
+        return _order
+
+    }
 
 
 
