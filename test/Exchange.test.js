@@ -318,9 +318,14 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             order2 = await exchange.createOrder(ether('1'), tokens('1'), ETHER_ADDRESS, token.address, { from: user1 })
         })
 
-        it("fetches data from struct",async ()=>{
-            const struct = await exchange.cancelOrders(3)
-            console.log(struct)
+        it("it fails to cancel order for invalid orders", async()=>{
+             await exchange.cancelOrders(3).should.be.rejected     
+        })
+
+        it("cancels order for an existing order", async()=>{
+            const cancelOrder1 = await exchange.cancelOrders(1)
+            const checkIfCancelled = await exchange.cancelledOrders(1)
+            checkIfCancelled.should.be.equal(true, "order one cancelled successfully")
         })
         
     })
