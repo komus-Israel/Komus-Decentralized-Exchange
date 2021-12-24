@@ -30,8 +30,14 @@ contract Exchange {
     // first address is the address of the token
     // second address is the address of person that has deposited the token
     // unit256 is the amount that has been deposited
+
     mapping(address => mapping(address => uint256)) public tokens; // mapping of tokens on the platform
-    mapping(uint256 => _Order) public orders; // store the orders in a mapg
+
+    mapping(uint256 => _Order) public orders; // store the orders in a map
+
+    mapping(uint256 => bool) public cancelOrder; // cancel order
+
+
     //  create a model to store the order to the storage
     struct _Order {
 
@@ -147,6 +153,8 @@ contract Exchange {
         emit Order(orderCount, block.timestamp, _amountGive, _amountGet, _tokenGive, _tokenGet, msg.sender);
 
     }
+
+    
 
 
 
