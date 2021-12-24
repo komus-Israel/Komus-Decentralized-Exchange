@@ -43,6 +43,12 @@ contract Exchange {
         address _creator;
     }
 
+    /*
+    
+    *   EVENTS
+    
+     */
+
 
     // emit a deposit event
     event Deposit(address _token, address _user, uint256 _amount, uint256 _balance);
@@ -50,6 +56,10 @@ contract Exchange {
 
     // emit withdraw event
     event Withdraw(address _token, address _user, uint256 _amount, uint256 _balance);
+
+    //  emit the Order event
+    event Order(uint256 _id, uint256 _timeCreated, uint256 _amountGive, uint256 _amountGet, address _tokenGive, address _tokenGet, address _creator);
+
 
     // constructor
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
