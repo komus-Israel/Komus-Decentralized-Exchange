@@ -135,7 +135,7 @@ contract Exchange {
     }
 
 
-    function createOrder( uint256 _amountGive, uint256 _amountGet, address _tokenGive, address _tokenGet) public {
+    function createOrder(uint256 _amountGive, uint256 _amountGet, address _tokenGive, address _tokenGet) public {
 
         orderCount = orderCount + 1;
 
