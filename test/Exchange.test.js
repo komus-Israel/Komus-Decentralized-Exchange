@@ -269,7 +269,11 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         let order;
 
         beforeEach(async()=>{
-            order = exchange.createOrder()
+            order = exchange.createOrder(tokens('1'), ether('1'), token.address, ETHER_ADDRESS,)
+        })
+
+        it("emits an event", async()=>{
+            order.logs[0].event.should.be.equal("Order")
         })
 
     })
