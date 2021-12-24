@@ -24,7 +24,7 @@ contract Exchange {
 
     address constant ETHER = address(0); // store ether in blank address
 
-    uint256 orderCount;
+    uint256 public orderCount;
 
     // first address is the address of the token
     // second address is the address of person that has deposited the token

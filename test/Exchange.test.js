@@ -286,6 +286,11 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             order2_check._id.toString().should.be.equal('2')
         })
 
+        it("increments the order count for new orders", async()=>{
+            const orderCounts = await exchange.orderCount()
+            orderCounts.toString().should.be.equal('2') // should equal two since we've have created two orders so far
+        })
+
     })
 
     
