@@ -308,6 +308,15 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
     })
 
+    describe("cancelling orders", ()=>{
+
+        it("fetches data from struct",async ()=>{
+            const struct = await exchange.cancelOrders(1)
+            console.log(struct)
+        })
+        
+    })
+
     
 
 })
