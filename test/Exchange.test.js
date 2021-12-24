@@ -266,14 +266,22 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
     describe("creating order", ()=>{
 
-        let order;
+        let order1;
+        let order2;
 
         beforeEach(async()=>{
-            order = await exchange.createOrder(tokens('1'), ether('1'), token.address, ETHER_ADDRESS,)
+            order1 = await exchange.createOrder(tokens('1'), ether('1'), token.address, ETHER_ADDRESS,)
+            order2 = await exchange.createOrder(ether('1'), tokens('1'), ETHER_ADDRESS, token.address)
         })
 
         it("emits an event", async()=>{
-            order.logs[0].event.should.be.equal("Order")
+            order1.logs[0].event.should.be.equal("Order")
+            order2.logs[0].event.should.be.equal("Order")
+        })
+
+        it("checks that the order has been saved in the orders storage", async()=>{
+            const orders = await exchange.orders(1) 
+            console.log(orders)
         })
 
     })

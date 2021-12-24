@@ -131,7 +131,7 @@ contract Exchange {
     }
 
     function balanceOf(address _token, address _user) public view returns (uint) {
-        return tokens[_token][msg.sender];
+        return tokens[_token][_user];
     }
 
 
