@@ -165,6 +165,7 @@ contract Exchange {
         _Order storage _order = orders[_id]; // solidity won't throw an error for an invalid key. For that, we  will require that the key is valid
 
         require(_order._id == _id);
+        require(_order._creator == msg.sender);
         cancelledOrders[_id] = true;
 
     }
