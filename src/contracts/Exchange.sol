@@ -143,7 +143,7 @@ contract Exchange {
         orders[orderCount] = _Order(orderCount, block.timestamp, _amountGive, _amountGet, _tokenGive, _tokenGet, msg.sender);
 
         //  emit the Order event
-        Order(orderCount, block.timestamp, _amountGive, _amountGet, _tokenGive, _tokenGet, msg.sender);
+        emit Order(orderCount, block.timestamp, _amountGive, _amountGet, _tokenGive, _tokenGet, msg.sender);
 
     }
 
