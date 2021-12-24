@@ -14,7 +14,8 @@ import "./Token.sol";
 //  [x] deposit ether
 //  [x] withdraw ether
 //  [x] withdraw token
-//  []  create order
+//  [x] create order
+//  []  cancel order
 
 contract Exchange {
 

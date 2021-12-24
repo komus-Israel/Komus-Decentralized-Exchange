@@ -286,8 +286,8 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             order2_check._id.toString().should.be.equal('2', "id for second order is correct")
 
             // check the order creators
-            order1_check._creators.should.be.equal(deployer, "order one creator is correct")
-            order2_check._creators.should.be.equal(user1, "order two creator is correct")
+            order1_check._creator.should.be.equal(deployer, "order one creator is correct")
+            order2_check._creator.should.be.equal(user1, "order two creator is correct")
 
             // check the token expected 
             order1_check._tokenGet.should.be.equal(ETHER_ADDRESS, "token expected by order one creator is correct")
