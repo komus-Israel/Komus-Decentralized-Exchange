@@ -180,7 +180,7 @@ contract Exchange {
         cancelledOrders[_id] = true;
 
         // emit OrderCancelled event
-        OrderCancelled(_id, _order._amountGive, _order._amountGet, block.timestamp, _order._tokenGive, _order._tokenGet, _order._creator);
+        emit OrderCancelled(_id, _order._amountGive, _order._amountGet, block.timestamp, _order._tokenGive, _order._tokenGet, _order._creator);
 
     }
 
