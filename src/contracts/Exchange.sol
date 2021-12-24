@@ -108,6 +108,15 @@ contract Exchange {
     }
 
 
+    function createOrder() public {
+        //  who is fileing an order
+        //  what token is he giving out ?
+        //  what token does he want in exchange
+        
+    }
+
+
+
     
     
 
