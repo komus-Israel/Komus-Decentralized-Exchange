@@ -74,9 +74,8 @@ contract Exchange {
         uint256 _amountGet,
         uint256 _timeCancelled,
         address _tokenGive,
-        address _tokenGive, 
-        address _creator, 
-        
+        address _tokenGet, 
+        address _creator    
         );
 
 
