@@ -263,6 +263,17 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         
     })
 
+
+    describe("creating order", ()=>{
+
+        let order;
+
+        beforeEach(async()=>{
+            order = exchange.createOrder()
+        })
+
+    })
+
     
 
 })

@@ -140,10 +140,7 @@ contract Exchange {
         orderCount = orderCount + 1;
 
         //  instantiate the order
-        _order = _Order(orderCount, now, _amountGive, _amountGet, _tokenGive, _tokenGet, msg.sender);
-        
-        //  added the order to the orders map
-        orders[orderCount] = _order;
+        orders[orderCount] = _Order(orderCount, now, _amountGive, _amountGet, _tokenGive, _tokenGet, msg.sender);
 
         //  emit the Order event
         Order(orderCount, now, _amountGive, _amountGet, _tokenGive, _tokenGet, msg,sender);
