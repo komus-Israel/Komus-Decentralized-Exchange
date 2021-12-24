@@ -323,9 +323,13 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         })
 
         it("cancels order for an existing order", async()=>{
-            const cancelOrder1 = await exchange.cancelOrders(1)
+            await exchange.cancelOrders(1, { from: deployer })
             const checkIfCancelled = await exchange.cancelledOrders(1)
             checkIfCancelled.should.be.equal(true, "order one cancelled successfully")
+        })
+
+        it("fails to cancel order attempted to be cancelled by an address that is not the creator of the order", async()=>{
+            await exchange.cancelOrders(1, { from: user1 }).should.be.rejected
         })
         
     })
