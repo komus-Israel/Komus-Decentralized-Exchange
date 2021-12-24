@@ -68,7 +68,16 @@ contract Exchange {
     event Order(uint256 _id, uint256 _timeCreated, uint256 _amountGive, uint256 _amountGet, address _tokenGive, address _tokenGet, address _creator);
 
     //  emit event when an order is called
-    event OrderCancelled(uint256 _id, uint256 _creator, uint256 _timeCancelled);
+    event OrderCancelled(
+        uint256 _id,
+        uint256 _amountGive,
+        uint256 _amountGet,
+        uint256 _timeCancelled,
+        address _tokenGive,
+        address _tokenGive, 
+        address _creator, 
+        
+        );
 
 
     // constructor
@@ -170,6 +179,9 @@ contract Exchange {
         require(_order._id == _id);
         require(_order._creator == msg.sender);
         cancelledOrders[_id] = true;
+
+        // emit OrderCancelled event
+        OrderCancelled(_id, _order._amountGive, _order._amountGet, now, _order._tokenGive, _order._tokenGet, _order._creator);
 
     }
 
