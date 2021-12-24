@@ -319,7 +319,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         })
 
         it("fetches data from struct",async ()=>{
-            const struct = await exchange.cancelOrders(1)
+            const struct = await exchange.cancelOrders(3)
             console.log(struct)
         })
         

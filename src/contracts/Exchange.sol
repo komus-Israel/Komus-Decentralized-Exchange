@@ -160,7 +160,7 @@ contract Exchange {
         //  the order to be cancelled is a valid order
 
 
-        // fetch  the order from the storage
+        // fetch  the order from the storage which is a map
 
         _Order storage _order = orders[_id];
 
