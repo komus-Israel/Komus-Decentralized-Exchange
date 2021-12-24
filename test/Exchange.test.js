@@ -310,6 +310,14 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
     describe("cancelling orders", ()=>{
 
+        let order1;
+        let order2;
+
+        beforeEach(async()=>{
+            order1 = await exchange.createOrder(tokens('1'), ether('1'), token.address, ETHER_ADDRESS, { from: deployer })
+            order2 = await exchange.createOrder(ether('1'), tokens('1'), ETHER_ADDRESS, token.address, { from: user1 })
+        })
+
         it("fetches data from struct",async ()=>{
             const struct = await exchange.cancelOrders(1)
             console.log(struct)
