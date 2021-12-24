@@ -31,10 +31,14 @@ contract Exchange {
 
     //  create a model to store the order to the storage
     struct _Order {
+        
         uint256 _id;
         uint256 _amountGive;
         uint256 _amountGet;
+        uint256 _timeCreated;
         address _creator;
+        address _tokenGive;
+        address _tokenGet;
     }
 
 
