@@ -270,8 +270,8 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         let order2;
 
         beforeEach(async()=>{
-            order1 = await exchange.createOrder(tokens('1'), ether('1'), token.address, ETHER_ADDRESS,)
-            order2 = await exchange.createOrder(ether('1'), tokens('1'), ETHER_ADDRESS, token.address)
+            order1 = await exchange.createOrder(tokens('1'), ether('1'), token.address, ETHER_ADDRESS, { from: deployer })
+            order2 = await exchange.createOrder(ether('1'), tokens('1'), ETHER_ADDRESS, token.address, { from: user1 })
         })
 
         it("emits an event", async()=>{
@@ -282,14 +282,23 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         it("checks that the order has been saved in the orders storage", async()=>{
             const order1_check = await exchange.orders(1) 
             const order2_check = await exchange.orders(2) 
-            order1_check._id.toString().should.be.equal('1')
-            order2_check._id.toString().should.be.equal('2')
+            order1_check._id.toString().should.be.equal('1', "id for first order is correct")
+            order2_check._id.toString().should.be.equal('2', "id for second order is correct")
+
+            // check the order creators
+            order1_check._creators.should.be.equal(deployer, "order one creator is correct")
+            order2_check._creators.should.be.equal(user1, "order two creator is correct")
+
+
+            
         })
 
         it("increments the order count for new orders", async()=>{
             const orderCounts = await exchange.orderCount()
             orderCounts.toString().should.be.equal('2') // should equal two since we've have created two orders so far
         })
+
+        
 
     })
 
