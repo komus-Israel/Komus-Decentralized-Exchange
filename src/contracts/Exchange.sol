@@ -144,7 +144,10 @@ contract Exchange {
         
         //  added the order to the orders map
         orders[orderCount] = _order;
-        
+
+        //  emit the Order event
+        Order(orderCount, now, _amountGive, _amountGet, _tokenGive, _tokenGet, msg,sender);
+
     }
 
 
