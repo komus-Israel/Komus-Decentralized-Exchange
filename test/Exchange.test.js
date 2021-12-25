@@ -405,8 +405,8 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
                 it("sends transaction fee to the address accepting transaction fee", async()=>{
                     const transactionFeeAccountBalance = await exchange.balanceOf(ETHER_ADDRESS, feeAccount)
-                    transactionFeeAccountBalance.toString().should.not.equal('', "balance is not empty")
-                    console.log(transactionFeeAccountBalance)
+                    transactionFeeAccountBalance.toString().should.not.equal('0', "balance is not zero")
+                    console.log(transactionFeeAccountBalance.toString())
                 })
 
 
