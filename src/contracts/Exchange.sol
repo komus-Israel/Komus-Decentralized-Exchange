@@ -244,7 +244,7 @@ contract Exchange {
         
          */
 
-         uint256 _transactionFee = (_amountGive * _transactionFeePercent) / 100;
+         uint256 _transactionFee = (_amountGive * transactionFeePercent) / 100;
 
 
         //  update balances for the token to be released by the creator of the order
@@ -257,7 +257,7 @@ contract Exchange {
         tokens[_tokenGet][msg.sender] -= _amountGet + _transactionFee;
 
         //  send the transaction fee to the address that accepts transaction fee
-        tokens[_tokenGet][_transactionFeeAccount] += _transactionFee;
+        tokens[_tokenGet][transactionFeeAccount] += _transactionFee;
 
         emit Trade(_id, _amountGive, _amountGet, block.timestamp, _tokenGive, _tokenGet, _creator, msg.sender);
 
