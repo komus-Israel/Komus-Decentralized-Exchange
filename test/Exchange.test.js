@@ -334,7 +334,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
         
     })
 
-    describe("make order", ()=>{
+    describe("create and fill order", ()=>{
 
         let order
 
@@ -349,7 +349,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             await exchange.depositEther({from: user1, value: ether('4')})
         })
 
-        describe("make order", ()=>{
+        describe("create order", ()=>{
 
             //  the deployer  creates an order to exchange a token for an ether
             beforeEach(async()=>{
@@ -373,22 +373,34 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                 tokenBalance.toString().should.be.equal('0')
             })
 
+            describe("swap tokens", ()=>{
 
-            it("fills the order by user1", async ()=>{
-                await exchange.fillOrder(1, { from: user1 })
-
-                // test that the token was released to the filler and removed from the creator's account
-
-                const creatorTokenBalance = await exchange.balanceOf(token.address, deployer)
-                creatorTokenBalance.toString().should.be.equal('0', "updated order creator balance successfully")
-                
-
-                const user1TokenBalance = await exchange.balanceOf(token.address, user1)
-                user1TokenBalance.toString().should.be.equal(tokens('1').toString(), "updated the filler's balance successfully")
-
-
-
+                it("fills the order", async ()=>{
+                    await exchange.fillOrder(1, { from: user1 })
+    
+                    // test that the token was released to the filler and removed from the creator's account
+    
+                    const creatorTokenBalance = await exchange.balanceOf(token.address, deployer)
+                    creatorTokenBalance.toString().should.be.equal('0', "updated the token balance of the order creator successfully")
+                    
+    
+                    const fillerTokenBalance = await exchange.balanceOf(token.address, user1)
+                    fillerTokenBalance.toString().should.be.equal(tokens('1').toString(), "updated the token balance of the filler successfully")
+    
+    
+                    // test that the ether was released to the creator of the order and removed from the balance fo the order filler
+                    const creatorEtherBalance = await exchange.balanceOf(ETHER_ADDRESS, deployer)
+                    creatorEtherBalance.toString().should.be.equal(ether('1').toString(), "ether was released to the order creator")
+    
+                    const fillerEtherBalance = await exchange.balanceOf(ETHER_ADDRESS, user1)
+                    fillerEtherBalance.toString().should.be.equal("0", "ether was deducted from the fillers acocunt successfully")
+    
+    
+                })
             })
+
+
+            
         })
 
     })
