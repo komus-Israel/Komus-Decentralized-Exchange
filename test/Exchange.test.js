@@ -375,8 +375,13 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
             describe("swap tokens", ()=>{
 
+                let fillOrder
+
+                beforeAll(async()=>{
+                    fillOrder = await exchange.fillOrder(1, { from: user1 })
+                })
                 it("fills the order", async ()=>{
-                    await exchange.fillOrder(1, { from: user1 })
+                    
     
                     // test that the token was released to the filler and removed from the creator's account
     
@@ -397,6 +402,15 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
     
     
                 })
+
+
+                it("tracks the trade event", async()=>{
+                        fillOrder.logs[0].event.should.be.equal("Trade", "emits the trade event as expected")
+                        fillOrder.logs[0]._id.toString().should.be.equal('1', "emits the right ID")
+                        console.log(fillOrder.logs[0])
+                })
+
+                
             })
 
 
