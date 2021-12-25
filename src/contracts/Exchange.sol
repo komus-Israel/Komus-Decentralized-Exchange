@@ -80,6 +80,18 @@ contract Exchange {
         address _creator    
         );
 
+    // emit trade event
+    event Trade(
+        uint256 _id,
+        uint256 _amountGive,
+        uint256 _amountGet,
+        uint256 _timeTraded,
+        address _tokenGive,
+        address _tokenGet, 
+        address _creator,
+        address _filler
+    )
+
 
     // constructor
     constructor (address _transactionFeeAccount, uint256 _transactionFeePercent) {
@@ -237,6 +249,10 @@ contract Exchange {
          // update balances for the token to be received by the order creator
          tokens[_tokenGet][_creator] += _amountGet;
          tokens[_tokenGet][msg.sender] -= _amountGet;
+
+        
+
+
 
     }
 
