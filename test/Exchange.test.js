@@ -377,7 +377,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             it("fills the order by user1", async ()=>{
                 await exchange.fillOrder(1, { from: user1 })
 
-                // test that the token was released to the filler
+                // test that the token was released to the filler and removed from the creator's account
 
                 const creatorTokenBalance = await exchange.balanceOf(token.address, deployer)
                 creatorTokenBalance.toString().should.be.equal('0', "updated order creator balance successfully")
@@ -385,6 +385,9 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
                 const user1TokenBalance = await exchange.balanceOf(token.address, user1)
                 user1TokenBalance.toString().should.be.equal(tokens('1').toString(), "updated the filler's balance successfully")
+
+
+
             })
         })
 
