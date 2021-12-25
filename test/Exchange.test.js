@@ -359,6 +359,18 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
             it("tracks the token and ether balance of the deployer before the order gets filled", async()=>{
                 const etherBalance = await exchange.balanceOf(ETHER_ADDRESS, deployer)
+                etherBalance.toString().should.be.equal('0')
+
+                const tokenBalance = await exchange.balanceOf(token.address, deployer)
+                tokenBalance.toString().should.be.equal(tokens('1').toString())
+            })
+
+            it("tracks the token and ether balance of the order filler before filling the order", async()=>{
+                const etherBalance = await exchange.balanceOf(ETHER_ADDRESS, user1)
+                etherBalance.toString().should.be.equal('4')
+
+                const tokenBalance = await exchange.balanceOf(token.address, user1)
+                tokenBalance.toString().should.be.equal('0')
             })
         })
 
