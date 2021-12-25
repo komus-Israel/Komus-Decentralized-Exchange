@@ -190,6 +190,18 @@ contract Exchange {
         // fetch the order
         _Order storage _order = orders[_id];
 
+        // require that the id is valid
+        require(_order._id == _id);
+
+        // require that the order is not cancelled
+        require(!cancelledOrders[_id]);
+
+        //  require that the order has not been filled
+        require(!ordersFilled[_id]);
+
+        //  execute trade
+        _trade();
+
 
         // execute the trade
         // charge fees
@@ -200,7 +212,7 @@ contract Exchange {
     }
 
     function _trade() internal {
-        
+
     }
 
    
