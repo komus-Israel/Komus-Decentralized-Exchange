@@ -16,6 +16,8 @@ import "./Token.sol";
 //  [x] withdraw token
 //  [x] create order
 //  [x] cancel order
+//  [x] fill order
+//  []  charge fees
 
 contract Exchange {
 
@@ -237,8 +239,12 @@ contract Exchange {
 
         *   in exchange for that, withdraw the token to be gotten by the creator from the fillers account
         *   add it to the balance of the order creator
+
+        *   fee will be paid by the person that fills the order
         
          */
+
+         uint256 _transactionFee = (_amountGive * _transactionFeePercent) / 100;
 
 
         //  update balances for the token to be released by the creator of the order
@@ -248,7 +254,10 @@ contract Exchange {
 
         // update balances for the token to be received by the order creator
         tokens[_tokenGet][_creator] += _amountGet;
-        tokens[_tokenGet][msg.sender] -= _amountGet;
+        tokens[_tokenGet][msg.sender] -= _amountGet + _transactionFee;
+
+        //  send the transaction fee to the address that accepts transaction fee
+        tokens[_tokenGet][_transactionFeeAccount] += _transactionFee;
 
         emit Trade(_id, _amountGive, _amountGet, block.timestamp, _tokenGive, _tokenGet, _creator, msg.sender);
 
