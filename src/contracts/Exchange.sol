@@ -242,13 +242,15 @@ contract Exchange {
 
 
         //  update balances for the token to be released by the creator of the order
-         tokens[_tokenGive][_creator] -= _amountGive;
-         tokens[_tokenGive][msg.sender] += _amountGive;
+        tokens[_tokenGive][_creator] -= _amountGive;
+        tokens[_tokenGive][msg.sender] += _amountGive;
 
 
-         // update balances for the token to be received by the order creator
-         tokens[_tokenGet][_creator] += _amountGet;
-         tokens[_tokenGet][msg.sender] -= _amountGet;
+        // update balances for the token to be received by the order creator
+        tokens[_tokenGet][_creator] += _amountGet;
+        tokens[_tokenGet][msg.sender] -= _amountGet;
+
+        emit Trade(_id, _amountGive, _amountGet, block.timestamp, _tokenGive, _tokenGet, _creator, msg.sender);
 
         
 
