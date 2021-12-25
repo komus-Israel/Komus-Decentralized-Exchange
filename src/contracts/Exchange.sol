@@ -224,6 +224,9 @@ contract Exchange {
         *   add it to the balance of the order creator
         
          */
+
+
+         tokens[_tokenGive][_creator] -= _amountGive;
     }
 
    
