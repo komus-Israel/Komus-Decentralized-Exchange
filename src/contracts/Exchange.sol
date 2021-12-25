@@ -190,13 +190,17 @@ contract Exchange {
         // fetch the order
         _Order storage _order = orders[_id];
 
-        
+
         // execute the trade
         // charge fees
         // mark the orders as filled
         // emit the trade event
 
 
+    }
+
+    function _trade() internal {
+        
     }
 
    
