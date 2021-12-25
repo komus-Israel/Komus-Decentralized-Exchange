@@ -37,6 +37,8 @@ contract Exchange {
 
     mapping(uint256 => bool) public cancelledOrders; // cancel order
 
+    mapping(uint256 => bool) public ordersFilled;
+
 
     //  create a model to store the order to the storage
     struct _Order {
@@ -184,8 +186,12 @@ contract Exchange {
 
     }
 
-    function fillOrder() public {
-        
+    function fillOrder(unit256 _id) public {
+        // fetch the order
+        // execute the trade
+        // charge fees
+        // mark the orders as filled
+        // emit the trade event
     }
 
    
