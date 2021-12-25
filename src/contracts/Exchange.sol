@@ -212,7 +212,18 @@ contract Exchange {
     }
 
     function _trade(uint256 _id, address _creator, address _tokenGet, address _tokenGive, uint256 _amountGet, uint256 _amountGive) internal {
+        // swap the token
 
+        /*
+        
+        *   withdraw the token to be given out by the creator from his account
+        *   add the token to the balance of the filler
+
+
+        *   in exchange for that, withdraw the token to be gotten by the creator from the fillers account
+        *   add it to the balance of the order creator
+        
+         */
     }
 
    
