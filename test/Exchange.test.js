@@ -349,10 +349,17 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
             await exchange.depositEther({from: user1, value: ether('4')})
         })
 
-        describe("create order", ()=>{
+        describe("make order", ()=>{
 
-            //  the deployer wants to create order to exchange token for ether
-            exchange.createOrder()
+            //  the deployer  creates an order to exchange a token for an ether
+            beforeEach(async()=>{
+                await exchange.createOrder(1, 1, token.address, ETHER_ADDRESS, {from: deployer})
+            })
+            
+
+            it("tracks the token and ether balance of the deployer before the order gets filled", async()=>{
+                const etherBalance = await exchange.balanceOf(ETHER_ADDRESS, deployer)
+            })
         })
 
     })
