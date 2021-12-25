@@ -186,7 +186,7 @@ contract Exchange {
 
     }
 
-    function fillOrder(unit256 _id) public {
+    function fillOrder(uint256 _id) public {
         // fetch the order
         _Order storage _order = orders[_id];
 
