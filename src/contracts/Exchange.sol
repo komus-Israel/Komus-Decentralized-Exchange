@@ -200,7 +200,7 @@ contract Exchange {
         require(!ordersFilled[_id]);
 
         //  execute trade
-        _trade();
+        _trade(_order._id, _order._creator, _order._tokenGet, _order._tokenGive, _order._amountGet, _order._amountGive);
 
 
         // execute the trade
@@ -211,7 +211,7 @@ contract Exchange {
 
     }
 
-    function _trade() internal {
+    function _trade(uint256 _id, address _creator, address _tokenGet, address _tokenGive, uint256 _amountGet, uint256 _amountGive) internal {
 
     }
 
