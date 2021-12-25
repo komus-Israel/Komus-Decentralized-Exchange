@@ -15,7 +15,7 @@ import "./Token.sol";
 //  [x] withdraw ether
 //  [x] withdraw token
 //  [x] create order
-//  []  cancel order
+//  [x] cancel order
 
 contract Exchange {
 
@@ -182,6 +182,10 @@ contract Exchange {
         // emit OrderCancelled event
         emit OrderCancelled(_id, _order._amountGive, _order._amountGet, block.timestamp, _order._tokenGive, _order._tokenGet, _order._creator);
 
+    }
+
+    function fillOrder() public {
+        
     }
 
    
