@@ -336,9 +336,11 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
     describe("make order", ()=>{
 
-        //  1. approve token fo
-        beforeEach(()=>{
-
+        //  1. approve token for depostit
+        //  2. deposit token by deployer
+        //  3. deposit ether by user 1
+        beforeEach(async()=>{
+            await token.approve(exchange.address, tokens('1'), { from:deployer })
         })
 
     })
