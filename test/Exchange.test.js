@@ -393,7 +393,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                     creatorEtherBalance.toString().should.be.equal(ether('1').toString(), "ether was released to the order creator")
     
                     const fillerEtherBalance = await exchange.balanceOf(ETHER_ADDRESS, user1)
-                    fillerEtherBalance.toString().should.be.equal("0", "ether was deducted from the fillers acocunt successfully")
+                    fillerEtherBalance.toString().should.be.equal(ether('3').toString(), "ether was deducted from the fillers acocunt successfully")
     
     
                 })
