@@ -377,7 +377,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
                 let fillOrder
 
-                beforeAll(async()=>{
+                beforeEach(async()=>{
                     fillOrder = await exchange.fillOrder(1, { from: user1 })
                 })
                 it("fills the order", async ()=>{
@@ -406,8 +406,17 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
                 it("tracks the trade event", async()=>{
                         fillOrder.logs[0].event.should.be.equal("Trade", "emits the trade event as expected")
-                        fillOrder.logs[0]._id.toString().should.be.equal('1', "emits the right ID")
-                        console.log(fillOrder.logs[0])
+                        fillOrder.logs[0].args._id.toString().should.be.equal('1', "emits the right ID")
+                        fillOrder.logs[0].args._amountGive.toString().should.be.equal(tokens('1').toString(), "emitted number of tokens given out by the order creator is correct")
+                        fillOrder.logs[0].args._amountGet.toString().should.be.equal(ether('1'), "emitted number of tokens received by the creator of the order is correct")
+                        fillOrder.logs[0].args._tokenGive.should.be.equal(token.address, "emitted token address of the token given by the creator of the order is correct")
+                        fillOrder.logs[0].args._tokenGet.should.be.equal(ETHER_ADDRESS, "emitted token address of the token received by the creator of the order is correct")
+                        fillOrder.logs[0].args._creator.should.be.equal(deployer, "emitted address of the creator of the order is correct")
+                        fillOrder.logs[0].args._filler.should.be.equal(user1, "emitted address of the filler of the order is correct")
+
+                        
+
+                       
                 })
 
                 
