@@ -336,11 +336,23 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
     describe("make order", ()=>{
 
-        //  1. approve token for depostit
+        let order
+
+        //  1. approve token for deposit
         //  2. deposit token by deployer
         //  3. deposit ether by user 1
         beforeEach(async()=>{
             await token.approve(exchange.address, tokens('1'), { from:deployer })
+            await exchange.depositToken(token.address, tokens('1'), { from: deployer })
+
+            // deposit ether by user 1
+            await exchange.depositEther({from: user1, value: ether('4')})
+        })
+
+        describe("create order", ()=>{
+
+            //  the deployer wants to create order to exchange token for ether
+            exchange.createOrder()
         })
 
     })
