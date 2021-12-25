@@ -199,6 +199,9 @@ contract Exchange {
         //  require that the order has not been filled
         require(!ordersFilled[_id]);
 
+        //  require that the order is not filled by the creator of the contract
+        require(_order._creator != msg.sender);
+
         //  execute trade
         _trade(_order._id, _order._creator, _order._tokenGet, _order._tokenGive, _order._amountGet, _order._amountGive);
 
@@ -227,6 +230,7 @@ contract Exchange {
 
 
          tokens[_tokenGive][_creator] -= _amountGive;
+         tokens[_tokenGive][msg.sender] += _amountGive;
     }
 
    
