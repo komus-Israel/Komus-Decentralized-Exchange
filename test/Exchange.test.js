@@ -353,7 +353,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
             //  the deployer  creates an order to exchange a token for an ether
             beforeEach(async()=>{
-                await exchange.createOrder(1, 1, token.address, ETHER_ADDRESS, {from: deployer})
+                await exchange.createOrder(tokens('1'), ether('1'), token.address, ETHER_ADDRESS, {from: deployer})
             })
             
 
@@ -380,11 +380,11 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
                 // test that the token was released to the filler
 
                 const creatorTokenBalance = await exchange.balanceOf(token.address, deployer)
-                creatorTokenBalance.toString().should.be.equal('0', "exchange released from the order creator balance")
+                creatorTokenBalance.toString().should.be.equal('0', "updated order creator balance successfully")
+                
 
-
-                const user1TokenBalance = await exchange.balanceOf(tokens.address, user1)
-                user1TokenBalance.toString().should.be.equal(tokens('1'), "exchange released the token to the order filler")
+                const user1TokenBalance = await exchange.balanceOf(token.address, user1)
+                user1TokenBalance.toString().should.be.equal(tokens('1').toString(), "updated the filler's balance successfully")
             })
         })
 
