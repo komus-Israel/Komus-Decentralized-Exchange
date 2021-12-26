@@ -19,7 +19,7 @@ contract('Token', ([deployer, receiver, exchange]) => {
     const tokenTotalSupply = tokens('1000000');
 
     beforeEach(async ()=>{
-        token = await Token.new()
+        token = await Token.new(tokenName, tokenSymbol)
         
     })
 
