@@ -2,8 +2,8 @@ pragma solidity 0.8.10;
 // SPDX-License-Identifier: MIT
 
 contract Token{
-    string public name = "Komus";
-    string public symbol = "Kom";
+    string public name;
+    string public symbol;
     uint256 public decimals = 18;
     uint256 public totalSupply;
 
@@ -20,7 +20,7 @@ contract Token{
 
     
 
-    constructor() {
+    constructor(string memory _name, string memory symbol) {
         totalSupply = 1000000 * (10 ** decimals);
 
         // give the total supply to the owner of the smart contract
