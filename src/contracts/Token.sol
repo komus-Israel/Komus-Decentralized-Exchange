@@ -20,7 +20,11 @@ contract Token{
 
     
 
-    constructor(string memory _name, string memory symbol) {
+    constructor(string memory _name, string memory _symbol) {
+
+        name = _name;
+        symbol = _symbol;
+
         totalSupply = 1000000 * (10 ** decimals);
 
         // give the total supply to the owner of the smart contract
