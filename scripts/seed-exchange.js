@@ -16,6 +16,16 @@ module.exports = async function() {
         const amount = web3.utils.toWei('1000', 'ether')
         const ETHER_ADDRESS = '0x0000000000000000000000000000000000000000'
 
+        const ether=(n)=>{
+            return new web3.utils.BN(
+                web3.utils.toWei(n.toString(), 'ether')
+            )
+            
+        }
+        
+        //same as ether
+        const tokens =(n)=>ether(n)
+
         //  fetch the deployed Token Contract
         const token = await Token.deployed()
         console.log('token fetched', token.address)
@@ -77,7 +87,12 @@ module.exports = async function() {
         await exchange.depositEther({from: accounts[1], value:2})
         await exchange.depositEther({from: accounts[2], value:2})
 
-        console.log('deposited')
+        
+        //  create order
+        let result
+        let orderId
+
+        result = await exchange.createOrder(token.address, )
 
     } catch (err) {
         console.log(err)
