@@ -14,6 +14,7 @@ module.exports = async function() {
         const accounts = await web3.eth.getAccounts()
         const deployer = accounts[0]
         const amount = web3.utils.toWei('1000', 'ether')
+        const ETHER_ADDRESS = '0x0000000000000000000000000000000000000000'
 
         //  fetch the deployed Token Contract
         const token = await Token.deployed()
@@ -41,9 +42,14 @@ module.exports = async function() {
         //  create function to deposit tokens
         async function tokenDeposit(amount) {
             // approve exchange for deposit
-            await token.approve(exchange.address, amount)
-            await exchange.depositToken(token.address, amount)
+
+                await token.approve(exchange.address, amount)
+                await exchange.depositToken(token.address, amount)
+    
+            
         }
+
+        
 
 
          // check the token balance of the first account
@@ -66,6 +72,12 @@ module.exports = async function() {
         await tokenDeposit(amount, { from: deployer })
         await tokenDeposit(amount, { from: accounts[1]})
         await tokenDeposit(amount, { from: accounts[2]})
+
+        // deposit ether
+        await exchange.depositEther({from: accounts[1], value:2})
+        await exchange.depositEther({from: accounts[2], value:2})
+
+        console.log('deposited')
 
     } catch (err) {
         console.log(err)
