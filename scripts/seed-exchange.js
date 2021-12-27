@@ -92,7 +92,7 @@ module.exports = async function() {
         let result
         let orderId
 
-        result = await exchange.createOrder(token.address, )
+        result = await exchange.createOrder(ether(2), tokens(100), ETHER_ADDRESS, token.address, { from: accounts[1] } )
 
     } catch (err) {
         console.log(err)
