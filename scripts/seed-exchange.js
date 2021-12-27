@@ -23,7 +23,7 @@ module.exports = async function() {
 
         // check the token balance of the first account
         const tokenBalance = await token.balanceOf(accounts[0])
-        console.log('token balance of the first account', tokenBalance)
+        console.log('token balance of the first account', tokenBalance.toString())
 
     } catch (err) {
         console.log(err)
