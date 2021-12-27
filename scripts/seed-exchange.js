@@ -33,9 +33,16 @@ module.exports = async function() {
         }
 
         // create function to check token balance tokens
-        async function checkTokenBalane(account){
+        async function checkTokenBalane(account) {
             const balance = await token.balanceOf(account)
             return balance.toString()
+        }
+
+        //  create function to deposit tokens
+        async function tokenDeposit(amount) {
+            // approve exchange for deposit
+            await token.approve(exchange.address, amount)
+            await exchange.depositToken(token.address, amount)
         }
 
 
@@ -53,6 +60,13 @@ module.exports = async function() {
 
         const accountBalance2 =  await checkTokenBalane(accounts[2])
         console.log('token balance of the second account', accountBalance2)
+
+
+        //  deposit tokens
+        await tokenDeposit(amount, { from: deployer })
+        await tokenDeposit(amount, { from: accounts[1]})
+        await tokenDeposit(amount, { from: accounts[2]})
+
     } catch (err) {
         console.log(err)
     }
