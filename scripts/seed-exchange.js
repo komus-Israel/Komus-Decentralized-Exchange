@@ -25,16 +25,24 @@ module.exports = async function() {
         console.log('exchange fetched', exchange.address)
 
 
-        // check the token balance of the first account
-        const tokenBalance = await token.balanceOf(accounts[0])
-        console.log('token balance of the first account', tokenBalance.toString())
-
+       
 
         // create function to send tokens
         async function sendTokens(recipient, amount){
             await token.transfer(recipient, amount,  { from: deployer })
         }
 
+        // create function to check token balance tokens
+        async function checkTokenBalane(account){
+            const balance = await token.balanceOf(account)
+            return balance.toString()
+        }
+
+
+         // check the token balance of the first account
+         const deployersBalance = await checkTokenBalane()
+         console.log('deployers balance is', deployersBalance)
+         
         // transfer some tokens to two other accounts
         await sendTokens(accounts[1], amount)
         await sendTokens(accounts[2], amount)
