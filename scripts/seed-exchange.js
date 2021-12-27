@@ -36,8 +36,8 @@ module.exports = async function() {
         }
 
         // transfer some tokens to two other accounts
-        await sendTokens(accounts[1])
-        await sendTokens(accounts[2])
+        await sendTokens(accounts[1], amount)
+        await sendTokens(accounts[2], amount)
 
         // check balance of these accounts
         const tokenBalance1 = await token.balanceOf(accounts[1])
