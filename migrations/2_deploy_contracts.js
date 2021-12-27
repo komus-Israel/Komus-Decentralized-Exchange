@@ -2,8 +2,8 @@ const Token = artifacts.require("Token");
 const Exchange = artifacts.require("Exchange")
 
 module.exports = async function (deployer) {
-  await deployer.deploy(Token);
-  await deployer.deploy(Exchange)
+  await deployer.deploy(Token, "Komus", "KOM");
+  //await deployer.deploy(Exchange)
 };
 
 /*module.exports = function (deployer) {

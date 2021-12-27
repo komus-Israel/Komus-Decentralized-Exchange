@@ -17,7 +17,7 @@ contract("Exchange", ([deployer, feeAccount, user1])=>{
 
     beforeEach(async()=>{
         exchange = await Exchange.new(feeAccount, feePercent)
-        token = await Token.new()
+        token = await Token.new("Zamar", "Zam")
     })
 
     describe("fall back", ()=>{

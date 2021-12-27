@@ -13,8 +13,8 @@ require('chai')
 contract('Token', ([deployer, receiver, exchange]) => {
 
     let token
-    const tokenName = "Zamar";
-    const tokenSymbol = "Zam";
+    let tokenName = "Zamar";
+    let tokenSymbol = "Zam";
     const tokenDecimals = '18';
     const tokenTotalSupply = tokens('1000000');
 
