@@ -20,6 +20,11 @@ module.exports = async function() {
         const exchange = await Exchange.deployed()
         console.log('exchange fetched', exchange.address)
 
+
+        // check the token balance of the first account
+        const tokenBalance = await token.balanceOf(accounts[0])
+        console.log('token balance of the first account', tokenBalance)
+
     } catch (err) {
         console.log(err)
     }
