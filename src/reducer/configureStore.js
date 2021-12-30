@@ -1,6 +1,15 @@
-import { combinedReducers } from "./reducers";
+import { combinedReducers, applyMiddleWare, compose } from "./reducers";
+import { createLogger } from "redux-logger";
 import { createStore } from "redux";
 
-const store = createStore(
-    combinedReducers
-)
+
+const loggerMiddleWare = createLogger()
+
+
+export const configureStore=(preloadedState)=>{
+    return createStore(
+
+        combinedReducers,
+        preloadedState
+    )
+}
