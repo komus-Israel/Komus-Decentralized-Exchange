@@ -1,5 +1,5 @@
 export const increment=()=>{
-    return({
+    return ({
         type:"INCREMENT"
     })
 }
