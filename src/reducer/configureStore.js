@@ -1,6 +1,6 @@
-import { combinedReducers, applyMiddleWare, compose } from "./reducers";
+import { combinedReducers } from "./reducers";
 import { createLogger } from "redux-logger";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 
 
 const loggerMiddleWare = createLogger()
@@ -13,6 +13,6 @@ export const configureStore=(preloadedState)=>{
 
         combinedReducers,
         preloadedState,
-        composeEnhancer(applyMiddleWare(...middleWare, loggerMiddleWare))
+        composeEnhancer(applyMiddleware(...middleWare, loggerMiddleWare))
     )
 }
