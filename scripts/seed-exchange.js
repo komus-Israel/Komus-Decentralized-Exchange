@@ -85,8 +85,8 @@ module.exports = async function() {
         await tokenDeposit(amount, { from: accounts[2]})
 
         // deposit ether
-        await exchange.depositEther({from: accounts[1], value:2})
-        await exchange.depositEther({from: accounts[2], value:2})
+        await exchange.depositEther({from: accounts[1], value:ether(2)})
+        await exchange.depositEther({from: accounts[2], value:ether(15)})
 
         
         //  create order
