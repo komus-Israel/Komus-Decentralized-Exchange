@@ -1,3 +1,4 @@
+const { useCallback } = require("react")
 const { default: Web3 } = require("web3")
 
 const Token = artifacts.require('Token')
@@ -6,7 +7,7 @@ const Exchange = artifacts.require('Exchange')
 
 
 
-module.exports = async function() {
+module.exports = async function(callback) {
 
     try {
 
@@ -143,15 +144,12 @@ module.exports = async function() {
             await wait(1)
          }
 
-    
-
-
-
-        
 
 
     } catch (err) {
         console.log(err)
     }
+
+    callback()
     
 }
