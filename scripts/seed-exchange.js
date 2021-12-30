@@ -96,7 +96,7 @@ module.exports = async function() {
         result = await exchange.createOrder(ether(2), tokens(100), ETHER_ADDRESS, token.address, { from: accounts[1] } )
 
         // account 1 cancels order
-        orderId = result.logs[0].args.id 
+        orderId = result.logs[0].args._id 
         await exchange.cancelOrders(orderId, { from: accounts[1] })
         console.log("cancelled order from account1")
 
