@@ -22,6 +22,11 @@ module.exports = async function() {
             )
             
         }
+
+        const wait=(seconds)=>{
+            const milliseconds= seconds * 1000
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+        }
         
         //same as ether
         const tokens =(n)=>ether(n)
@@ -80,9 +85,9 @@ module.exports = async function() {
 
         //  deposit tokens
 
-        await tokenDeposit(amount, { from: deployer })
-        await tokenDeposit(amount, { from: accounts[1]})
-        await tokenDeposit(amount, { from: accounts[2]})
+        await tokenDeposit(tokens(10), { from: deployer })
+        await tokenDeposit(tokens(10), { from: accounts[1]})
+        await tokenDeposit(tokens(10), { from: accounts[2]})
 
         // deposit ether
         await exchange.depositEther({from: accounts[1], value:ether(2)})
@@ -93,27 +98,31 @@ module.exports = async function() {
         let result
         let orderId
 
-        result = await exchange.createOrder(ether(2), tokens(100), ETHER_ADDRESS, token.address, { from: accounts[1] } )
+        result = await exchange.createOrder(ether(2), tokens(10), ETHER_ADDRESS, token.address, { from: accounts[1] } )
 
         // account 1 cancels order
         orderId = result.logs[0].args._id 
         await exchange.cancelOrders(orderId, { from: accounts[1] })
         console.log("cancelled order from account1")
 
+        await wait(1)
 
-        // accoun1 creates another set of orders
-        result = await exchange.createOrder(ether(2), tokens(100), ETHER_ADDRESS, token.address, { from: accounts[1] } )
+
+        // account1 creates another set of orders
+        result = await exchange.createOrder(ether(2), tokens(10), ETHER_ADDRESS, token.address, { from: accounts[1] } )
         console.log("account1 makes order")
+
+        await wait(1)
 
 
         // user two fills order
         orderId = result.logs[0].args._id
         await exchange.fillOrder(orderId, { from: accounts[2]})
 
-
+        await wait(1)
 
         // user2 creates order
-        result = await exchange.createOrder(ether(2), tokens(50), ETHER_ADDRESS, token.address, { from: accounts[2] } )
+        result = await exchange.createOrder(ether(2), tokens(5), ETHER_ADDRESS, token.address, { from: accounts[2] } )
         console.log("account2 makes order")
 
 
@@ -122,12 +131,13 @@ module.exports = async function() {
          await exchange.fillOrder(orderId, { from: accounts[1]})
 
 
-
+         await wait(1)
          // create open orders
 
          for(let i; i<=10; i++) {
             result = await exchange.createOrder(tokens(20), ether(0.5 * i), token.address, ETHER_ADDRESS, { from: accounts[2]} )
             console.log(`make order ${i} from user2`)
+            await wait(1)
          }
 
     
