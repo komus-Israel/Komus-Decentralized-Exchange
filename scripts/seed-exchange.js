@@ -55,11 +55,11 @@ module.exports = async function() {
         }
 
         //  create function to deposit tokens
-        async function tokenDeposit(amount) {
+        async function tokenDeposit(amount, sender) {
             // approve exchange for deposit
 
-                await token.approve(exchange.address, amount)
-                await exchange.depositToken(token.address, amount)
+                await token.approve(exchange.address, amount,  {from:sender})
+                await exchange.depositToken(token.address, amount, {from:sender})
     
             
         }
@@ -85,9 +85,9 @@ module.exports = async function() {
 
         //  deposit tokens
 
-        await exchange.tokenDeposit(tokens(10), { from: deployer })
-        await exchange.tokenDeposit(tokens(10), { from: accounts[1]})
-        await exchange.tokenDeposit(tokens(10), { from: accounts[2]})
+        await tokenDeposit(tokens(10), deployer )
+        await tokenDeposit(tokens(10), accounts[1])
+        await tokenDeposit(tokens(10), accounts[2])
 
         // deposit ether
         await exchange.depositEther({from: accounts[1], value:ether(2)})
