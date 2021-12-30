@@ -79,6 +79,7 @@ module.exports = async function() {
 
 
         //  deposit tokens
+
         await tokenDeposit(amount, { from: deployer })
         await tokenDeposit(amount, { from: accounts[1]})
         await tokenDeposit(amount, { from: accounts[2]})
@@ -96,7 +97,45 @@ module.exports = async function() {
 
         // account 1 cancels order
         orderId = result.logs[0].args.id 
-        await exchange.cancelOrder(orderId, { from: accounts[1] })
+        await exchange.cancelOrders(orderId, { from: accounts[1] })
+        console.log("cancelled order from account1")
+
+
+        // accoun1 creates another set of orders
+        result = await exchange.createOrder(ether(2), tokens(100), ETHER_ADDRESS, token.address, { from: accounts[1] } )
+        console.log("account1 makes order")
+
+
+        // user two fills order
+        orderId = result.logs[0].args._id
+        await exchange.fillOrder(orderId, { from: accounts[2]})
+
+
+
+        // user2 creates order
+        result = await exchange.createOrder(ether(2), tokens(50), ETHER_ADDRESS, token.address, { from: accounts[2] } )
+        console.log("account2 makes order")
+
+
+         // user one fills order
+         orderId = result.logs[0].args._id
+         await exchange.fillOrder(orderId, { from: accounts[1]})
+
+
+
+         // create open orders
+
+         for(let i; i<=10; i++) {
+            result = await exchange.createOrder(tokens(20), ether(0.5 * i), token.address, ETHER_ADDRESS, { from: accounts[2]} )
+            console.log(`make order ${i} from user2`)
+         }
+
+    
+
+
+
+        
+
 
     } catch (err) {
         console.log(err)
