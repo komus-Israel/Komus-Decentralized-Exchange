@@ -58,8 +58,8 @@ module.exports = async function() {
         async function tokenDeposit(amount, sender) {
             // approve exchange for deposit
 
-                await token.approve(exchange.address, amount,  {from:sender})
-                await exchange.depositToken(token.address, amount, {from:sender})
+                await token.approve(exchange.address, amount,  {from: sender})
+                await exchange.depositToken(token.address, amount, {from: sender})
     
             
         }
@@ -88,6 +88,9 @@ module.exports = async function() {
         await tokenDeposit(tokens(10), deployer )
         await tokenDeposit(tokens(10), accounts[1])
         await tokenDeposit(tokens(10), accounts[2])
+
+        const depositBalance = await exchange.balanceOf(token.address, deployer)
+        console.log(depositBalance.toString(), 'deployer deposited token')
 
         // deposit ether
         await exchange.depositEther({from: accounts[1], value:ether(2)})
@@ -134,8 +137,8 @@ module.exports = async function() {
          await wait(1)
          // create open orders
 
-         for(let i; i<=10; i++) {
-            result = await exchange.createOrder(tokens(20), ether(0.5 * i), token.address, ETHER_ADDRESS, { from: accounts[2]} )
+         for(let i = 1; i<=10; i++) {
+            result = await exchange.createOrder(tokens(1), ether(0.5 * i), token.address, ETHER_ADDRESS, { from: accounts[2]} )
             console.log(`make order ${i} from user2`)
             await wait(1)
          }
