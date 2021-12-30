@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 
 const loggerMiddleWare = createLogger()
 const middleWare = []
-const composeEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 
 export const configureStore=(preloadedState)=>{
