@@ -30,5 +30,6 @@ const connectedAccountReducer=(state='', action)=>{
 
 export const combinedReducers = combineReducers({
     counter,
-    loadweb3Reducer
+    loadweb3Reducer,
+    connectedAccountReducer
 })
