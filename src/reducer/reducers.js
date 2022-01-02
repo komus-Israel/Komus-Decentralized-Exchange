@@ -9,7 +9,17 @@ const counter=(state=0, action)=>{
     }
 }
 
+const loadweb3Reducer=(state={}, action)=>{
+    switch (action.type) {
+        case "LOAD_WEB3":
+            return state = action.payload
+        default:
+            return state
+    }
+}
+
 
 export const combinedReducers = combineReducers({
-    counter
+    counter,
+    loadweb3Reducer
 })

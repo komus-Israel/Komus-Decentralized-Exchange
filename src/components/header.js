@@ -1,5 +1,7 @@
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { increment } from "../actions"
+import { loadweb3 } from "../functions"
 
 
 
@@ -9,6 +11,10 @@ const Header=()=>{
     const counts = useSelector(
         state => state.counter
     )
+
+    useEffect(()=>{
+        loadweb3(dispatch)
+    })
 
     return (
         <nav>
