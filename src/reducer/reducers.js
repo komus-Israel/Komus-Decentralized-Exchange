@@ -18,6 +18,15 @@ const loadweb3Reducer=(state={}, action)=>{
     }
 }
 
+const connectedAccountReducer=(state='', action)=>{
+    switch (action.type) {
+        case "CONNECTED_ACCOUNT":
+            return action.payload
+        default:
+            return state
+    }
+}
+
 
 export const combinedReducers = combineReducers({
     counter,

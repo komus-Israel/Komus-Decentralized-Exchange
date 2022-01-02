@@ -13,3 +13,9 @@ export const loadweb3Action=(web3)=>{
     })
 }
 
+export const loadConnectedAccount=(account)=>{
+    return ({
+        type: "CONNECTED_ACCOUNT",
+        payload: account
+    })
+}
