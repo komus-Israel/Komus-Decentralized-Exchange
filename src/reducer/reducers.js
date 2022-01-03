@@ -21,10 +21,12 @@ const loadweb3Reducer=(state={}, action)=>{
     }
 }
 
-const loadTokenContractReducer=(state={}, action)=>{
+const loadContractReducer=(state={}, action)=>{
     switch (action.type) {
         case "TOKEN_CONTRACT":
-            return state = action.payload
+            return {...state, token: action.payload}
+        case "EXCHANGE_CONTRACT":
+            return {...state, exchange: action.payload}
         default:
             return state
     }
@@ -36,5 +38,5 @@ const loadTokenContractReducer=(state={}, action)=>{
 export const combinedReducers = combineReducers({
     counter,
     loadweb3Reducer,
-    loadTokenContractReducer
+    loadContractReducer
 })
