@@ -13,17 +13,17 @@ const loadweb3Reducer=(state={}, action)=>{
     switch (action.type) {
         case "LOAD_WEB3":
             return state = action.payload
-        case "TOKEN_CONTRACT":
-            return {...state, tokenContract: action.payload}
+        case "CONNECTED_ACCOUNT": 
+            return {...state, connectedAccount: action.payload}
 
         default:
             return state
     }
 }
 
-const connectedAccountReducer=(state="", action)=>{
+const loadTokenContractReducer=(state={}, action)=>{
     switch (action.type) {
-        case "CONNECTED_ACCOUNT":
+        case "TOKEN_CONTRACT":
             return state = action.payload
         default:
             return state
@@ -31,8 +31,10 @@ const connectedAccountReducer=(state="", action)=>{
 }
 
 
+
+
 export const combinedReducers = combineReducers({
     counter,
     loadweb3Reducer,
-    connectedAccountReducer
+    loadTokenContractReducer
 })
