@@ -1,0 +1,23 @@
+.nav-bar {
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+
+.nav-bar p {
+   margin-right: 20px;
+   background-image: linear-gradient(45deg,   #af4261, yellow);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color:transparent;
+   font-weight: bold;
+   
+}
+
+.nav-bar h1 {
+    margin-left: 10px;
+    background-image: linear-gradient(45deg,   #af4261, #48a1dd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color:transparent;
+}
