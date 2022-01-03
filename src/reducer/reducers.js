@@ -13,6 +13,9 @@ const loadweb3Reducer=(state={}, action)=>{
     switch (action.type) {
         case "LOAD_WEB3":
             return state = action.payload
+        case "TOKEN_CONTRACT":
+            return {...state, tokenContract: action.payload}
+
         default:
             return state
     }
