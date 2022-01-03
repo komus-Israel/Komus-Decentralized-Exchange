@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import { loadweb3Action, loadConnectedAccountAction, loadTokenContract } from './actions';
+import { loadweb3Action, loadConnectedAccountAction, loadTokenContract, loadExchangeContract } from './actions';
 import Token from './abis/Token.json';
 import Exchange from './abis/Exchange.json';
 
@@ -34,6 +34,7 @@ export const loadContract=async(dispatch)=>{
     const tokenContract = new web3.eth.Contract(Token.abi, tokenNetworkId.address)
     const exchangeContract = new web3.eth.Contract(Exchange.abi, exchangeNetworkId.address)
     dispatch(loadTokenContract(tokenContract))
+    dispatch(loadExchangeContract(exchangeContract))
     
     return { tokenContract, exchangeContract}
 }
