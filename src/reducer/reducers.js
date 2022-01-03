@@ -12,7 +12,7 @@ const counter=(state=0, action)=>{
 const loadweb3Reducer=(state={}, action)=>{
     switch (action.type) {
         case "LOAD_WEB3":
-            return state = action.payload
+            return {...state, web3: action.payload}
         case "CONNECTED_ACCOUNT": 
             return {...state, connectedAccount: action.payload}
 

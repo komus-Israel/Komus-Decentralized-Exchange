@@ -1,6 +1,7 @@
 import Web3 from 'web3';
 import { loadweb3Action, loadConnectedAccountAction, loadTokenContract } from './actions';
 import Token from './abis/Token.json';
+import Exchange from './abis/Exchange.json';
 
 export const loadweb3 =(dispatch)=>{
     const web3 = new Web3(Web3.givenProvider || 'localhost:8545')
@@ -23,12 +24,16 @@ export const loadConnectedAccount = async(web3, dispatch)=>{
 export const loadContract=async(dispatch)=>{
     const web3 = new Web3(Web3.givenProvider || 'localhost:8545')
     const networkId = await web3.eth.net.getId()
-    const idFoundInABI =  (Token.networks[networkId])
+    const tokenNetworkId =  (Token.networks[networkId])
+    const exchangeNetworkId = (Exchange.networks[networkId])
 
-    if( !idFoundInABI ) {
+    if( !tokenNetworkId || !exchangeNetworkId ) {
         return null
     }
-    const contract = new web3.eth.Contract(Token.abi, idFoundInABI.address)
-    dispatch(loadTokenContract(contract))
-    return contract
+
+    const tokenContract = new web3.eth.Contract(Token.abi, tokenNetworkId.address)
+    const exchangeContract = new web3.eth.Contract(Exchange.abi, exchangeNetworkId.address)
+    dispatch(loadTokenContract(tokenContract))
+    
+    return { tokenContract, exchangeContract}
 }

@@ -26,3 +26,10 @@ export const loadTokenContract=(contract)=>{
         payload: contract
     })
 }
+
+export const loadExchangeContract=(contract)=>{
+    return ({
+        type: "EXCHANGE_CONTRACT",
+        payload: contract
+    })
+}
