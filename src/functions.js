@@ -23,10 +23,11 @@ export const loadConnectedAccount = async(web3, dispatch)=>{
 export const loadContract=async()=>{
     const web3 = new Web3(Web3.givenProvider || 'localhost:8545')
     const networkId = await web3.eth.net.getId()
-    const address =  (Token.networks[networkId])
+    const idFoundInABI =  (Token.networks[networkId])
 
-    if( !address ) {
+    if( !idFoundInABI ) {
         return false
     }
-    return address
+    const contract = new web3.eth.Contract(Token.abi, idFoundInABI.address)
+    return contract
 }
