@@ -1,30 +1,16 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import { increment } from "../actions"
-import { loadConnectedAccount, loadweb3, loadContract } from "../functions"
+import { useDispatch, useSelector } from "react-redux"
 
 
 
 const Header=()=>{
 
-    const dispatch = useDispatch()
     const counts = useSelector(
         state => state.counter
     )
 
-    useEffect(()=>{
-
-        const loading=async()=>{
-            const web3 = loadweb3(dispatch)
-            await loadConnectedAccount(web3, dispatch)
-           const contract = await loadContract(dispatch)
-           console.log(contract)
-        }
-        
-       
-        loading()
-       
-    })
+    const dispatch = useDispatch()
+    
 
     return (
         <nav>
