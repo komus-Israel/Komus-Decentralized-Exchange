@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import { loadweb3Action, loadConnectedAccountAction } from './actions';
+import { loadweb3Action, loadConnectedAccountAction, loadTokenContract } from './actions';
 import Token from './abis/Token.json';
 
 export const loadweb3 =(dispatch)=>{
@@ -20,7 +20,7 @@ export const loadConnectedAccount = async(web3, dispatch)=>{
     
 }
 
-export const loadContract=async()=>{
+export const loadContract=async(dispatch)=>{
     const web3 = new Web3(Web3.givenProvider || 'localhost:8545')
     const networkId = await web3.eth.net.getId()
     const idFoundInABI =  (Token.networks[networkId])
@@ -29,5 +29,6 @@ export const loadContract=async()=>{
         return false
     }
     const contract = new web3.eth.Contract(Token.abi, idFoundInABI.address)
+    dispatch(loadTokenContract(contract))
     return contract
 }

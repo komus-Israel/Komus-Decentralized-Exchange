@@ -17,8 +17,8 @@ const Header=()=>{
         const loading=async()=>{
             const web3 = loadweb3(dispatch)
             await loadConnectedAccount(web3, dispatch)
-           const id = await loadContract()
-           console.log(id)
+           const contract = await loadContract(dispatch)
+           console.log(contract)
         }
         
        
