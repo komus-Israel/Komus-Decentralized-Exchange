@@ -26,7 +26,7 @@ export const loadContract=async(dispatch)=>{
     const idFoundInABI =  (Token.networks[networkId])
 
     if( !idFoundInABI ) {
-        return false
+        return null
     }
     const contract = new web3.eth.Contract(Token.abi, idFoundInABI.address)
     dispatch(loadTokenContract(contract))
