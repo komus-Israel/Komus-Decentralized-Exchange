@@ -19,3 +19,10 @@ export const loadConnectedAccountAction=(account)=>{
         payload: account
     })
 }
+
+export const loadTokenContract=(contract)=>{
+    return ({
+        type: "TOKEN_CONTRACT",
+        payload: contract
+    })
+}
