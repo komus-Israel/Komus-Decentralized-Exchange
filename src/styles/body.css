@@ -81,10 +81,11 @@
 
 .dex-content::-webkit-scrollbar {
    
-    width: 15px;
+    width: 5px;
     background: rgba(0, 0, 0, 0.241);
 }
 
-.dex-content::-webkit-scrollbar-track-piece {
-    background: red;
-}
+.dex-content::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 12px;
+} 
