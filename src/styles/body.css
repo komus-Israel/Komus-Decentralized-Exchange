@@ -10,6 +10,8 @@
 .order-book, .chart , .transactions, .trades, .balance, .new-order {
     background: #333;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
     
   
 }
@@ -32,11 +34,14 @@
 
 
 .cont-header {
-    background: rgba(0, 0, 0, 0.179);
-    margin-top: 0;
+    background: #0000002e;
     padding: 10px;
     text-align: start;
     font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.241);
+    width: auto;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 
@@ -47,4 +52,39 @@
 
 .chart, .balance {
     margin-bottom: 10px;
+}
+
+.chart, .transactions {
+    width: auto;
+
+}
+
+/* the height of the order book and trade component */
+.order-book, .trades {
+    height: 80vh;
+}
+
+/*.order-book , .transactions, .trades, .balance, .new-order {
+   
+
+}*/
+
+
+
+.dex-content {
+    overflow-y: scroll;
+    position: relative;
+    height: 100%;
+    margin: 0;
+   
+}
+
+.dex-content::-webkit-scrollbar {
+   
+    width: 15px;
+    background: rgba(0, 0, 0, 0.241);
+}
+
+.dex-content::-webkit-scrollbar-track-piece {
+    background: red;
 }
