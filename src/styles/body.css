@@ -8,6 +8,7 @@
     justify-content: space-evenly;
     margin-left: 0.6em;
     margin-right: 0.6em;
+    grid-gap: 10px;
 }
 
 .order-book, .chart , .transactions, .trades, .balance, .new-order {
