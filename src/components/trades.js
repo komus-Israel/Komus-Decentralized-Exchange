@@ -2,7 +2,22 @@ const Trades=()=>{
     return(
         <div className="trades">
              <p className="cont-header">Trades</p>
-            <p>The component for the Trades</p>
+             <div className="dex-content">
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p><p>The component for the order book</p>
+                <p>The component for the order book</p>
+                <p>The component for the order book</p>
+            </div>
         </div>
     )
 }
