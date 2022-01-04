@@ -12,14 +12,14 @@ const Body=()=>{
 
             <OrderBook />
 
-            <div className="flex-cont">
+            <div className="sub-cont">
                 <Chart />
                 <Transactions />
             </div>
 
             <Trades />
 
-            <div className="flex-cont">
+            <div className="sub-cont">
                 <Balance />
                 <NewOrder />
             </div>
