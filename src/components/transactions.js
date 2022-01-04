@@ -1,7 +1,7 @@
 const Transactions=()=>{
     return(
         <div className="transactions">
-             <p>Transactions</p>
+             <p className="cont-header">Transactions</p>
             <p>The component for the Transactions</p>
         </div>
     )

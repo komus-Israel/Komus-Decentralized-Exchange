@@ -9,13 +9,21 @@
 
 .order-book, .chart , .transactions, .trades, .balance, .new-order {
     background: #333;
+  
 }
 
 .sub-cont {
-    background: blue;
+  
     padding: 0;
     display: flex;
     flex-direction: column;
 }
 
 
+.cont-header {
+    background: rgba(0, 0, 0, 0.179);
+    margin-top: 0;
+    padding: 10px;
+    text-align: start;
+    font-family: Arial, Helvetica, sans-serif;
+}

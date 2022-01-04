@@ -1,7 +1,7 @@
 const OrderBook=()=>{
     return(
         <div className="order-book">
-            <p>Order Book</p>
+            <p className="cont-header">Order Book</p>
             <p>The component for the order book</p>
         </div>
     )
