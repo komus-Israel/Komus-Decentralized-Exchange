@@ -1,5 +1,5 @@
 const { useCallback } = require("react")
-const { default: Web3 } = require("web3")
+//const { default: Web3 } = require("web3")
 
 const Token = artifacts.require('Token')
 const Exchange = artifacts.require('Exchange')
@@ -113,7 +113,7 @@ module.exports = async function(callback) {
 
 
         // account1 creates another set of orders
-        result = await exchange.createOrder(ether(2), tokens(10), ETHER_ADDRESS, token.address, { from: accounts[1] } )
+        result = await exchange.createOrder(ether(2), tokens(1), ETHER_ADDRESS, token.address, { from: accounts[1] } )
         console.log("account1 makes order")
 
         await wait(1)

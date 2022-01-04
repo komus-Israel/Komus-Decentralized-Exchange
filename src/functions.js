@@ -38,3 +38,12 @@ export const loadContract=async(dispatch)=>{
     
     return { tokenContract, exchangeContract}
 }
+
+export const loadAllOrder=async(exchange)=>{
+    // fetch cancelled orders from event
+    const cancelledOrders = await exchange.getPastEvents('Order', {fromBlock:0, toBlock:"latest"})
+    console.log(cancelledOrders)
+    // fetch created orders
+
+    // fetch filled orders
+}
