@@ -9,6 +9,20 @@ import NewOrder from './newOrder';
 const Body=()=>{
     return (
         <div className='main-body'>
+
+            <OrderBook />
+
+            <div className="flex-cont">
+                <Chart />
+                <Transactions />
+            </div>
+
+            <Trades />
+
+            <div className="flex-cont">
+                <Balance />
+                <NewOrder />
+            </div>
            
         </div>
     )
