@@ -3,6 +3,7 @@ import { get } from "lodash";
 import '../styles/trades.css';
 import { useEffect } from "react";
 import { ETHER_ADDRESS, ether, token } from '../helpers';
+import decorateOrder from "./decorateOrder";
 
 
 const Trades=()=>{
@@ -13,18 +14,7 @@ const Trades=()=>{
 
     if (trades.length > 0 ) {
 
-        let etherAmount
-        let tokenAmount
-        trades = trades.map((order)=>{
-            if(order._tokenGive === ETHER_ADDRESS) {
-                etherAmount =  ether(order._amountGive)
-                tokenAmount =  token(order._amountGet)
-            } else {
-                etherAmount =  ether(order._amountGet)
-                tokenAmount =  token(order._amountGive)
-            }
-            return {...order, etherAmount, tokenAmount}
-        })
+        trades = decorateOrder(trades)
     }
 
     useEffect(()=>{
