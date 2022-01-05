@@ -38,6 +38,8 @@ const loadEvents=(state={}, action)=>{
             return {...state, createdOrders: action.payload}
         case "CANCELLED_ORDERS":
             return {...state, cancelledOrders: action.payload}
+        case "FILLED_ORDERS":
+            return {...state, cancelledOrders: action.payload}
         default:
             return state
     }
