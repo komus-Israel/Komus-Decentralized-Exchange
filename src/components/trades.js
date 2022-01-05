@@ -17,11 +17,11 @@ const Trades=()=>{
         let tokenAmount
         trades = trades.map((order)=>{
             if(order._tokenGive === ETHER_ADDRESS) {
-                const etherAmount = ether(order._tokenGive)
-                const tokenAmount = token(order._tokenGet)
+                etherAmount =  ether(order._amountGive)
+                tokenAmount =  token(order._amountGet)
             } else {
-                const etherAmount = ether(order._tokenGet)
-                const tokenAmount = token(order._tokenGive)
+                etherAmount =  ether(order._amountGet)
+                tokenAmount =  token(order._amountGive)
             }
             return {...order, etherAmount, tokenAmount}
         })
