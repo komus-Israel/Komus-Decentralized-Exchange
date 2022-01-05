@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux"
-import { get } from "lodash"
+import { useSelector } from "react-redux";
+import { get } from "lodash";
+import '../styles/trades.css';
 
 
 const Trades=()=>{
@@ -13,7 +14,13 @@ const Trades=()=>{
         <div className="trades">
              <p className="cont-header">Trades</p>
              <div className="dex-content">
-                
+                <thead>
+                    <tr className="row-header">
+                        <th>Time</th>
+                        <th>KOM</th>
+                        <th>KOM/ETH</th>
+                    </tr>
+                </thead>
                 
             </div>
         </div>
