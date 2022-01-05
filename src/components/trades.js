@@ -13,14 +13,16 @@ const Trades=()=>{
 
     if (trades.length > 0 ) {
 
+        //trades = trades.sort((a,b)=> b._timeTraded - a._timeTraded)
+        trades = trades.sort((a,b)=> a._timeTraded - b._timeTraded) // sort with time ascending
         trades = decorateOrder(trades)
     }
 
     useEffect(()=>{
-        console.log('trades', trades)
+       
 
         if(trades) {
-            console.log('sorder trades', trades.sort((a,b)=> b._timeTraded - a._timeTraded))
+            console.log('sorted trades', trades)
         }    
     })
 
@@ -31,13 +33,16 @@ const Trades=()=>{
         <div className="trades">
              <p className="cont-header">Trades</p>
              <div className="dex-content">
-                <thead>
-                    <tr className="row-header">
-                        <th>Time</th>
-                        <th>KOM</th>
-                        <th>KOM/ETH</th>
-                    </tr>
-                </thead>
+                 <table>
+                    <thead>
+                        <tr className="row-header">
+                            <th>Time</th>
+                            <th>KOM</th>
+                            <th>KOM/ETH</th>
+                        </tr>
+                    </thead>
+                 </table>
+               
                 
             </div>
         </div>
