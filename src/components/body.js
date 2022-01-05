@@ -10,16 +10,22 @@ const Body=()=>{
     return (
         <div className='main-body'>
 
-            <OrderBook />
+            <div className="less-width">
+                <OrderBook />
+            </div>
+            
 
             <div className="sub-cont" id="more-width">
                 <Chart />
                 <Transactions />
             </div>
 
-            <Trades />
+            <div className="less-width">       
+                <Trades />
+            </div>
+            
 
-            <div className="sub-cont" >
+            <div className="sub-cont" id="less-width">
                 <Balance />
                 <NewOrder />
             </div>

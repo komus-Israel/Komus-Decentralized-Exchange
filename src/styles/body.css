@@ -6,9 +6,9 @@
 .main-body {
     display: flex;
     justify-content: space-evenly;
-    margin-left: 0.6em;
-    margin-right: 0.6em;
+    margin: 0.6em;
     grid-gap: 10px;
+    width: auto;
 }
 
 .order-book, .chart , .transactions, .trades, .balance, .new-order {
@@ -67,10 +67,9 @@
     height: 80vh;
 }
 
-/*.order-book , .transactions, .trades, .balance, .new-order {
-   
-
-}*/
+.less-width, #less-width {
+    width: 18.33%;
+}
 
 
 
