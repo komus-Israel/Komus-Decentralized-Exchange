@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import { loadweb3Action, loadConnectedAccountAction, loadTokenContract, loadExchangeContract, loadCreatedOrders, loadFilledOrders, loadCancelledOrders } from './actions';
+import { loadweb3Action, loadConnectedAccountAction, loadTokenContractAction, loadExchangeContractAction, loadCreatedOrdersAction, loadFilledOrdersAction, loadCancelledOrdersAction } from './actions';
 import Token from './abis/Token.json';
 import Exchange from './abis/Exchange.json';
 
@@ -33,8 +33,8 @@ export const loadContract=async(dispatch)=>{
 
     const tokenContract = new web3.eth.Contract(Token.abi, tokenNetworkId.address)
     const exchangeContract = new web3.eth.Contract(Exchange.abi, exchangeNetworkId.address)
-    dispatch(loadTokenContract(tokenContract))
-    dispatch(loadExchangeContract(exchangeContract))
+    dispatch(loadTokenContractAction(tokenContract))
+    dispatch(loadExchangeContractAction(exchangeContract))
     
     return { tokenContract, exchangeContract}
 }
@@ -43,7 +43,7 @@ export const loadAllOrder=async(exchange, dispatch)=>{
 
     // fetch created orders
     const createdOrdersStream = await exchange.getPastEvents('Order', {fromBlock:0, toBlock:"latest"})
-    console.log(createdOrdersStream)
+    dispatch(loadCreatedOrdersAction(createdOrdersStream))
 
     // fetch cancelled orders from event
     const cancelledOrdersStream = await exchange.getPastEvents('OrderCancelled', {fromBlock:0, toBlock:"latest"})

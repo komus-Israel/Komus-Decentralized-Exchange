@@ -20,14 +20,14 @@ export const loadConnectedAccountAction=(account)=>{
     })
 }
 
-export const loadTokenContract=(contract)=>{
+export const loadTokenContractAction=(contract)=>{
     return ({
         type: "TOKEN_CONTRACT",
         payload: contract
     })
 }
 
-export const loadExchangeContract=(contract)=>{
+export const loadExchangeContractAction=(contract)=>{
     return ({
         type: "EXCHANGE_CONTRACT",
         payload: contract
@@ -35,7 +35,7 @@ export const loadExchangeContract=(contract)=>{
 }
 
 
-export const loadCreatedOrders=(stream)=>{
+export const loadCreatedOrdersAction=(stream)=>{
     return ({
         type: "CREATED_ORDERS",
         payload: stream
@@ -43,7 +43,7 @@ export const loadCreatedOrders=(stream)=>{
 }
 
 
-export const loadCancelledOrders=(stream)=>{
+export const loadCancelledOrdersAction=(stream)=>{
     return ({
         type: "CANCELLED_ORDERS",
         payload: stream
@@ -51,7 +51,7 @@ export const loadCancelledOrders=(stream)=>{
 }
 
 
-export const loadFilledOrders=(stream)=>{
+export const loadFilledOrdersAction=(stream)=>{
     return ({
         type: "FILLED_ORDERS",
         payload: stream
