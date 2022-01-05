@@ -19,8 +19,9 @@ const decorateOrder=(orders)=>{
 
         let tokenPrice = (etherAmount / tokenAmount)
         tokenPrice = Math.round(tokenPrice * precision) / precision
+        const formattedTimestamp = moment.unix(order._timeTraded).format('h:mm:ss a M/D')
 
-        return {...order, etherAmount, tokenAmount, tokenPrice}
+        return {...order, etherAmount, tokenAmount, tokenPrice, formattedTimestamp}
     })
 
     return orders
