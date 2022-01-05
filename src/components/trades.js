@@ -13,9 +13,10 @@ const Trades=()=>{
 
     if (trades.length > 0 ) {
 
-        //trades = trades.sort((a,b)=> b._timeTraded - a._timeTraded)
+        
         trades = trades.sort((a,b)=> a._timeTraded - b._timeTraded) // sort with time ascending
         trades = decorateOrder(trades)
+        trades = trades.sort((a,b)=> b._timeTraded - a._timeTraded)
     }
 
     useEffect(()=>{
