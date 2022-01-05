@@ -32,7 +32,7 @@ const loadContractReducer=(state={}, action)=>{
     }
 }
 
-const loadEvents=(state={}, action)=>{
+const loadEventsReducer=(state={}, action)=>{
     switch (action.type) {
         case "CREATED_ORDERS":
             return {...state, createdOrders: action.payload}
@@ -51,5 +51,6 @@ const loadEvents=(state={}, action)=>{
 export const combinedReducers = combineReducers({
     counter,
     loadweb3Reducer,
-    loadContractReducer
+    loadContractReducer,
+    loadEventsReducer
 })
