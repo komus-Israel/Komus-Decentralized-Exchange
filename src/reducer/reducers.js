@@ -32,6 +32,17 @@ const loadContractReducer=(state={}, action)=>{
     }
 }
 
+const loadEvents=(state={}, action)=>{
+    switch (action.type) {
+        case "CREATED_ORDERS":
+            return {...state, createdOrders: action.payload}
+        case "CANCELLED_ORDERS":
+            
+        default:
+            return state
+    }
+}
+
 
 
 
