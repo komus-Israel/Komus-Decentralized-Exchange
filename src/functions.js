@@ -53,4 +53,11 @@ export const loadAllOrder=async(exchange)=>{
     const filledOrderStream = await exchange.getPastEvents('Trade', {fromBlock:0, toBlock:"latest"})
     console.log(filledOrderStream)
 
+
+    return {
+        createdOrdersStream,
+        cancelledOrdersStream,
+        filledOrderStream
+    }
+
 }

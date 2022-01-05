@@ -33,3 +33,11 @@ export const loadExchangeContract=(contract)=>{
         payload: contract
     })
 }
+
+
+export const loadCreatedOrders=(stream)=>{
+    return ({
+        type: "CREATED_ORDERS",
+        payload: stream
+    })
+}
