@@ -1,4 +1,5 @@
 import { ETHER_ADDRESS, ether, token } from '../helpers';
+import moment from 'moment';
 
 const decorateOrder=(orders)=>{
     let etherAmount
@@ -18,7 +19,7 @@ const decorateOrder=(orders)=>{
 
         let tokenPrice = (etherAmount / tokenAmount)
         tokenPrice = Math.round(tokenPrice * precision) / precision
-        
+
         return {...order, etherAmount, tokenAmount, tokenPrice}
     })
 
