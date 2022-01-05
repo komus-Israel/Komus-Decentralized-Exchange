@@ -47,7 +47,7 @@ export const loadAllOrder=async(exchange, dispatch)=>{
 
     // fetch cancelled orders from event
     const cancelledOrdersStream = await exchange.getPastEvents('OrderCancelled', {fromBlock:0, toBlock:"latest"})
-    console.log(cancelledOrdersStream)
+    dispatch(loadCancelledOrdersAction(cancelledOrdersStream))
     
     // fetch filled orders
     const filledOrderStream = await exchange.getPastEvents('Trade', {fromBlock:0, toBlock:"latest"})
