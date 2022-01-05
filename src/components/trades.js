@@ -2,23 +2,37 @@ import { useSelector } from "react-redux";
 import { get } from "lodash";
 import '../styles/trades.css';
 import { useEffect } from "react";
+import { ETHER_ADDRESS, ether, token } from '../helpers';
 
 
 const Trades=()=>{
 
-    const trades = useSelector(
-        state => get(state, 'loadEventsReducer.filledOrders')
+    let trades = useSelector(
+        state => get(state, 'loadEventsReducer.filledOrders', [])
     )
+
+    if (trades.length > 0 ) {
+
+        let etherAmount
+        let tokenAmount
+        trades = trades.map((order)=>{
+            if(order._tokenGive === ETHER_ADDRESS) {
+                const etherAmount = ether(order._tokenGive)
+                const tokenAmount = token(order._tokenGet)
+            } else {
+                const etherAmount = ether(order._tokenGet)
+                const tokenAmount = token(order._tokenGive)
+            }
+            return {...order, etherAmount, tokenAmount}
+        })
+    }
 
     useEffect(()=>{
         console.log('trades', trades)
 
         if(trades) {
             console.log('sorder trades', trades.sort((a,b)=> b._timeTraded - a._timeTraded))
-        }
-
-        
-        
+        }    
     })
 
     
