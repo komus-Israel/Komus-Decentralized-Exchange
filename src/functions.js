@@ -51,7 +51,7 @@ export const loadAllOrder=async(exchange, dispatch)=>{
     
     // fetch filled orders
     const filledOrderStream = await exchange.getPastEvents('Trade', {fromBlock:0, toBlock:"latest"})
-    console.log(filledOrderStream)
+    dispatch(loadFilledOrdersAction(filledOrderStream))
 
 
     return {
