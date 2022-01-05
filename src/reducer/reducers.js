@@ -39,7 +39,7 @@ const loadEventsReducer=(state={}, action)=>{
         case "CANCELLED_ORDERS":
             return {...state, cancelledOrders: action.payload}
         case "FILLED_ORDERS":
-            return {...state, cancelledOrders: action.payload}
+            return {...state, filledOrders: action.payload}
         default:
             return state
     }
