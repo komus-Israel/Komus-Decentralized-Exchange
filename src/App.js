@@ -28,9 +28,7 @@ function App() {
     const web3 = loadweb3(dispatch)
     await loadConnectedAccount(web3, dispatch)
     const contract = await loadContract(dispatch)
-    const order = await loadAllOrder(contract.exchangeContract)
-    console.log(contract.exchangeContract)
-    console.log(order)
+    await loadAllOrder(contract.exchangeContract, dispatch)
 }
     
 
