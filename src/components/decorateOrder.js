@@ -3,6 +3,9 @@ import { ETHER_ADDRESS, ether, token } from '../helpers';
 const decorateOrder=(orders)=>{
     let etherAmount
     let tokenAmount
+    const precision = 100000
+
+    
 
     orders = orders.map((order)=>{
         if(order._tokenGive === ETHER_ADDRESS) {
@@ -12,7 +15,11 @@ const decorateOrder=(orders)=>{
             etherAmount =  ether(order._amountGet)
             tokenAmount =  token(order._amountGive)
         }
-        return {...order, etherAmount, tokenAmount}
+
+        let tokenPrice = (etherAmount / tokenAmount)
+        tokenPrice = Math.round(tokenPrice * precision) / precision
+        
+        return {...order, etherAmount, tokenAmount, tokenPrice}
     })
 
     return orders

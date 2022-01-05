@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { get } from "lodash";
 import '../styles/trades.css';
 import { useEffect } from "react";
-import { ETHER_ADDRESS, ether, token } from '../helpers';
 import decorateOrder from "./decorateOrder";
 
 
