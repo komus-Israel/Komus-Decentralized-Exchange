@@ -49,3 +49,11 @@ export const loadCancelledOrders=(stream)=>{
         payload: stream
     })
 }
+
+
+export const loadFilledOrders=(stream)=>{
+    return ({
+        type: "FILLED_ORDERS",
+        payload: stream
+    })
+}
