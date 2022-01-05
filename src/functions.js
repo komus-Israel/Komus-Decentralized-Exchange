@@ -40,10 +40,14 @@ export const loadContract=async(dispatch)=>{
 }
 
 export const loadAllOrder=async(exchange)=>{
-    // fetch cancelled orders from event
-    const cancelledOrders = await exchange.getPastEvents('Order', {fromBlock:0, toBlock:"latest"})
-    console.log(cancelledOrders)
-    // fetch created orders
 
+    // fetch created orders
+    const createdOrders = await exchange.getPastEvents('Order', {fromBlock:0, toBlock:"latest"})
+    console.log(createdOrders)
+
+    // fetch cancelled orders from event
+    const cancelledOrders = await exchange.getPastEvents('OrderCancelled', {fromBlock:0, toBlock:"latest"})
+    console.log(cancelledOrders)
+    
     // fetch filled orders
 }
