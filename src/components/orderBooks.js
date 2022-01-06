@@ -1,9 +1,11 @@
 import { get, reject } from "lodash";
 import { useSelector } from "react-redux";
+import decorateOrder, { decorateOrderPrice } from "./decorateOrder";
 
 
 const OrderBook=()=>{
 
+    
 
     const createdOrders = useSelector(
         state => get(state, 'loadEventsReducer.createdOrders', [])
@@ -29,9 +31,10 @@ const OrderBook=()=>{
         return filled || cancelled
     })
 
-    console.log(openOrders)
-
-
+    
+    const decoratedOpenOrders = decorateOrder(openOrders)
+    console.log(decoratedOpenOrders)
+    
     return(
         <div className="order-book">
             <p className="cont-header">Order Book</p>
