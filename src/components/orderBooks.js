@@ -1,4 +1,4 @@
-import { get, reject } from "lodash";
+import { get, reject, groupBy } from "lodash";
 import { useSelector } from "react-redux";
 import decorateOrder, { decorateOrderBookSaleType} from "./decorateOrder";
 
@@ -39,9 +39,10 @@ const OrderBook=()=>{
     }    
     
     const preprocessedOrderBook = preprocessOrderBook(openOrders)
-    console.log(preprocessedOrderBook)
+   
+    const groupOrderIntoBuyAndSell  = groupBy(preprocessedOrderBook, 'orderType')
 
-    //console.log(orderBook)
+    console.log(groupOrderIntoBuyAndSell)
     
     return(
         <div className="order-book">
