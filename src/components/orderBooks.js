@@ -1,6 +1,6 @@
 import { get, reject } from "lodash";
 import { useSelector } from "react-redux";
-import decorateOrder, { decorateOrderPrice } from "./decorateOrder";
+import decorateOrder, { decorateOrderBookSaleType} from "./decorateOrder";
 
 
 const OrderBook=()=>{
@@ -33,7 +33,9 @@ const OrderBook=()=>{
 
     
     const decoratedOpenOrders = decorateOrder(openOrders)
-    console.log(decoratedOpenOrders)
+    const orderBook = decorateOrderBookSaleType(decoratedOpenOrders)
+
+    console.log(orderBook)
     
     return(
         <div className="order-book">

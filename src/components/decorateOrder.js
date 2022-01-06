@@ -64,4 +64,14 @@ export const decorateOrderPrice=(orders)=>{
       
 }
 
+export const decorateOrderBookSaleType=(orders)=>{
+    orders.map(order => {
+        const orderType = order._tokenGive === ETHER_ADDRESS ? 'Buy' : 'Sell'
+
+        return {...order, orderType}
+    })
+
+    return orders
+}
+
 export default decorateOrder
