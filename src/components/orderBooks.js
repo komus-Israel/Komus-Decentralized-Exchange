@@ -20,10 +20,6 @@ const OrderBook=()=>{
         state => get(state, 'loadEventsReducer.cancelledOrders', [])
     )
 
-    console.log('all orders', createdOrders)
-    console.log('filled orders', filledOrders)
-    console.log('cancelled orders', cancelledOrders)
-
     const openOrders = reject(createdOrders, (order)=>{
         const filled = filledOrders.some((filledOrder)=>filledOrder._id === order._id)
         const cancelled = cancelledOrders.some((cancelledOrder) => cancelledOrder._id === order._id)
@@ -38,11 +34,21 @@ const OrderBook=()=>{
         return orderBook
     }    
     
-    const preprocessedOrderBook = preprocessOrderBook(openOrders)
-   
-    const groupOrderIntoBuyAndSell  = groupBy(preprocessedOrderBook, 'orderType')
 
-    console.log(groupOrderIntoBuyAndSell)
+    const preprocessedOrderBook = preprocessOrderBook(openOrders) // apply the decoration to the order book
+   
+    const groupOrderIntoBuyAndSell  = groupBy(preprocessedOrderBook, 'orderType') // group the orders buy their order type which is "buy" and "sell"
+
+    const sortedGroupedOrders = {
+
+        ...groupOrderIntoBuyAndSell,
+        sortedBuy: groupOrderIntoBuyAndSell.Buy.sort((a,b)=> b.tokenPrice - a.tokenPrice),
+        sortedSell: groupOrderIntoBuyAndSell.Sell.sort((a,b)=> b.tokenPrice - a.tokenPrice)
+    }
+
+
+    console.log(sortedGroupedOrders)
+   
     
     return(
         <div className="order-book">
