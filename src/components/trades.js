@@ -49,7 +49,7 @@ const Trades=()=>{
                                             <tr>
                                                 <td>{trade.formattedTimestamp}</td>
                                                 <td>{trade.tokenAmount}</td>
-                                                <td>{trade.tokenPrice}</td>
+                                                <td className={trade.candle}>{trade.tokenPrice}</td>
                                             </tr>
                                         )
                                     })
