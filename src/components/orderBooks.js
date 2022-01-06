@@ -31,11 +31,17 @@ const OrderBook=()=>{
         return filled || cancelled
     })
 
-    
-    const decoratedOpenOrders = decorateOrder(openOrders)
-    const orderBook = decorateOrderBookSaleType(decoratedOpenOrders)
+    const preprocessOrderBook=(order)=>{
+        const decoratedOpenOrders = decorateOrder(order)
+        const orderBook = decorateOrderBookSaleType(decoratedOpenOrders)
 
-    console.log(orderBook)
+        return orderBook
+    }    
+    
+    const preprocessedOrderBook = preprocessOrderBook(openOrders)
+    console.log(preprocessedOrderBook)
+
+    //console.log(orderBook)
     
     return(
         <div className="order-book">
