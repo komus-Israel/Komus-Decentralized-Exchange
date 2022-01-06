@@ -41,6 +41,20 @@ const Trades=()=>{
                             <th>KOM</th>
                             <th>KOM/ETH</th>
                         </tr>
+
+                        <tbody>
+                                {
+                                    trades.map((trade)=>{
+                                        return(
+                                            <tr>
+                                                <td>{trade.formattedTimestamp}</td>
+                                                <td>{trade.tokenAmount}</td>
+                                                <td>{trade.tokenPrice}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
                     </thead>
                  </table>
                
