@@ -18,21 +18,11 @@ const Trades=()=>{
         
         trades = trades.sort((a,b)=> a._timeTraded - b._timeTraded) // sort with time ascending
         trades = decorateOrder(trades)
-        decoratedTradePrice = decorateOrderPrice(trades)
-       trades = decoratedTradePrice.sort((a,b)=> b._timeTraded - a._timeTraded)
+        decoratedTradePrice = decorateOrderPrice(trades) // classify the price's candle as green or red
+        trades = decoratedTradePrice.sort((a,b)=> b._timeTraded - a._timeTraded) // sort the trades with time in descending order
     }
 
-    useEffect(()=>{
-       
 
-        if(trades) {
-            console.log('sorted trades', trades)
-        }    
-    })
-
-    
-    
-    
     return(
         <div className="trades">
              <p className="cont-header">Trades</p>
