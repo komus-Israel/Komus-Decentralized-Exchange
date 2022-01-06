@@ -4,8 +4,6 @@ import moment from 'moment';
 const decorateOrder=(orders)=>{
     let etherAmount
     let tokenAmount
-    let previousOrder = orders[0]
-    let candle
     const precision = 100000
 
     
@@ -26,6 +24,19 @@ const decorateOrder=(orders)=>{
 
         order = {...order, etherAmount, tokenAmount, tokenPrice, formattedTimestamp}
 
+        return order
+    })
+
+    return orders
+}
+
+
+export const decorateOrderPrice=(orders)=>{
+    let previousOrder = orders[0]
+    let candle
+
+    orders = orders.map(order => {
+
         if( previousOrder._id === order._id ) {
             candle = 'green'
         } else {
@@ -45,21 +56,12 @@ const decorateOrder=(orders)=>{
 
         previousOrder = order
 
-        
-
         return order
+        
     })
 
     return orders
-}
-
-
-export const decorateOrderPrice=(orders)=>{
-    // show green price if order price is higher than previous
-    // show red price if order price is lower than previous price
-
-
-    
+      
 }
 
 export default decorateOrder

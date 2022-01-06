@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { get } from "lodash";
 import '../styles/trades.css';
 import { useEffect } from "react";
-import decorateOrder from "./decorateOrder";
+import decorateOrder, { decorateOrderPrice } from "./decorateOrder";
 
 
 const Trades=()=>{
@@ -11,12 +11,15 @@ const Trades=()=>{
         state => get(state, 'loadEventsReducer.filledOrders', [])
     )
 
+    let decoratedTradePrice
+
     if (trades.length > 0 ) {
 
         
         trades = trades.sort((a,b)=> a._timeTraded - b._timeTraded) // sort with time ascending
         trades = decorateOrder(trades)
-        trades = trades.sort((a,b)=> b._timeTraded - a._timeTraded)
+        decoratedTradePrice = decorateOrderPrice(trades)
+       trades = decoratedTradePrice.sort((a,b)=> b._timeTraded - a._timeTraded)
     }
 
     useEffect(()=>{
