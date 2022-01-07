@@ -41,18 +41,11 @@ const OrderBook=()=>{
    
     const groupOrderIntoBuyAndSell  = groupBy(preprocessedOrderBook, 'orderType') // group the orders buy their order type which is "buy" and "sell"
 
-    /*const sortedGroupedOrders = {
+    const sellOrder = get(groupOrderIntoBuyAndSell, 'Sell', []) // get the buy orders from the object
+    const buyOrder = get(groupOrderIntoBuyAndSell, 'Buy', [])   // get the sell orders from the object
 
-        ...groupOrderIntoBuyAndSell,
-        sortedBuy: groupOrderIntoBuyAndSell.Buy.sort((a,b)=> b.tokenPrice - a.tokenPrice),
-        sortedSell: groupOrderIntoBuyAndSell.Sell.sort((a,b)=> b.tokenPrice - a.tokenPrice)
-    }*/
-
-    const sellOrder = get(groupOrderIntoBuyAndSell, 'Sell', [])
-    const buyOrder = get(groupOrderIntoBuyAndSell, 'Buy', [])
-    console.log(sellOrder)
-    console.log(buyOrder)
-
+    const sortedSellOrderPrice = sellOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
+    
 
     //console.log(sortedGroupedOrders)
    
