@@ -12,10 +12,6 @@ function App() {
   const dispatch = useDispatch()
 
 
-  const counts = useSelector(
-    state => get(state, 'counter')
-  )
-
   const account = useSelector(
       state => get(state, 'loadweb3Reducer.connectedAccount')
   )

@@ -27,6 +27,8 @@ const OrderBook=()=>{
         return filled || cancelled
     })
 
+    console.log(createdOrders)
+
     const preprocessOrderBook=(order)=>{
         const decoratedOpenOrders = decorateOrder(order)
         const orderBook = decorateOrderBookSaleType(decoratedOpenOrders)
@@ -39,15 +41,20 @@ const OrderBook=()=>{
    
     const groupOrderIntoBuyAndSell  = groupBy(preprocessedOrderBook, 'orderType') // group the orders buy their order type which is "buy" and "sell"
 
-    const sortedGroupedOrders = {
+    /*const sortedGroupedOrders = {
 
         ...groupOrderIntoBuyAndSell,
         sortedBuy: groupOrderIntoBuyAndSell.Buy.sort((a,b)=> b.tokenPrice - a.tokenPrice),
         sortedSell: groupOrderIntoBuyAndSell.Sell.sort((a,b)=> b.tokenPrice - a.tokenPrice)
-    }
+    }*/
+
+    const sellOrder = get(groupOrderIntoBuyAndSell, 'Sell', [])
+    const buyOrder = get(groupOrderIntoBuyAndSell, 'Buy', [])
+    console.log(sellOrder)
+    console.log(buyOrder)
 
 
-    console.log(sortedGroupedOrders)
+    //console.log(sortedGroupedOrders)
    
     
     return(
