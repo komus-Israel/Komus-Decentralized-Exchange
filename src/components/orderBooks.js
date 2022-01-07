@@ -1,6 +1,7 @@
 import { get, reject, groupBy } from "lodash";
 import { useSelector } from "react-redux";
 import decorateOrder, { decorateOrderBookSaleType} from "./decorateOrder";
+import "../styles/orderBook.css";
 
 
 const OrderBook=()=>{
@@ -43,8 +44,8 @@ const OrderBook=()=>{
     const sellOrder = get(groupOrderIntoBuyAndSell, 'Sell', []) // get the buy orders from the object
     const buyOrder = get(groupOrderIntoBuyAndSell, 'Buy', [])   // get the sell orders from the object
 
-    const sortedSellOrderPrice = sellOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
-    const sortedBuyOrderPrice = buyOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
+    //const sortedSellOrderPrice = sellOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
+    //const sortedBuyOrderPrice = buyOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
 
     const orderBook = {
 
@@ -65,20 +66,13 @@ const OrderBook=()=>{
 
                 <table>
                     <tbody>
-                        <OrderSale orderType={orderBook.buyOrder} name="buy"/>
-                        <Divider />
+
                         <OrderSale orderType={orderBook.sellOrder} name="sell"/>
+                        <Divider />
+                        <OrderSale orderType={orderBook.buyOrder} name="buy"/>
+                        
                     </tbody>
-                </table>
-
-                {/*sell order 
-
-                divider
-
-                buy order*/}
-
-                
-                
+                </table>                
             </div>
             
         </div>
@@ -98,7 +92,7 @@ const renderOrder=(order)=>{
 
         <tr key={order._id}>
             <td>{order.tokenAmount}</td>
-            <td>{order.tokenPrice}</td>
+            <td className={order.orderType}>{order.tokenPrice}</td>
             <td>{order.etherAmount}</td>
         </tr>
         
