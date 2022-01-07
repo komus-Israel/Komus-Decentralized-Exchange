@@ -27,7 +27,6 @@ const OrderBook=()=>{
         return filled || cancelled
     })
 
-    console.log(createdOrders)
 
     const preprocessOrderBook=(order)=>{
         const decoratedOpenOrders = decorateOrder(order)
@@ -64,13 +63,21 @@ const OrderBook=()=>{
             <p className="cont-header">Order Book</p>
             <div className="dex-content">
 
+                <table>
+                    <tbody>
+                        <OrderSale orderType={orderBook.buyOrder} name="buy"/>
+                        <Divider />
+                        <OrderSale orderType={orderBook.sellOrder} name="sell"/>
+                    </tbody>
+                </table>
+
                 {/*sell order 
 
                 divider
 
                 buy order*/}
 
-                <BuyOrder buyOrder={orderBook.buyOrder}/>
+                
                 
             </div>
             
@@ -78,22 +85,10 @@ const OrderBook=()=>{
     )
 }
 
-const BuyOrder=({buyOrder})=>{
-
-    console.log(buyOrder)
+const OrderSale=({orderType, name})=>{
     return(
 
-        <table>
-            <tbody>
-                {
-                    buyOrder.map((order)=>{
-                        return renderOrder(order)
-                    })
-                }
-            </tbody>
-        </table>
-        
-
+        orderType.map((order)=> renderOrder(order))
         
     )
 }
@@ -109,6 +104,16 @@ const renderOrder=(order)=>{
         
        
 
+    )
+}
+
+const Divider=()=>{
+    return (
+        <tr>
+            <td>KOM</td>
+            <td>Price</td>
+            <td>ETH</td>
+        </tr>
     )
 }
 
