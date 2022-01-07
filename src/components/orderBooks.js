@@ -47,17 +47,68 @@ const OrderBook=()=>{
     const sortedSellOrderPrice = sellOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
     const sortedBuyOrderPrice = buyOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
 
-    console.log(sortedBuyOrderPrice)
+    const orderBook = {
+
+        ...groupOrderIntoBuyAndSell,
+        sellOrder,
+        buyOrder
+    }
+
+    console.log(orderBook)
+
+    
    
     
     return(
         <div className="order-book">
             <p className="cont-header">Order Book</p>
             <div className="dex-content">
+
+                {/*sell order 
+
+                divider
+
+                buy order*/}
+
+                <BuyOrder buyOrder={orderBook.buyOrder}/>
                 
             </div>
             
         </div>
+    )
+}
+
+const BuyOrder=({buyOrder})=>{
+
+    console.log(buyOrder)
+    return(
+
+        <table>
+            <tbody>
+                {
+                    buyOrder.map((order)=>{
+                        return renderOrder(order)
+                    })
+                }
+            </tbody>
+        </table>
+        
+
+        
+    )
+}
+
+const renderOrder=(order)=>{
+    return (
+
+        <tr key={order._id}>
+            <td>{order.tokenAmount}</td>
+            <td>{order.tokenPrice}</td>
+            <td>{order.etherAmount}</td>
+        </tr>
+        
+       
+
     )
 }
 
