@@ -45,9 +45,9 @@ const OrderBook=()=>{
     const buyOrder = get(groupOrderIntoBuyAndSell, 'Buy', [])   // get the sell orders from the object
 
     const sortedSellOrderPrice = sellOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
-    
+    const sortedBuyOrderPrice = buyOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
 
-    //console.log(sortedGroupedOrders)
+    console.log(sortedBuyOrderPrice)
    
     
     return(
