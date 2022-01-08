@@ -54,7 +54,7 @@ const Transactions=()=>{
 
     //  handling and decorating the user open orders
     const decorateMyOpenOrders = decorateOrder(myOpenOrders)
-    const openOrderBook = decorateOrderBookSaleType(decorateMyOpenOrders)
+    const myOpenOrderBook = decorateOrderBookSaleType(decorateMyOpenOrders)
 
 
     
@@ -67,7 +67,7 @@ const Transactions=()=>{
     useEffect(()=>{
         trades.current.hidden = true
         console.log(myAccount)
-        console.log('my open orders orders', openOrderBook)
+        console.log('my open orders orders', myOpenOrderBook)
     })
 
     /*const openOrderStyle = {
@@ -101,7 +101,7 @@ const Transactions=()=>{
                      </tbody>
 
                      <tbody ref = {openOrder}>
-                        <MyOpenOrders />
+                        <MyOpenOrders orders = {myOpenOrderBook}/>
                      </tbody>
 
                      <tbody ref = {trades}> 
@@ -115,7 +115,7 @@ const Transactions=()=>{
     )
 }
 
-const MyOpenOrders=()=>{
+const MyOpenOrders=({orders})=>{
     return (
 
        <>
@@ -125,10 +125,19 @@ const MyOpenOrders=()=>{
                 <th>ETH</th>
             </tr>
 
-            <tr>
-                <td>dfbdfbdf</td>
-                <td>dfbdfbdf</td>
-            </tr>
+            {
+                orders.map((order =>{
+                    return (
+                        <tr>
+                            <td>{order.tokenAmount}</td>
+                            <td>{order.tokenPrice}</td>
+                            <td>{order.etherAmount}</td>
+                        </tr>
+                    )
+                }))
+            }
+
+           
        </>
             
 
