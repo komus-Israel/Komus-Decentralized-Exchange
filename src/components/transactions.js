@@ -1,13 +1,16 @@
-import { useRef } from "react"
-import { useState } from "react"
+import { useEffect } from "react";
+import { useRef } from "react";
+
 
 const Transactions=()=>{
 
-    const [myOpenOrder, setOpenOrder] = useState('')
-    const [myFilledOrder, setFilledOrder] = useState('')
-
     const openOrder = useRef()
     const trades = useRef()
+
+
+    useEffect(()=>{
+        trades.current.hidden = true
+    })
     return(
         <div className="transactions">
              <p className="cont-header">Transactions</p>
@@ -37,20 +40,6 @@ const Transactions=()=>{
                      </tbody>
 
                  </table>
-
-                 {/*<button onClick={()=>{
-                     filled.current.hidden = true
-                     order.current.hidden = false
-                     setOpenOrder('these are my open orders')
-                 }}>my open orders</button>
-
-                 <button onClick={()=>{
-                     order.current.hidden = true
-                     filled.current.hidden = false
-                     setFilledOrder('these are my filled orders')
-                 }}>my transactions</button>*/}
-
-
                 
             </div>
         </div>
