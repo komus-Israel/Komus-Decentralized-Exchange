@@ -3,6 +3,7 @@ import { useRef } from "react";
 import "../styles/transactions.css"
 import { get } from "lodash";
 import { useSelector } from "react-redux";
+import decorateOrder from "./decorateOrder";
 
 
 const Transactions=()=>{
@@ -20,6 +21,7 @@ const Transactions=()=>{
     )
 
     const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
+    const myDecoratedFilledOrders = decorateOrder(myFilledOrders)
 
     //const isOpenOrder = get(trades, 'current.hidden', false)
 
@@ -28,7 +30,7 @@ const Transactions=()=>{
     useEffect(()=>{
         trades.current.hidden = true
         console.log(myAccount)
-        console.log('my trades', myFilledOrders)
+        console.log('my trades', myDecoratedFilledOrders)
     })
 
     /*const openOrderStyle = {
