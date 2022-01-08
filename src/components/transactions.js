@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 import "../styles/transactions.css"
-import { get } from "lodash";
+import { get, reject } from "lodash";
 import { useSelector } from "react-redux";
 import decorateOrder, { decorateFilledOrder } from "./decorateOrder";
 
@@ -21,16 +21,37 @@ const Transactions=()=>{
         state => get(state, 'loadEventsReducer.createdOrders', [])
     )
 
+
+    const cancelledOrders = useSelector(
+        state => get(state, 'loadEventsReducer.cancelledOrders', [])
+    )
+
     const myAccount = useSelector(
         state => get(state, 'loadweb3Reducer.connectedAccount', '')
     )
 
+    // fetch the open orders
+
+    const openOrders = reject(createdOrders, (order)=>{
+        const filled = filledOrders.some((filledOrder)=>filledOrder._id === order._id)
+        const cancelled = cancelledOrders.some((cancelledOrder) => cancelledOrder._id === order._id)
+
+        return filled || cancelled
+    })
+
+
+    // filter filled orders and open orders by the connected account
 
     const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0" || order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
     
+
+
     const sortedFilledOrder = myFilledOrders.sort((a,b)=>a._timeTraded - b._timeTraded) // sort the timestamp in ascending order
     const myDecoratedFilledOrders = decorateOrder(sortedFilledOrder)
     const myDecoratedFilledOrderType = decorateFilledOrder(myDecoratedFilledOrders, "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
+
+
+    
     
 
     //const isOpenOrder = get(trades, 'current.hidden', false)
@@ -40,7 +61,7 @@ const Transactions=()=>{
     useEffect(()=>{
         trades.current.hidden = true
         console.log(myAccount)
-        console.log('my trades', myDecoratedFilledOrderType)
+        console.log('my open orders orders', openOrders)
     })
 
     /*const openOrderStyle = {
