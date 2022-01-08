@@ -22,9 +22,10 @@ const Transactions=()=>{
     )
 
     const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0" || order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
-    const myDecoratedFilledOrders = decorateOrder(myFilledOrders)
-    const myDecoratedFilledOrderPrice = decorateOrderBookSaleType(myDecoratedFilledOrders)
-    decorateFilledOrder(myDecoratedFilledOrders, "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
+    const sortedFilledOrder = myFilledOrders.sort((a,b)=>b._timeTraded - a._timeTraded)
+    const myDecoratedFilledOrders = decorateOrder(sortedFilledOrder)
+    const myDecoratedFilledOrderType = decorateFilledOrder(myDecoratedFilledOrders, "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
+    
 
     //const isOpenOrder = get(trades, 'current.hidden', false)
 
@@ -33,7 +34,7 @@ const Transactions=()=>{
     useEffect(()=>{
         trades.current.hidden = true
         console.log(myAccount)
-        console.log('my trades', myDecoratedFilledOrders)
+        console.log('my trades', myDecoratedFilledOrderType)
     })
 
     /*const openOrderStyle = {
@@ -73,7 +74,7 @@ const Transactions=()=>{
                      </tbody>
 
                      <tbody ref = {trades}> 
-                        <MyTrades orders = {myDecoratedFilledOrderPrice}/>
+                        <MyTrades orders = {myDecoratedFilledOrderType}/>
                      </tbody>
 
                  </table>
@@ -125,7 +126,7 @@ const MyTrades=({orders})=>{
                         <tr key = {order._id}>
                             <td>{order.formattedTimestamp}</td>
                             <td>{order.tokenAmount}</td>
-                            <td>{order.tokenPrice +  '||' + order.orderType}</td>
+                            <td className={order.orderType}>{order.orderType === 'Bought' ? '+' + order.tokenPrice : '-' + order.tokenPrice}</td>
                             
                         </tr>
                     )
