@@ -22,7 +22,7 @@ const Transactions=()=>{
     )
 
     const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0" || order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
-    const sortedFilledOrder = myFilledOrders.sort((a,b)=>b._timeTraded - a._timeTraded)
+    const sortedFilledOrder = myFilledOrders.sort((a,b)=>a._timeTraded - b._timeTraded) // sort the timestamp in ascending order
     const myDecoratedFilledOrders = decorateOrder(sortedFilledOrder)
     const myDecoratedFilledOrderType = decorateFilledOrder(myDecoratedFilledOrders, "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
     
