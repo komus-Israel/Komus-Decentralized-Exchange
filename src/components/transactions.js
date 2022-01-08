@@ -20,7 +20,11 @@ const Transactions=()=>{
                                  openOrder.current.hidden = false 
                                  trades.current.hidden = true
                              }}>Open Orders</th>
-                             <th>Filled Orders</th>
+
+                             <th onClick={()=>{
+                                  openOrder.current.hidden = true
+                                  trades.current.hidden = false
+                             }}>Filled Orders</th>
                          </tr>
                      </tbody>
 
