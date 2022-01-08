@@ -3,7 +3,7 @@ import { useRef } from "react";
 import "../styles/transactions.css"
 import { get } from "lodash";
 import { useSelector } from "react-redux";
-import decorateOrder, { decorateOrderBookSaleType, decorateFilledOrder } from "./decorateOrder";
+import decorateOrder, { decorateFilledOrder } from "./decorateOrder";
 
 
 
@@ -17,11 +17,17 @@ const Transactions=()=>{
         state => get(state, 'loadEventsReducer.filledOrders', [])
     )
 
+    const createdOrders = useSelector(
+        state => get(state, 'loadEventsReducer.createdOrders', [])
+    )
+
     const myAccount = useSelector(
         state => get(state, 'loadweb3Reducer.connectedAccount', '')
     )
 
+
     const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0" || order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
+    
     const sortedFilledOrder = myFilledOrders.sort((a,b)=>a._timeTraded - b._timeTraded) // sort the timestamp in ascending order
     const myDecoratedFilledOrders = decorateOrder(sortedFilledOrder)
     const myDecoratedFilledOrderType = decorateFilledOrder(myDecoratedFilledOrders, "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
