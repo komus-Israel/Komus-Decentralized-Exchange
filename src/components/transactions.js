@@ -15,6 +15,10 @@ const Transactions=()=>{
         state => get(state, 'loadEventsReducer.filledOrders', [])
     )
 
+    const myAccount = useSelector(
+        state => get(state, 'loadweb3Reducer.connectedAccount', '')
+    )
+
     //const isOpenOrder = get(trades, 'current.hidden', false)
 
 
