@@ -20,7 +20,7 @@ const Transactions=()=>{
         state => get(state, 'loadweb3Reducer.connectedAccount', '')
     )
 
-    const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
+    const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0" || order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
     const myDecoratedFilledOrders = decorateOrder(myFilledOrders)
 
     //const isOpenOrder = get(trades, 'current.hidden', false)
@@ -64,7 +64,7 @@ const Transactions=()=>{
                      </tbody>
 
                      <tbody ref = {trades}> 
-                        <MyTrades orders = {myFilledOrders}/>
+                        <MyTrades orders = {myDecoratedFilledOrders}/>
                      </tbody>
 
                  </table>
@@ -114,7 +114,9 @@ const MyTrades=({orders})=>{
                 orders.map(order => {
                     return (
                         <tr key = {order._id}>
-                            <td>{order._timeTraded}</td>
+                            <td>{order.formattedTimestamp}</td>
+                            <td>{order.tokenAmount}</td>
+                            <td>{order.tokenPrice}</td>
                         </tr>
                     )
                 })
