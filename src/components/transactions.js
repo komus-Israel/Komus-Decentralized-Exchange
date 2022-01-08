@@ -1,16 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
+import "../styles/transactions.css"
+import { get } from "lodash";
+import { useSelector } from "react-redux";
 
 
 const Transactions=()=>{
 
     const openOrder = useRef()
     const trades = useRef()
+    
+
+    const filledOrder = useSelector(
+        state => get(state, 'loadEventsReducer.filledOrders', [])
+    )
+
+    //const isOpenOrder = get(trades, 'current.hidden', false)
+
 
 
     useEffect(()=>{
         trades.current.hidden = true
     })
+
+    /*const openOrderStyle = {
+
+        background: isOpenOrder && 'white' 
+    }*/
     return(
         <div className="transactions">
              <p className="cont-header">Transactions</p>
@@ -19,15 +35,15 @@ const Transactions=()=>{
                  <table>
                      <tbody>
                          <tr>
-                             <th onClick={()=>{
+                             <th className="my-transactions" onClick={()=>{
                                  openOrder.current.hidden = false 
                                  trades.current.hidden = true
-                             }}>Open Orders</th>
+                             }}>Orders</th>
 
-                             <th onClick={()=>{
+                             <th className="my-transactions" onClick={()=>{
                                   openOrder.current.hidden = true
                                   trades.current.hidden = false
-                             }}>Filled Orders</th>
+                             }}>Trades</th>
                          </tr>
                      </tbody>
 
@@ -48,11 +64,11 @@ const Transactions=()=>{
 
 const MyOpenOrders=()=>{
     return (
-        <table>
+        <tr>
             <th>Amount</th>
             <th>KOM/ETH</th>
             <th>ETH</th>
-        </table>
+        </tr>
     )
 }
 
@@ -60,10 +76,11 @@ const MyOpenOrders=()=>{
 
 const MyTrades=()=>{
     return (
-        <table>
-            <th>Amount</th>
-            <th>My trades</th>
-        </table>
+        <tr>
+            <th>Time</th>
+            <th>KOM</th>
+            <th>KOM/ETH</th>
+        </tr>
     )
 }
 
