@@ -3,7 +3,8 @@ import { useRef } from "react";
 import "../styles/transactions.css"
 import { get } from "lodash";
 import { useSelector } from "react-redux";
-import decorateOrder from "./decorateOrder";
+import decorateOrder, { decorateOrderBookSaleType, decorateFilledOrder } from "./decorateOrder";
+
 
 
 const Transactions=()=>{
@@ -22,6 +23,8 @@ const Transactions=()=>{
 
     const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0" || order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
     const myDecoratedFilledOrders = decorateOrder(myFilledOrders)
+    const myDecoratedFilledOrderPrice = decorateOrderBookSaleType(myDecoratedFilledOrders)
+    decorateFilledOrder(myDecoratedFilledOrders, "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
 
     //const isOpenOrder = get(trades, 'current.hidden', false)
 
@@ -37,6 +40,12 @@ const Transactions=()=>{
 
         background: isOpenOrder && 'white' 
     }*/
+
+
+    //  my orders
+
+    // I bought kom,  it increases, my ether decreases
+    // I sold kom, it decreases, my ether increases
 
 
     return(
@@ -64,7 +73,7 @@ const Transactions=()=>{
                      </tbody>
 
                      <tbody ref = {trades}> 
-                        <MyTrades orders = {myDecoratedFilledOrders}/>
+                        <MyTrades orders = {myDecoratedFilledOrderPrice}/>
                      </tbody>
 
                  </table>
@@ -116,7 +125,8 @@ const MyTrades=({orders})=>{
                         <tr key = {order._id}>
                             <td>{order.formattedTimestamp}</td>
                             <td>{order.tokenAmount}</td>
-                            <td>{order.tokenPrice}</td>
+                            <td>{order.tokenPrice +  '||' + order.orderType}</td>
+                            
                         </tr>
                     )
                 })

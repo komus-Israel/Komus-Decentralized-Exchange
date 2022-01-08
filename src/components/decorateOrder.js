@@ -75,4 +75,29 @@ export const decorateOrderBookSaleType=(orders)=>{
     return orders
 }
 
+
+export const decorateFilledOrder=(orders, account)=>{
+
+    orders = orders.map(order => {
+
+        // As the connected address, I filled this order
+        const myOrder = order._filler === account
+        let orderType
+       
+        if (myOrder) {
+
+            //  Being the filler of this order, if the creator gave me ether, then I sold my token in exchange, therefore my order type is tagged as "sould" else "bought"
+            orderType = order._tokenGive === ETHER_ADDRESS ? 'Sould' : 'Bought'
+        } else {
+            
+            // if not myOrder, it means i created this order. As the creator of this order, if I gave out ether in exchange for token, it means i bought token
+            orderType = order._tokenGive === ETHER_ADDRESS ? 'Bought' : 'Sould'
+        }
+
+        return { ...order, orderType}
+
+        
+    })
+
+}
 export default decorateOrder
