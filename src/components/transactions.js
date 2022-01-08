@@ -11,7 +11,7 @@ const Transactions=()=>{
     const trades = useRef()
     
 
-    const filledOrder = useSelector(
+    const filledOrders = useSelector(
         state => get(state, 'loadEventsReducer.filledOrders', [])
     )
 
@@ -19,18 +19,24 @@ const Transactions=()=>{
         state => get(state, 'loadweb3Reducer.connectedAccount', '')
     )
 
+    const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
+
     //const isOpenOrder = get(trades, 'current.hidden', false)
 
 
 
     useEffect(()=>{
         trades.current.hidden = true
+        console.log(myAccount)
+        console.log('my trades', myFilledOrders)
     })
 
     /*const openOrderStyle = {
 
         background: isOpenOrder && 'white' 
     }*/
+
+
     return(
         <div className="transactions">
              <p className="cont-header">Transactions</p>
@@ -56,7 +62,7 @@ const Transactions=()=>{
                      </tbody>
 
                      <tbody ref = {trades}> 
-                        <MyTrades />
+                        <MyTrades orders = {myFilledOrders}/>
                      </tbody>
 
                  </table>
@@ -68,23 +74,51 @@ const Transactions=()=>{
 
 const MyOpenOrders=()=>{
     return (
-        <tr>
-            <th>Amount</th>
-            <th>KOM/ETH</th>
-            <th>ETH</th>
-        </tr>
+
+       <>
+            <tr>
+                <th>Amount</th>
+                <th>KOM/ETH</th>
+                <th>ETH</th>
+            </tr>
+
+            <tr>
+                <td>dfbdfbdf</td>
+                <td>dfbdfbdf</td>
+            </tr>
+       </>
+            
+
+        
+        
+
+
     )
 }
 
 
 
-const MyTrades=()=>{
+const MyTrades=({orders})=>{
     return (
-        <tr>
-            <th>Time</th>
-            <th>KOM</th>
-            <th>KOM/ETH</th>
-        </tr>
+
+        <>
+            <tr>
+                <th>Time</th>
+                <th>KOM</th>
+                <th>KOM/ETH</th>
+            </tr>
+
+            {
+                orders.map(order => {
+                    return (
+                        <tr key = {order._id}>
+                            <td>{order._timeTraded}</td>
+                        </tr>
+                    )
+                })
+            }
+        </>
+        
     )
 }
 
