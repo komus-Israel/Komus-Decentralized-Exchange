@@ -104,9 +104,9 @@ const renderOrder=(order)=>{
 const Divider=()=>{
     return (
         <tr>
-            <td>KOM</td>
-            <td>Price</td>
-            <td>ETH</td>
+            <th>KOM</th>
+            <th>Price</th>
+            <th>ETH</th>
         </tr>
     )
 }
