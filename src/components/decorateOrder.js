@@ -53,7 +53,6 @@ export const decorateOrderPrice=(orders)=>{
         } 
 
         order = { ...order, candle}
-        console.log(previousOrder.tokenPrice)
 
         previousOrder = order
 

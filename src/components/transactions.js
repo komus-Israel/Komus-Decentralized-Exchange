@@ -3,7 +3,7 @@ import { useRef } from "react";
 import "../styles/transactions.css"
 import { get, reject } from "lodash";
 import { useSelector } from "react-redux";
-import decorateOrder, { decorateFilledOrder } from "./decorateOrder";
+import decorateOrder, { decorateFilledOrder, decorateOrderBookSaleType } from "./decorateOrder";
 
 
 
@@ -43,25 +43,31 @@ const Transactions=()=>{
     // filter filled orders and open orders by the connected account
 
     const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0" || order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
-    
+    const myOpenOrders = openOrders.filter(order => order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
 
 
+    // handling and decorating user trades
     const sortedFilledOrder = myFilledOrders.sort((a,b)=>a._timeTraded - b._timeTraded) // sort the timestamp in ascending order
     const myDecoratedFilledOrders = decorateOrder(sortedFilledOrder)
     const myDecoratedFilledOrderType = decorateFilledOrder(myDecoratedFilledOrders, "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
 
 
+    //  handling and decorating the user open orders
+    const decorateMyOpenOrders = decorateOrder(myOpenOrders)
+    const openOrderBook = decorateOrderBookSaleType(decorateMyOpenOrders)
+
+
     
     
 
-    //const isOpenOrder = get(trades, 'current.hidden', false)
+    
 
 
 
     useEffect(()=>{
         trades.current.hidden = true
         console.log(myAccount)
-        console.log('my open orders orders', openOrders)
+        console.log('my open orders orders', openOrderBook)
     })
 
     /*const openOrderStyle = {
