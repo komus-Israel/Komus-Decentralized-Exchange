@@ -54,7 +54,8 @@ const Transactions=()=>{
 
     //  handling and decorating the user open orders
     const decorateMyOpenOrders = decorateOrder(myOpenOrders)
-    const myOpenOrderBook = decorateOrderBookSaleType(decorateMyOpenOrders)
+    const sortOpenOrders = decorateMyOpenOrders.sort((a,b) => b._timeCreated - a._timeCreated)
+    const myOpenOrderBook = decorateOrderBookSaleType(sortOpenOrders)
 
 
     
