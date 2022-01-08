@@ -45,9 +45,7 @@ const Transactions=()=>{
 
     //  my orders
 
-    // I bought kom,  it increases, my ether decreases
-    // I sold kom, it decreases, my ether increases
-
+  
 
     return(
         <div className="transactions">
