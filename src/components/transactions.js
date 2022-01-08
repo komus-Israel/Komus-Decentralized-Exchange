@@ -130,7 +130,7 @@ const MyOpenOrders=({orders})=>{
                     return (
                         <tr>
                             <td>{order.tokenAmount}</td>
-                            <td>{order.tokenPrice}</td>
+                            <td className={order.orderType}>{order.tokenPrice}</td>
                             <td>{order.etherAmount}</td>
                         </tr>
                     )
