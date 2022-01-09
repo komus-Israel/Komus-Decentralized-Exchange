@@ -7,7 +7,7 @@ const PriceChart=()=>{
         <div className="chart">
              <p className="cont-header">Price Chart</p>
             
-            <Chart type="candlestick"/>
+            <Chart type="candlestick" width="100%" height="100%"/>
         </div>
     )
 }
