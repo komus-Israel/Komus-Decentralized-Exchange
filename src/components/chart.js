@@ -1,4 +1,8 @@
-const Chart=()=>{
+import Chart from "react-apexcharts";
+
+
+
+const PriceChart=()=>{
     return(
         <div className="chart">
              <p className="cont-header">Price Chart</p>
@@ -7,4 +11,4 @@ const Chart=()=>{
     )
 }
 
-export default Chart
+export default PriceChart

@@ -133,6 +133,7 @@ const MyOpenOrders=({orders})=>{
                             <td>{order.tokenAmount}</td>
                             <td className={order.orderType}>{order.tokenPrice}</td>
                             <td>{order.etherAmount}</td>
+                            <td>x</td>
                         </tr>
                     )
                 }))
