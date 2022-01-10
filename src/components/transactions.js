@@ -129,11 +129,11 @@ const MyOpenOrders=({orders})=>{
             {
                 orders.map((order =>{
                     return (
-                        <tr>
+                        <tr key={order._id}> 
                             <td>{order.tokenAmount}</td>
                             <td className={order.orderType}>{order.tokenPrice}</td>
                             <td>{order.etherAmount}</td>
-                            <td>x</td>
+                            <td className="cancel-order" onClick={()=>console.log(order._id)}>X</td>
                         </tr>
                     )
                 }))

@@ -1,3 +1,7 @@
 .my-transactions {
     cursor: pointer;
 }
+
+.cancel-order {
+    cursor: pointer;
+}
