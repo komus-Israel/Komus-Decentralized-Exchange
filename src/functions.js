@@ -66,8 +66,14 @@ export const loadAllOrder=async(exchange, dispatch)=>{
 
 }
 
-export const cancelOrder=(exchange, orderId, dispatch)=>{
-    exchange.methods.cancelOrder()
+export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
+    exchange.methods.cancelOrders(orderId).send({from: account}).on(
+        'transactionHash', (hash)=>console.log(hash)
+    )
+
+    .on (
+        
+    )
 }
 
 

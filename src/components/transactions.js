@@ -109,7 +109,7 @@ const Transactions=()=>{
                      </tbody>
 
                      <tbody ref = {openOrder}>
-                        <MyOpenOrders orders = {myOpenOrderBook} exchangeContract={exchangeContract} dispatch={dispatch}/>
+                        <MyOpenOrders orders = {myOpenOrderBook} exchangeContract={exchangeContract} dispatch={dispatch} account={myAccount}/>
                      </tbody>
 
                      <tbody ref = {trades}> 
@@ -123,7 +123,7 @@ const Transactions=()=>{
     )
 }
 
-const MyOpenOrders=({orders, exchangeContract, dispatch})=>{
+const MyOpenOrders=({orders, exchangeContract, dispatch, account})=>{
     return (
 
        <>
@@ -140,7 +140,7 @@ const MyOpenOrders=({orders, exchangeContract, dispatch})=>{
                             <td>{order.tokenAmount}</td>
                             <td className={order.orderType}>{order.tokenPrice}</td>
                             <td>{order.etherAmount}</td>
-                            <td className="cancel-order" onClick={()=>cancelOrder(exchangeContract, )}>X</td>
+                            <td className="cancel-order" onClick={()=>cancelOrder(exchangeContract, order._id, dispatch, account)}>X</td>
                         </tr>
                     )
                 }))
