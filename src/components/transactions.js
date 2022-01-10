@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import "../styles/transactions.css"
 import { get, reject } from "lodash";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import decorateOrder, { decorateFilledOrder, decorateOrderBookSaleType } from "./decorateOrder";
 import { cancelOrder } from "../functions";
 
@@ -13,6 +13,8 @@ const Transactions=()=>{
     const openOrder = useRef()
     const trades = useRef()
     
+
+    const dispatch = useDispatch()
 
     const filledOrders = useSelector(
         state => get(state, 'loadEventsReducer.filledOrders', [])
@@ -29,6 +31,10 @@ const Transactions=()=>{
 
     const myAccount = useSelector(
         state => get(state, 'loadweb3Reducer.connectedAccount', '')
+    )
+
+    const exchangeContract = useSelector(
+        state => get(state, 'loadContractReducer.exchange', {})
     )
 
     // fetch the open orders
@@ -103,7 +109,7 @@ const Transactions=()=>{
                      </tbody>
 
                      <tbody ref = {openOrder}>
-                        <MyOpenOrders orders = {myOpenOrderBook}/>
+                        <MyOpenOrders orders = {myOpenOrderBook} exchangeContract={exchangeContract} dispatch={dispatch}/>
                      </tbody>
 
                      <tbody ref = {trades}> 
@@ -117,7 +123,7 @@ const Transactions=()=>{
     )
 }
 
-const MyOpenOrders=({orders})=>{
+const MyOpenOrders=({orders, exchangeContract, dispatch})=>{
     return (
 
        <>
@@ -134,7 +140,7 @@ const MyOpenOrders=({orders})=>{
                             <td>{order.tokenAmount}</td>
                             <td className={order.orderType}>{order.tokenPrice}</td>
                             <td>{order.etherAmount}</td>
-                            <td className="cancel-order" onClick={()=>console.log(order._id)}>X</td>
+                            <td className="cancel-order" onClick={()=>cancelOrder(exchangeContract, )}>X</td>
                         </tr>
                     )
                 }))

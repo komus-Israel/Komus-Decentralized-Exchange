@@ -66,8 +66,8 @@ export const loadAllOrder=async(exchange, dispatch)=>{
 
 }
 
-export const cancelOrder=(exchange, dispatch)=>{
-    console.log('cancelled')
+export const cancelOrder=(exchange, orderId, dispatch)=>{
+    exchange.methods.cancelOrder()
 }
 
 
