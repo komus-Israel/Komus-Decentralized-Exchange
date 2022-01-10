@@ -66,4 +66,8 @@ export const loadAllOrder=async(exchange, dispatch)=>{
 
 }
 
+export const cancelOrder=(exchange, dispatch)=>{
+    console.log('cancelled')
+}
+
 
