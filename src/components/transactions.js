@@ -4,6 +4,7 @@ import "../styles/transactions.css"
 import { get, reject } from "lodash";
 import { useSelector } from "react-redux";
 import decorateOrder, { decorateFilledOrder, decorateOrderBookSaleType } from "./decorateOrder";
+import { cancelOrder } from "../functions";
 
 
 
