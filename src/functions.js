@@ -72,7 +72,14 @@ export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
     )
 
     .on (
-        
+        'confirmation', (confirmationNumber, receipt) => {
+            console.log(confirmationNumber)
+            console.log(receipt)
+        }
+    )
+
+    .on (
+        'error', (error) => console.log(error)
     )
 }
 

@@ -10,16 +10,7 @@ import Body from './components/body';
 function App() {
 
   const dispatch = useDispatch()
-
-
-  const account = useSelector(
-      state => get(state, 'loadweb3Reducer.connectedAccount')
-  )
-
-  const acc = useSelector(
-      state => state.loadweb3Reducer.connectedAccount
-  )
-
+  
   const loading=async()=>{
     const web3 = loadweb3(dispatch)
     await loadConnectedAccount(web3, dispatch)
