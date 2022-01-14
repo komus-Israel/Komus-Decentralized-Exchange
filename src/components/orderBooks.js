@@ -2,12 +2,16 @@ import { get, reject, groupBy } from "lodash";
 import { useSelector } from "react-redux";
 import decorateOrder, { decorateOrderBookSaleType} from "./decorateOrder";
 import "../styles/orderBook.css";
+import { fillOrder } from "../functions";
 
 
 const OrderBook=()=>{
 
     
-
+    const exchangeContract = useSelector(
+        state => get(state, 'loadContractReducer.exchange', {})
+    )
+    
     const createdOrders = useSelector(
         state => get(state, 'loadEventsReducer.createdOrders', [])
     )
@@ -93,7 +97,7 @@ const renderOrder=(order, name)=>{
             <td>{order.tokenAmount}</td>
             <td className={order.orderType}>{order.tokenPrice}</td>
             <td>{order.etherAmount}</td>
-            <button>{name === 'sell' ? 'buy' : 'sell'}</button>
+            <button onClick={()=>fillOrder()}>{name === 'sell' ? 'buy' : 'sell'}</button>
         </tr>
         
        
