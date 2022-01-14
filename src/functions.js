@@ -75,7 +75,7 @@ export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
 
     .on(
         'receipt', (receipt) => {
-            
+
             dispatch(orderCancelled(receipt.events.OrderCancelled.returnValues))
         }
     )
@@ -85,6 +85,10 @@ export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
     )
 
    
+}
+
+export const fillOrder=async(exchange, orderId, dispatch, account)=>{
+    exchange.methods.fillOrder(orderId).send({from: account})
 }
 
 
