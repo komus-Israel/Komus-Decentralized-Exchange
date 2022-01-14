@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/header';
 import { useDispatch, useSelector } from "react-redux"
 import { loadConnectedAccount, loadweb3, loadContract, loadAllOrder } from "./functions"
-import { get } from "lodash";
 import Body from './components/body';
 
 

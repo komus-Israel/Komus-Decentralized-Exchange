@@ -58,10 +58,10 @@ export const loadFilledOrdersAction=(stream)=>{
     })
 }
 
-export const orderCancelled=(orderId)=>{
+export const orderCancelled=(cancelledOrder)=>{
     return ({
         type: "ORDER_CANCELLED",
-        payload: orderId
+        payload: cancelledOrder
 
     })
 }

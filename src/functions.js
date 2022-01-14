@@ -67,21 +67,24 @@ export const loadAllOrder=async(exchange, dispatch)=>{
 }
 
 export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
-    exchange.methods.cancelOrders(orderId).send({from: account}).on(
+    exchange.methods.cancelOrders(orderId).send({from: account})
+    .on(
         'transactionHash', (hash)=>console.log(hash)
     )
+   
 
-    .on (
-        'confirmation', (confirmationNumber, receipt) => {
-            console.log(confirmationNumber)
-            console.log(receipt)
-            dispatch(orderCancelled(orderId))
+    .on(
+        'receipt', (receipt) => {
+            
+            dispatch(orderCancelled(receipt.events.OrderCancelled.returnValues))
         }
     )
 
-    .on (
+    .on(
         'error', (error) => console.log(error)
     )
+
+   
 }
 
 
