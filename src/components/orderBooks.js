@@ -41,11 +41,10 @@ const OrderBook=()=>{
    
     const groupOrderIntoBuyAndSell  = groupBy(preprocessedOrderBook, 'orderType') // group the orders buy their order type which is "buy" and "sell"
 
-    const sellOrder = get(groupOrderIntoBuyAndSell, 'Sell', []) // get the buy orders from the object
-    const buyOrder = get(groupOrderIntoBuyAndSell, 'Buy', [])   // get the sell orders from the object
+    const sellOrder = get(groupOrderIntoBuyAndSell, 'Sell', []) // get the sell orders from the object
+    const buyOrder = get(groupOrderIntoBuyAndSell, 'Buy', [])   // get the buy orders from the object
 
-    //const sortedSellOrderPrice = sellOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
-    //const sortedBuyOrderPrice = buyOrder.sort((a,b)=>b.tokenPrice - a.tokenPrice)
+    
 
     const orderBook = {
 
@@ -82,18 +81,19 @@ const OrderBook=()=>{
 const OrderSale=({orderType, name})=>{
     return(
 
-        orderType.map((order)=> renderOrder(order))
+        orderType.map((order)=> renderOrder(order, name))
         
     )
 }
 
-const renderOrder=(order)=>{
+const renderOrder=(order, name)=>{
     return (
 
         <tr key={order._id}>
             <td>{order.tokenAmount}</td>
             <td className={order.orderType}>{order.tokenPrice}</td>
             <td>{order.etherAmount}</td>
+            <button>{name === 'sell' ? 'buy' : 'sell'}</button>
         </tr>
         
        
