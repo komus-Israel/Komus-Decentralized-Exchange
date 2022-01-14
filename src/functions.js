@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import { loadweb3Action, loadConnectedAccountAction, loadTokenContractAction, loadExchangeContractAction, loadCreatedOrdersAction, loadFilledOrdersAction, loadCancelledOrdersAction, orderCancelled } from './actions';
+import { loadweb3Action, loadConnectedAccountAction, loadTokenContractAction, loadExchangeContractAction, loadCreatedOrdersAction, loadFilledOrdersAction, loadCancelledOrdersAction, orderCancelled, orderFilled } from './actions';
 import Token from './abis/Token.json';
 import Exchange from './abis/Exchange.json';
 
@@ -93,7 +93,7 @@ export const fillOrder=async(exchange, orderId, dispatch, account)=>{
 
         'receipt', (receipt)=>{
             console.log(receipt)
-            dispatch(receipt.events.Trade.returnValues)
+            dispatch(orderFilled(receipt.events.Trade.returnValues))
         }
     )
 
