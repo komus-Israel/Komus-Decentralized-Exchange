@@ -93,6 +93,7 @@ export const fillOrder=async(exchange, orderId, dispatch, account)=>{
 
         'receipt', (receipt)=>{
             console.log(receipt)
+            dispatch(receipt.events.Trade.returnValues)
         }
     )
 

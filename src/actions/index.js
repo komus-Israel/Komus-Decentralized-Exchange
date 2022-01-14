@@ -65,3 +65,11 @@ export const orderCancelled=(cancelledOrder)=>{
 
     })
 }
+
+export const orderFilled=(filledOrder)=>{
+    return ({
+        type: "ORDER_FILLED",
+        payload: filledOrder
+
+    })
+}
