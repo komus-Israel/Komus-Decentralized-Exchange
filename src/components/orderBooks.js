@@ -1,5 +1,5 @@
 import { get, reject, groupBy } from "lodash";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import decorateOrder, { decorateOrderBookSaleType} from "./decorateOrder";
 import "../styles/orderBook.css";
 import { fillOrder } from "../functions";
@@ -7,11 +7,18 @@ import { fillOrder } from "../functions";
 
 const OrderBook=()=>{
 
+
+    const dispatch = useDispatch()
+
+    const myAccount = useSelector(
+        state => get(state, 'loadweb3Reducer.connectedAccount', '')
+    )
+
     
     const exchangeContract = useSelector(
         state => get(state, 'loadContractReducer.exchange', {})
     )
-    
+
     const createdOrders = useSelector(
         state => get(state, 'loadEventsReducer.createdOrders', [])
     )
@@ -70,9 +77,9 @@ const OrderBook=()=>{
                 <table>
                     <tbody>
 
-                        <OrderSale orderType={orderBook.sellOrder} name="sell"/>
+                        <OrderSale orderType={orderBook.sellOrder} name="sell" exchangeContract={exchangeContract}/>
                         <Divider />
-                        <OrderSale orderType={orderBook.buyOrder} name="buy"/>
+                        <OrderSale orderType={orderBook.buyOrder} name="buy" exchangeContract={exchangeContract}/>
                         
                     </tbody>
                 </table>                
@@ -82,22 +89,23 @@ const OrderBook=()=>{
     )
 }
 
-const OrderSale=({orderType, name})=>{
+const OrderSale=({orderType, name, exchangeContract})=>{
     return(
 
-        orderType.map((order)=> renderOrder(order, name))
+        orderType.map((order)=> renderOrder(order, name, exchangeContract))
         
     )
 }
 
-const renderOrder=(order, name)=>{
+const renderOrder=(order, name, exchangeContract)=>{
     return (
 
         <tr key={order._id}>
             <td>{order.tokenAmount}</td>
             <td className={order.orderType}>{order.tokenPrice}</td>
             <td>{order.etherAmount}</td>
-            <button onClick={()=>fillOrder()}>{name === 'sell' ? 'buy' : 'sell'}</button>
+            
+            <button onClick={()=>fillOrder(exchangeContract, order._id, dispatch, account)}>{name === 'sell' ? 'buy' : 'sell'}</button>
         </tr>
         
        
