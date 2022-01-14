@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import { loadweb3Action, loadConnectedAccountAction, loadTokenContractAction, loadExchangeContractAction, loadCreatedOrdersAction, loadFilledOrdersAction, loadCancelledOrdersAction } from './actions';
+import { loadweb3Action, loadConnectedAccountAction, loadTokenContractAction, loadExchangeContractAction, loadCreatedOrdersAction, loadFilledOrdersAction, loadCancelledOrdersAction, orderCancelled } from './actions';
 import Token from './abis/Token.json';
 import Exchange from './abis/Exchange.json';
 
@@ -75,6 +75,7 @@ export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
         'confirmation', (confirmationNumber, receipt) => {
             console.log(confirmationNumber)
             console.log(receipt)
+            dispatch(orderCancelled(orderId))
         }
     )
 
