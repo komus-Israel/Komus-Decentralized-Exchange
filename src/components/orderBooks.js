@@ -77,9 +77,9 @@ const OrderBook=()=>{
                 <table>
                     <tbody>
 
-                        <OrderSale orderType={orderBook.sellOrder} name="sell" exchangeContract={exchangeContract}/>
+                        <OrderSale orderType={orderBook.sellOrder} name="sell" exchangeContract={exchangeContract} account={myAccount} dispatch={dispatch}/>
                         <Divider />
-                        <OrderSale orderType={orderBook.buyOrder} name="buy" exchangeContract={exchangeContract}/>
+                        <OrderSale orderType={orderBook.buyOrder} name="buy" exchangeContract={exchangeContract} account={myAccount} dispatch={dispatch}/>
                         
                     </tbody>
                 </table>                
@@ -89,15 +89,15 @@ const OrderBook=()=>{
     )
 }
 
-const OrderSale=({orderType, name, exchangeContract})=>{
+const OrderSale=({orderType, name, exchangeContract, account, dispatch})=>{
     return(
 
-        orderType.map((order)=> renderOrder(order, name, exchangeContract))
+        orderType.map((order)=> renderOrder(order, name, exchangeContract, account, dispatch))
         
     )
 }
 
-const renderOrder=(order, name, exchangeContract)=>{
+const renderOrder=(order, name, exchangeContract, account, dispatch)=>{
     return (
 
         <tr key={order._id}>

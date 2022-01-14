@@ -145,6 +145,13 @@ module.exports = async function(callback) {
          }
 
 
+         for(let i = 1; i<=10; i++) {
+            result = await exchange.createOrder(ether(0.5 * i), tokens(1), ETHER_ADDRESS, token.address, { from: deployer} )
+            console.log(`make order ${i} from deployer`)
+            await wait(1)
+         }
+
+
 
     } catch (err) {
         console.log(err)

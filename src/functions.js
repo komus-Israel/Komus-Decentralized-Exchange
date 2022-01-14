@@ -88,8 +88,16 @@ export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
 }
 
 export const fillOrder=async(exchange, orderId, dispatch, account)=>{
-    //exchange.methods.fillOrder(orderId).send({from: account})
-    console.log('order filled')
+    exchange.methods.fillOrder(orderId).send({from: account})
+    .on(
+
+        'receipt', (receipt)=>{
+            console.log(receipt)
+        }
+    )
+
+    .on('error', (err)=>console.log(err))
+    
 }
 
 
