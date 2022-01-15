@@ -1,5 +1,4 @@
-const { useCallback } = require("react")
-//const { default: Web3 } = require("web3")
+
 
 const Token = artifacts.require('Token')
 const Exchange = artifacts.require('Exchange')
@@ -73,8 +72,8 @@ module.exports = async function(callback) {
          console.log('deployers balance is', deployersBalance)
 
         // transfer some tokens to two other accounts
-        await sendTokens(accounts[1], amount)
-        await sendTokens(accounts[2], amount)
+        await sendTokens(accounts[1], tokens(10))
+        await sendTokens(accounts[2], tokens(10))
 
         // check balance of the token recipients accounts
         const accountBalance1 =  await checkTokenBalane(accounts[1])
@@ -132,13 +131,13 @@ module.exports = async function(callback) {
 
          // user one fills order
          orderId = result.logs[0].args._id
-         await exchange.fillOrder(orderId, { from: accounts[1]})
+         await exchange.fillOrder(orderId, { from: accounts[2]})
 
 
          await wait(1)
          // create open orders
 
-         for(let i = 1; i<=10; i++) {
+         /*for(let i = 1; i<=10; i++) {
             result = await exchange.createOrder(tokens(1), ether(0.5 * i), token.address, ETHER_ADDRESS, { from: accounts[2]} )
             console.log(`make order ${i} from user2`)
             await wait(1)
@@ -149,7 +148,7 @@ module.exports = async function(callback) {
             result = await exchange.createOrder(ether(0.5 * i), tokens(1), ETHER_ADDRESS, token.address, { from: deployer} )
             console.log(`make order ${i} from deployer`)
             await wait(1)
-         }
+         }*/
 
 
 

@@ -213,7 +213,7 @@ contract Exchange {
         //  require that the order has not been filled
         require(!ordersFilled[_id]);
 
-        //  require that the order is not filled by the creator of the contract
+        //  require that the order is not filled by the creator of the order
         require(_order._creator != msg.sender);
 
         //  execute trade

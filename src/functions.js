@@ -88,6 +88,9 @@ export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
 }
 
 export const fillOrder=async(exchange, orderId, dispatch, account)=>{
+    
+    console.log(orderId)
+    console.log(account)
     exchange.methods.fillOrder(orderId).send({from: account})
     .on(
 

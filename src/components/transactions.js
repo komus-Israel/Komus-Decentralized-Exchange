@@ -49,8 +49,8 @@ const Transactions=()=>{
 
     // filter filled orders and open orders by the connected account
 
-    const myFilledOrders = filledOrders.filter(order => order._filler === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0" || order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
-    const myOpenOrders = openOrders.filter(order => order._creator === "0xe2a4152FA4b4a5722901fEA80cEef509290005A0")
+    const myFilledOrders = filledOrders.filter(order => order._filler === myAccount || order._creator === myAccount)
+    const myOpenOrders = openOrders.filter(order => order._creator === myAccount)
 
 
     // handling and decorating user trades
