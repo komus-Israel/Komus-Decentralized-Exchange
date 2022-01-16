@@ -1,4 +1,4 @@
-import { Tab, Tabs } from "bootstrap"
+
 
 
 const NewOrder=()=>{
@@ -7,11 +7,7 @@ const NewOrder=()=>{
              <p className="cont-header">New Order</p>
              <div className="dex-content">
 
-                 <Tabs>
-                     <Tab>
-                         
-                     </Tab>
-                 </Tabs>
+            
                 
             </div>
         </div>
