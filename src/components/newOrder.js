@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 
 
 
@@ -12,6 +12,10 @@ const NewOrder=()=>{
         refHide.current.hidden = true
 
     }
+
+    useEffect(()=>{
+        displayOrderType(buy, sell)
+    })
 
     return(
         <div className="new-order">
