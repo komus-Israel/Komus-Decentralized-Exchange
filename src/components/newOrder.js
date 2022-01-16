@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { displayOrderType } from "../functions"
+import { displayView } from "../functions"
 
 
 
@@ -11,7 +11,7 @@ const NewOrder=()=>{
     
 
     useEffect(()=>{
-        displayOrderType(buy, sell)
+        displayView(buy, sell)
     })
 
     return(
@@ -20,8 +20,8 @@ const NewOrder=()=>{
              <div className="dex-content">
 
                  <div className="create-order-buttons">
-                    <button className="buy-order" onClick={()=>displayOrderType(buy, sell)}>Buy</button>
-                    <button ref = {sell} onClick={()=>displayOrderType(sell, buy)}  className="sell-order">Sell</button>
+                    <button className="buy-order" onClick={()=>displayView(buy, sell)}>Buy</button>
+                    <button ref = {sell} onClick={()=>displayView(sell, buy)}  className="sell-order">Sell</button>
                  </div>
 
                  <div>
