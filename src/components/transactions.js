@@ -86,24 +86,24 @@ const Transactions=()=>{
              <p className="cont-header">Transactions</p>
              <div className="dex-content">
 
-                 <table>
-                     <tbody>
-                         <tr>
-                             <th className="my-transactions" onClick={()=> displayView(openOrder, trades)}>Orders</th>
+                 <div>
+                        <div>
+                            <button className="my-transactions"  onClick={()=> displayView(openOrder, trades)}>Orders</button>
+                            <button className="my-transactions"  onClick={()=> displayView(trades, openOrder)}>Trades</button>
+                        </div>
 
-                             <th className="my-transactions" onClick={()=>displayView(trades, openOrder)}>Trades</th>
-                         </tr>
-                     </tbody>
+                    <table>
 
-                     <tbody ref = {openOrder}>
-                        <MyOpenOrders orders = {myOpenOrderBook} exchangeContract={exchangeContract} dispatch={dispatch} account={myAccount}/>
-                     </tbody>
+                        <tbody ref = {openOrder}>
+                            <MyOpenOrders orders = {myOpenOrderBook} exchangeContract={exchangeContract} dispatch={dispatch} account={myAccount}/>
+                        </tbody>
 
-                     <tbody ref = {trades}> 
-                        <MyTrades orders = {myDecoratedFilledOrderType}/>
-                     </tbody>
+                        <tbody ref = {trades}> 
+                            <MyTrades orders = {myDecoratedFilledOrderType}/>
+                        </tbody>
 
-                 </table>
+                    </table>
+                 </div>
                 
             </div>
         </div>
