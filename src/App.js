@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import './App.css';
 import Header from './components/header';
 import { useDispatch, useSelector } from "react-redux"
-import { loadConnectedAccount, loadweb3, loadContract, loadAllOrder } from "./functions"
+import { loadConnectedAccount, loadweb3, loadContract, loadAllOrder, loadKovanPrice } from "./functions"
 import Body from './components/body';
 
 
@@ -15,6 +15,7 @@ function App() {
     await loadConnectedAccount(web3, dispatch)
     const contract = await loadContract(dispatch)
     await loadAllOrder(contract.exchangeContract, dispatch)
+    loadKovanPrice()
 }
     
 

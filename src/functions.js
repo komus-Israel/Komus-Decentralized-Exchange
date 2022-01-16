@@ -3,6 +3,9 @@ import { loadweb3Action, loadConnectedAccountAction, loadTokenContractAction, lo
 import Token from './abis/Token.json';
 import Exchange from './abis/Exchange.json';
 
+
+
+
 export const loadweb3 =(dispatch)=>{
     const web3 = new Web3(Web3.givenProvider || 'localhost:8545')
     dispatch(loadweb3Action(web3))
@@ -89,6 +92,7 @@ export const cancelOrder=async(exchange, orderId, dispatch, account)=>{
 
 export const fillOrder=async(exchange, orderId, dispatch, account)=>{
 
+    console.log(orderId)
     exchange.methods.fillOrder(orderId).send({from: account})
     .on(
 
@@ -107,5 +111,14 @@ export const displayView=(refDisplay, refHide)=>{
     refDisplay.current.hidden = false
     refHide.current.hidden = true
 
+}
+
+
+export const loadKovanPrice=()=>{
+    const priceAbi = require("./abis/Price.json")
+    const address = "0x9326BFA02ADD2366b30bacB125260Af641031331"
+    const web3Kovan = new Web3(process.env.REACT_KOVAN_API)
+    
+    console.log(web3Kovan)
 }
 
