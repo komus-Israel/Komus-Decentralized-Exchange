@@ -103,3 +103,9 @@ export const fillOrder=async(exchange, orderId, dispatch, account)=>{
 }
 
 
+export const displayOrderType=(refDisplay, refHide)=>{
+    refDisplay.current.hidden = false
+    refHide.current.hidden = true
+
+}
+

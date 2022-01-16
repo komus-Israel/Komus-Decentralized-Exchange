@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import { displayOrderType } from "../functions"
 
 
 
@@ -7,11 +8,7 @@ const NewOrder=()=>{
     const buy = useRef()
     const sell = useRef()
 
-    const displayOrderType=(refDisplay, refHide)=>{
-        refDisplay.current.hidden = false
-        refHide.current.hidden = true
-
-    }
+    
 
     useEffect(()=>{
         displayOrderType(buy, sell)
