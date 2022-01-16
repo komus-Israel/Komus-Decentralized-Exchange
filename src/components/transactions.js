@@ -91,10 +91,7 @@ const Transactions=()=>{
                          <tr>
                              <th className="my-transactions" onClick={()=> displayView(openOrder, trades)}>Orders</th>
 
-                             <th className="my-transactions" onClick={()=>{
-                                  openOrder.current.hidden = true
-                                  trades.current.hidden = false
-                             }}>Trades</th>
+                             <th className="my-transactions" onClick={()=>displayView(trades, openOrder)}>Trades</th>
                          </tr>
                      </tbody>
 
