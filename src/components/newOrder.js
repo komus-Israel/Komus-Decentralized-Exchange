@@ -7,14 +7,26 @@ const NewOrder=()=>{
     const buy = useRef()
     const sell = useRef()
 
+    const displayOrderType=(refDisplay, refHide)=>{
+        refDisplay.current.hidden = false
+        refHide.current.hidden = true
+
+    }
+
     return(
         <div className="new-order">
              <p className="cont-header">New Order</p>
              <div className="dex-content">
 
-                <button>Buy</button>
-                <button>Sell</button>
-            
+                 <div className="create-order-buttons">
+                    <button className="buy-order" onClick={()=>displayOrderType(buy, sell)}>Buy</button>
+                    <button ref = {sell} onClick={()=>displayOrderType(sell, buy)}  className="sell-order">Sell</button>
+                 </div>
+
+                 <div>
+                     <p ref = {buy}>BUY</p>
+                     <p ref = {sell}>SELL</p>
+                 </div>
                 
             </div>
         </div>
