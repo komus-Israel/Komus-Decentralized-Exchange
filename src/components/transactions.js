@@ -76,19 +76,9 @@ const Transactions=()=>{
     useEffect(()=>{
 
         displayView(openOrder, trades)
-        /*trades.current.hidden = true
-        console.log(myAccount)
-        console.log('my open orders orders', myOpenOrderBook)*/
     })
 
-    /*const openOrderStyle = {
-
-        background: isOpenOrder && 'white' 
-    }*/
-
-
-    //  my orders
-
+   
   
 
     return(
@@ -99,10 +89,7 @@ const Transactions=()=>{
                  <table>
                      <tbody>
                          <tr>
-                             <th className="my-transactions" onClick={()=>{
-                                 openOrder.current.hidden = false 
-                                 trades.current.hidden = true
-                             }}>Orders</th>
+                             <th className="my-transactions" onClick={()=> displayView(openOrder, trades)}>Orders</th>
 
                              <th className="my-transactions" onClick={()=>{
                                   openOrder.current.hidden = true
