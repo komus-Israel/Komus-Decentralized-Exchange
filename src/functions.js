@@ -118,7 +118,7 @@ export const loadKovanPrice=()=>{
     const priceAbi = require("./abis/Price.json")
     const address = "0x9326BFA02ADD2366b30bacB125260Af641031331"
     const web3Kovan = new Web3(process.env.REACT_KOVAN_API)
-    
-    console.log(web3Kovan)
+    const chainLinkContract = new web3Kovan.eth.Contract(priceAbi, address)
+    console.log(chainLinkContract)
 }
 
