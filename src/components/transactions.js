@@ -4,7 +4,8 @@ import "../styles/transactions.css"
 import { get, reject } from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import decorateOrder, { decorateFilledOrder, decorateOrderBookSaleType } from "./decorateOrder";
-import { cancelOrder } from "../functions";
+import { cancelOrder, displayView } from "../functions";
+
 
 
 
@@ -73,9 +74,11 @@ const Transactions=()=>{
 
 
     useEffect(()=>{
-        trades.current.hidden = true
+
+        displayView(openOrder, trades)
+        /*trades.current.hidden = true
         console.log(myAccount)
-        console.log('my open orders orders', myOpenOrderBook)
+        console.log('my open orders orders', myOpenOrderBook)*/
     })
 
     /*const openOrderStyle = {
