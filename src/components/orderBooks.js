@@ -104,7 +104,6 @@ const renderOrder=(order, name, exchangeContract, account, dispatch)=>{
             <td>{order.tokenAmount}</td>
             <td className={order.orderType}>{order.tokenPrice}</td>
             <td>{order.etherAmount}</td>
-            
             <tr className="trade-button" onClick={()=>fillOrder(exchangeContract, order._id, dispatch, account)}>{name === 'sell' ? 'buy' : 'sell'}</tr>
         </tr>
         

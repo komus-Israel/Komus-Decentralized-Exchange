@@ -13,7 +13,6 @@ module.exports = async function(callback) {
         // get the accounts
         const accounts = await web3.eth.getAccounts()
         const deployer = accounts[0]
-        const amount = web3.utils.toWei('1000', 'ether')
         const ETHER_ADDRESS = '0x0000000000000000000000000000000000000000'
 
         const ether=(n)=>{
@@ -121,6 +120,7 @@ module.exports = async function(callback) {
         // user two fills order
         orderId = result.logs[0].args._id
         await exchange.fillOrder(orderId, { from: accounts[2]})
+        console.log("user2 fills order")
 
         await wait(1)
 
@@ -131,7 +131,8 @@ module.exports = async function(callback) {
 
          // user one fills order
          orderId = result.logs[0].args._id
-         await exchange.fillOrder(orderId, { from: accounts[2]})
+         await exchange.fillOrder(orderId, { from: deployer})
+         console.log("user1 fills order")
 
 
          await wait(1)
