@@ -11,11 +11,14 @@ function App() {
   const dispatch = useDispatch()
   
   const loading=async()=>{
+    
     const web3 = loadweb3(dispatch)
     await loadConnectedAccount(web3, dispatch)
     const contract = await loadContract(dispatch)
     await loadAllOrder(contract.exchangeContract, dispatch)
-    loadKovanPrice()
+    await loadKovanPrice()
+   
+    
 }
     
 

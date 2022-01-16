@@ -2,7 +2,9 @@ import Web3 from 'web3';
 import { loadweb3Action, loadConnectedAccountAction, loadTokenContractAction, loadExchangeContractAction, loadCreatedOrdersAction, loadFilledOrdersAction, loadCancelledOrdersAction, orderCancelled, orderFilled } from './actions';
 import Token from './abis/Token.json';
 import Exchange from './abis/Exchange.json';
+import { config } from 'dotenv'
 
+//config()
 
 
 
@@ -114,11 +116,14 @@ export const displayView=(refDisplay, refHide)=>{
 }
 
 
-export const loadKovanPrice=()=>{
+export const loadKovanPrice=async()=>{
     const priceAbi = require("./abis/Price.json")
     const address = "0x9326BFA02ADD2366b30bacB125260Af641031331"
-    const web3Kovan = new Web3(process.env.REACT_KOVAN_API)
+    const web3Kovan = new Web3(process.env.REACT_APP_KOVAN_API)
     const chainLinkContract = new web3Kovan.eth.Contract(priceAbi, address)
-    console.log(chainLinkContract)
+    const price = await chainLinkContract.methods.latestRoundData().call()
+    console.log(price)
+    
+   
 }
 
