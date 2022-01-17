@@ -55,6 +55,15 @@ const loadEventsReducer=(state={}, action)=>{
     }
 }
 
+const loadEthToUsd=(state={}, action)=>{
+    switch (action.type) {
+        case "ETH_TO_USD":
+            return {...state, ethToUsd: action.payload}
+        default:
+            return state
+    }
+}
+
 
 
 
@@ -62,5 +71,7 @@ export const combinedReducers = combineReducers({
     counter,
     loadweb3Reducer,
     loadContractReducer,
-    loadEventsReducer
+    loadEventsReducer,
+    loadEthToUsd
 })
+
